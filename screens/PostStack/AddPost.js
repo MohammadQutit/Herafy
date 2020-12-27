@@ -7,11 +7,27 @@ import {
   Text,
 } from 'react-native';
 
-
+import ImagePicker from 'react-native-image-crop-picker';
 
 
 export default function AddPost({navigation}) {
   const [PostText, SetPostText] = React.useState('');
+  const x=ImagePicker.openPicker({
+    width: 300,
+    height: 400,
+    cropping: true
+  }).then(image => {
+    console.log(image);
+  });
+
+  
+  
+
+
+
+
+
+
   return (
     <View style={style.container}>
       <TextInput
@@ -30,6 +46,9 @@ export default function AddPost({navigation}) {
         <View style={{flex:2,flexDirection:"row",backgroundColor:"red"}}>
 
         </View>
+        <TouchableOpacity onPress={x}>
+          <Text>hello</Text>
+        </TouchableOpacity>
        
      
     </View>
