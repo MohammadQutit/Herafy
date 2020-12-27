@@ -33,6 +33,7 @@ function Row(props) {
 Row.propTypes = {
   name: PropTypes.string,
   phone: PropTypes.string,
+  navigation:PropTypes.object
 };
 
 const styles = StyleSheet.create({

@@ -5,6 +5,7 @@ import {AuthContext} from '../context/Authcontext';
 import HomeStack from './HomeStack/HomeStack';
 import CalendarStack from './CalendarStack/Stack';
 import ProfileStack from './ProfileStack/Stack';
+import Post from './PostStack/Stack'
 
 const Tab = createBottomTabNavigator();
 
@@ -28,21 +29,21 @@ export default function Tabmenu({navigation}) {
           }
 
           // You can return any component that you like here!
-          return <Ionicons name={iconName} size={25} color={color} />;
+          return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}
       tabBarOptions={{
         activeTintColor: 'white',
         inactiveTintColor: '#ADA5B0',
         style: {
-          height: 60,
+          
           backgroundColor: '#4D3886',
           borderTopLeftRadius: 5,
           borderTopRightRadius: 5,
         },
       }}>
       <Tab.Screen name="Categories" component={HomeStack} />
-      <Tab.Screen name="Posts" children={() => <HomeStack />} />
+      <Tab.Screen name="Posts" children={() => <Post />} />
       <Tab.Screen name="Profile" component={ProfileStack} />
       <Tab.Screen name="Calendar" component={CalendarStack} />
     </Tab.Navigator>
