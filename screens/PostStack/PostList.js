@@ -59,12 +59,6 @@ export default function PostList({navigation}) {
           data={postdata}
           renderItem={renderit}
           keyExtractor={(item) => item.id}
-          ListHeaderComponent={() => <Text>Hello</Text>}
-          ListHeaderComponentStyle={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '2%',
-          }}
           
         />
       </SafeAreaView>
