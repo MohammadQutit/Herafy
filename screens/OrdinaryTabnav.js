@@ -4,6 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {AuthContext} from '../context/Authcontext';
 import HomeStack from './HomeStack/HomeStack';
 import ProfileStack from './ProfileStack/Stack';
+import PostStack from './PostStack/Stack'
 
 const Tab = createBottomTabNavigator();
 
@@ -41,7 +42,7 @@ export default function Tabmenu({navigation}) {
         },
       }}>
       <Tab.Screen name="Categories" component={HomeStack} />
-      <Tab.Screen name="Posts" children={() => <HomeStack />} />
+      <Tab.Screen name="Posts" children={() => <PostStack/>} />
       <Tab.Screen name="Profile" component={ProfileStack} />
     </Tab.Navigator>
   );
