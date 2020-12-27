@@ -72,17 +72,18 @@ export default function Craftprofile({navigation}) {
           alignItems: 'center',
           flexDirection: 'row',
         }}>
-        <TouchableOpacity style={{flex: 1, alignItems: 'center'}}>
+        <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={()=>{ navigation.navigate('Rating')}}>
           <Icon name="star" color="purple" size={60} />
           <Text>Rate</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{flex: 1, alignItems: 'center'}}>
+        <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={()=>{ navigation.navigate('Calender')}}>
           <Icon name="calendar" color="purple" size={60} />
           <Text>Calendar</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
+    //plz change the width of the buttons of calender and rate
   );
 }
 
