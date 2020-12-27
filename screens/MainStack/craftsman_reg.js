@@ -44,7 +44,7 @@ export default function CraftsmanReg({navigation}, props) {
   const {signOut} = useContext(AuthContext);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    
       <KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>
         <ImageBackground
           style={styles.container}
@@ -271,7 +271,7 @@ export default function CraftsmanReg({navigation}, props) {
           </Formik>
         </ImageBackground>
       </KeyboardAwareScrollView>
-    </SafeAreaView>
+    
   );
 }
 

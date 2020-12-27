@@ -23,7 +23,6 @@ const validationSchema = yup.object().shape({
 });
 export default function ResetPassword({navigation}, props) {
   return (
-    <SafeAreaView style={{flex: 1}}>
       <KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>
         <ImageBackground
           style={styles.container}
@@ -90,7 +89,7 @@ export default function ResetPassword({navigation}, props) {
           </Formik>
         </ImageBackground>
       </KeyboardAwareScrollView>
-    </SafeAreaView>
+    
   );
 }
 
