@@ -1,97 +1,95 @@
-import React from 'react'
-import {View,Text,StyleSheet,TextInput,TouchableOpacity,SafeAreaView,StatusBar} from 'react-native'
-import {getStatusBarHeight}from 'react-native-status-bar-height'
-export default function Period(){
+import React, {useState} from 'react';
+import {View, Button, Platform,StyleSheet,TouchableOpacity, Text} from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-    return(
-        <SafeAreaView style={style.container}>
-            <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
-            <View style={style.First_View}>
-            <View style={style.TextInput_View}>
-            <TextInput
-            placeholder='StartDate'
-            placeholderTextColor='black'
-            fontweight='bold'
-            backgroundColor='#e6e6fa'
-            
-            
-            
-            />
-            <TextInput
-            placeholder='EndDate'
-            placeholderTextColor='black'
-            fontweight='bold'
-            backgroundColor='#e6e6fa'
-            
-           
-            
-            />
-            </View>
-            <View >
-                <TouchableOpacity style={style.Button}>
-                    <Text style={style.Text_Button}>Create</Text>
-                </TouchableOpacity>
-            </View>
-           </View>
+export  default  App = () => {
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
 
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+    console.log(currentDate)
+  };
 
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
 
-           <View style={style.Second_View}>
-            </View>
-            <View style={style.third_View}>
-            </View>
-        </SafeAreaView>
-    )
+  const showDatepicker = () => {
+    showMode('date');
+  };
 
-}
+  
+
+  return (
+    <View style={style.container} >
+        
+        <View style={style.First_view}>
+        <Text style={style.Text_}>Enter The Start Date</Text>
+        <TouchableOpacity onPress={showDatepicker} style={style.Button_} >
+        <Text style={style.Text_Button}>START DATE</Text>
+        </TouchableOpacity>
+       
+        
+        <Text style={style.Text_}>Enter The End Date</Text>
+        <TouchableOpacity onPress={showDatepicker} style={style.Button_}>
+        <Text style={style.Text_Button}>END DATE</Text>
+        </TouchableOpacity>
+        </View>
+        
+     
+      {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode={mode}
+          is24Hour={true}
+          display="default"
+          onChange={onChange}
+        />
+      )}
+    </View>
+  );
+};
+
 const style=StyleSheet.create({
     container:{
         flex:1,
     },
-    TextInput_View:{
-        flexDirection:'column',
-         
-    },
-    First_View:{
-        flexDirection:'row',
-        paddingTop:getStatusBarHeight(),
-        backgroundColor:'red',
+    First_view:{
+        flex:1,
         justifyContent:'center',
         alignItems:'center',
-        flex:1,
+        flexDirection:'row',
+        flexDirection:'column'
+        
+        
     },
     Second_View:{
         flex:1,
-
-    },
-    third_View:{
-        flex:1,
-    },
-    Button_View:{
-        flex:1,
         justifyContent:'center',
         alignItems:'center',
+        flexDirection:'row',
+       
     },
-    Text_Button:{
-        fontSize: 17,
-        fontWeight: 'bold',
-        color: 'white',
-        
-
-    },
-    Button:{
+    Button_:{
         padding: 15,
         borderRadius: 10,
         backgroundColor: '#4D3886',
         alignItems: 'center',
         width:150,
-        justifyContent:'center',
-        alignItems:'center'
-        
-        
-        
-    
     },
-   
-
+    Text_Button:{
+        color:'white',
+    },
+    Text_:{
+        backgroundColor:'#e6e6fa',
+        height:'10%',
+        width:'50%',
+       
+    },
 })
