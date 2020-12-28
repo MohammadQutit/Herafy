@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {TouchableOpacity, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import ProfilePage from './CraftsmanProfilePage'
 import PostList from './PostList';
 import AddPost from './AddPost';
 import {NavigationContainer} from '@react-navigation/native';
@@ -44,6 +44,7 @@ export default function Nested_stack() {
         })}
       />
       <HomeStack.Screen name="AddPost" component={AddPost} />
+      <HomeStack.Screen name="Profile" component={ProfilePage}/>
     </HomeStack.Navigator>
   );
 }

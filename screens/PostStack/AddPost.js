@@ -7,6 +7,7 @@ import {
   Text,
   Image,
   TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 
 import ImagePicker from 'react-native-image-crop-picker';
@@ -27,7 +28,10 @@ export default function AddPost({navigation}) {
     });
 
   return (
+   
     <View style={style.container}>
+     
+     
       <TextInput
         textAlignVertical="top"
         textBreakStrategy="highQuality"
@@ -41,6 +45,8 @@ export default function AddPost({navigation}) {
         autoFocus={true}
         maxLength={477}
       />
+       
+      
       <View
         style={{
           felx: 3,
@@ -71,8 +77,11 @@ export default function AddPost({navigation}) {
           <Text  style={{color:"white" ,fontWeight:"bold",fontSize:20}}>hello</Text>
         </TouchableOpacity>
       </View>
+      
+  
     </View>
-  );
+    );
+    
 }
 const style = StyleSheet.create({
   container: {

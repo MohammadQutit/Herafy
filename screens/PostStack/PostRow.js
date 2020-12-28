@@ -2,12 +2,12 @@ import React from 'react';
 import {View, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 
-export default function Post(props,{navigation}) {
+export default function Post(props) {
  
   return (
     <View style={style.container}>
       <View style={style.CreatorInfo}>
-        <TouchableOpacity style={style.Touchable} onPress={() => {}}>
+        <TouchableOpacity style={style.Touchable} onPress={() => {props.navigation.navigate('Profile')}}>
           <Image source={props.Profileurl} style={style.profileImage} />
           <Text style={style.CreatorText}>
             {props.FirstName + ' ' + props.LastName}
