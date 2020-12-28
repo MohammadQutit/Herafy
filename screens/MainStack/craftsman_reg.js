@@ -233,7 +233,7 @@ export default function CraftsmanReg({navigation}, props) {
                 <View style={[styles.inputOut, {flexDirection: 'row'}]}>
                   <Picker
                     selectedValue={props.values.city}
-                    style={{height: 50, width: 150, margin: 5, color: 'white'}}
+                    style={{height: 80, width:"50%",justifyContent:"center", margin:10, color: 'white'}}
                     onValueChange={props.handleChange('city')}>
                     <Picker.Item label="Jenin" value="Jenin" />
                     <Picker.Item label="Nablus" value="Nablus" />
