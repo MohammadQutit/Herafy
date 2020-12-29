@@ -9,8 +9,10 @@ import {
   ImageBackground,
   Keyboard,
   SafeAreaView,
+  Platform,
+  Modal
 } from 'react-native';
-import {Picker} from '@react-native-community/picker';
+import RNPickerSelect from 'react-native-picker-select';
 import {} from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -65,6 +67,7 @@ export default function CraftsmanReg({navigation}, props) {
               category: '',
               city: 'Jenin',
               type: 'craftsman',
+              showModal:false,
             }}
             validationSchema={validationSchema}
             onSubmit={async (values, actions) => {
@@ -229,28 +232,35 @@ export default function CraftsmanReg({navigation}, props) {
                     {props.touched.rePassword && props.errors.rePassword}
                   </Text>
                 </View>
+                {Platform.OS=== "android"?(
 
-                <View style={[styles.inputOut,{flexDirection: 'row',justifyContent:"center",}]}>
-                  <Picker
-                    selectedValue={props.values.city}
-                    style={{height: 80, width:"45%",justifyContent:"center",alignItems:"center", margin:10, color: 'white'}}
-                    onValueChange={props.handleChange('city')}>
-                    <Picker.Item label="Jenin" value="Jenin" />
-                    <Picker.Item label="Nablus" value="Nablus" />
-                    <Picker.Item label="Ramallah" value="Ramallah" />
-                    <Picker.Item label="Hebron" value="Hebron" />
-                    <Picker.Item label="Bethlehem" value="Bethlehem" />
-                  </Picker>
+                <View style={[styles.inputOut,{flexDirection: 'row',alignItems:"center",justifyContent:"center"}]}>
 
-                  <Picker
-                    selectedValue={props.values.category}
-                    style={{height: 50, width:"45%", margin: 5,justifyContent:"center",alignItems:"center", color: 'white'}}
-                    onValueChange={props.handleChange('category')}
-                    mode="dialog">
-                    <Picker.Item label="Blacksmith" value="Blacksmith" />
-                    <Picker.Item label="Carpenter" value="Carpenter" />
-                  </Picker>
-                </View>
+<RNPickerSelect
+
+
+            onValueChange={(value) => console.log(value)}
+            items={[
+                { label:"Jenin", value:"Jenin" },
+                { label:"Nablus", value:"Nablus" },
+                { label:"Ramallah", value:"Ramallah" },
+            ]}
+        />
+             
+                 
+             
+
+
+                </View>)
+                 :( <View style={[styles.inputOut,{flexDirection: 'row',justifyContent:"center",}]}>
+                   
+                   
+                   </View>
+                   
+                   
+                   )
+                    }
+
 
                 <View
                   style={{
