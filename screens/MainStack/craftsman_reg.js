@@ -232,13 +232,11 @@ export default function CraftsmanReg({navigation}, props) {
                     {props.touched.rePassword && props.errors.rePassword}
                   </Text>
                 </View>
-                {Platform.OS=== "android"?(
+               
 
                 <View style={[styles.inputOut,{flexDirection: 'row',alignItems:"center",justifyContent:"center"}]}>
 
 <RNPickerSelect
-
-
             onValueChange={(value) => console.log(value)}
             items={[
                 { label:"Jenin", value:"Jenin" },
@@ -247,19 +245,19 @@ export default function CraftsmanReg({navigation}, props) {
             ]}
         />
              
-                 
+                
              
 
 
-                </View>)
-                 :( <View style={[styles.inputOut,{flexDirection: 'row',justifyContent:"center",}]}>
+                </View>
+                 
                    
                    
-                   </View>
+                
                    
                    
-                   )
-                    }
+                   
+                  
 
 
                 <View
