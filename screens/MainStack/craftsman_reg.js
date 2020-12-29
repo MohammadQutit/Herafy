@@ -243,10 +243,10 @@ export default function CraftsmanReg({navigation}, props) {
                   },
                 ]}>
                 <RNPickerSelect
-                placeholder={{label: 'Select a city', value: null}}
+                  placeholder={{label: 'Select a city', value: null}}
                   useNativeAndroidPickerStyle={false}
                   value={props.values.city}
-                  onValueChange={ props.handleChange('city')}
+                  onValueChange={props.handleChange('city')}
                   items={[
                     {label: 'Jenin', value: 'Jenin'},
                     {label: 'Nablus', value: 'Nablus'},
@@ -256,32 +256,27 @@ export default function CraftsmanReg({navigation}, props) {
                     inputIOS: {
                       color: 'white',
                       textAlign: 'center',
-                      marginRight:10,
+                      marginRight: 10,
                       width: width / 2.5,
-                      backgroundColor:"rgba(255, 255, 255, 0.9)",
-                      borderRadius:20,
-                      fontWeight:"bold",
-                      height:55
-                      
+                      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                      borderRadius: 20,
+                      fontWeight: 'bold',
+                      height: 55,
                     },
                     inputAndroid: {
                       color: 'black',
                       backgroundColor: 'white',
                       width: width / 2.5,
                       textAlign: 'center',
-                      marginRight:10,
-                      backgroundColor:"rgba(255, 255, 255, 0.9)",
-                      borderRadius:20,
-                      fontWeight:"bold",
-                      height:55
-
+                      marginRight: 10,
+                      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                      borderRadius: 20,
+                      fontWeight: 'bold',
+                      height: 55,
                     },
-                    placeholder:{
-                      color:"black"
-                      
-                    }
-
-                    
+                    placeholder: {
+                      color: 'black',
+                    },
                   }}
                 />
                 <RNPickerSelect
@@ -295,45 +290,32 @@ export default function CraftsmanReg({navigation}, props) {
                     {label: 'Plumber', value: 'Plumber'},
                   ]}
                   style={{
-
-
-
-                    
                     inputIOS: {
                       color: 'white',
                       textAlign: 'center',
-                      marginLeft:10,
+                      marginLeft: 10,
                       width: width / 2.5,
-                      backgroundColor:"rgba(255, 255, 255, 0.9)",
-                      borderRadius:20,
-                      fontWeight:"bold",
-                      height:55
+                      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                      borderRadius: 20,
+                      fontWeight: 'bold',
+                      height: 55,
                     },
                     inputAndroid: {
-                      
                       color: 'black',
                       backgroundColor: 'white',
                       width: width / 2.5,
                       textAlign: 'center',
-                      marginLeft:10,
-                      backgroundColor:"rgba(255, 255, 255, 0.9)",
-                      borderRadius:20,
-                      fontWeight:"bold",
-                      height:55
+                      marginLeft: 10,
+                      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                      borderRadius: 20,
+                      fontWeight: 'bold',
+                      height: 55,
                     },
-                    placeholder:{
-                      color:"black"
-                    }
-
-                    
+                    placeholder: {
+                      color: 'black',
+                    },
                   }}
                 />
-
-
-
-
-
-
               </View>
 
               <View
