@@ -260,7 +260,9 @@ export default function CraftsmanReg({navigation}, props) {
                       width: width / 2.5,
                       backgroundColor:"rgba(255, 255, 255, 0.9)",
                       borderRadius:20,
-                      fontWeight:"bold"
+                      fontWeight:"bold",
+                      height:55
+                      
                     },
                     inputAndroid: {
                       color: 'black',
@@ -270,7 +272,8 @@ export default function CraftsmanReg({navigation}, props) {
                       marginRight:10,
                       backgroundColor:"rgba(255, 255, 255, 0.9)",
                       borderRadius:20,
-                      fontWeight:"bold"
+                      fontWeight:"bold",
+                      height:55
 
                     },
                     placeholder:{
@@ -303,7 +306,8 @@ export default function CraftsmanReg({navigation}, props) {
                       width: width / 2.5,
                       backgroundColor:"rgba(255, 255, 255, 0.9)",
                       borderRadius:20,
-                      fontWeight:"bold"
+                      fontWeight:"bold",
+                      height:55
                     },
                     inputAndroid: {
                       
@@ -314,7 +318,8 @@ export default function CraftsmanReg({navigation}, props) {
                       marginLeft:10,
                       backgroundColor:"rgba(255, 255, 255, 0.9)",
                       borderRadius:20,
-                      fontWeight:"bold"
+                      fontWeight:"bold",
+                      height:55
                     },
                     placeholder:{
                       color:"black"
