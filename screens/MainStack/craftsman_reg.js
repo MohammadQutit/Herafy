@@ -10,10 +10,11 @@ import {
   Keyboard,
   SafeAreaView,
   Platform,
-  Modal
+  Modal,
+  Dimensions,
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import {} from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
@@ -42,244 +43,313 @@ const validationSchema = yup.object().shape({
   city: yup.string().required(),
   category: yup.string().required(),
 });
+
+const {width} = Dimensions.get('window');
 export default function CraftsmanReg({navigation}, props) {
   const {signOut} = useContext(AuthContext);
 
   return (
-    
-      <KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>
-        <ImageBackground
-          style={styles.container}
-          source={require('../../4.png')}>
-          <StatusBar
-            barStyle="light-content"
-            translucent
-            backgroundColor="transparent"
-          />
-          <Formik
-            initialValues={{
-              firstName: '',
-              lastName: '',
-              phone: '',
-              email: '',
-              password: '',
-              rePassword: '',
-              category: '',
-              city: 'Jenin',
-              type: 'craftsman',
-              showModal:false,
-            }}
-            validationSchema={validationSchema}
-            onSubmit={async (values, actions) => {
-              actions.resetForm();
-              console.log(values);
-              try {
-                const x = await Auth.signUp({
-                  username: values.phone,
-                  password: values.password,
-                  attributes: {
-                    name: values.firstName,
-                    family_name: values.lastName,
-                    email: values.email,
-                    'custom:city': values.city,
-                    'custom:category': values.category,
-                    'custom:type': values.type,
-                  },
-                }).then(() => navigation.navigate('ConfRegestiration'));
-                console.log('Singed up');
-              } catch (error) {
-                console.log(error);
-              }
-            }}>
-            {(props) => (
-              <View style={styles.view}>
-                <View style={styles.inputOut}>
-                  <View style={styles.textinput}>
-                    <TextInput
-                      style={styles.inputIn}
-                      placeholder="  First Name"
-                      keyboardType="default"
-                      placeholderTextColor="black"
-                      returnKeyType="next"
-                      onSubmitEditing={() => {
-                        this.secondTextInput.focus();
-                      }}
-                      onChangeText={props.handleChange('firstName')}
-                      value={props.values.firstName}
-                      onBlur={props.handleBlur('firstName')}
-                    />
-                  </View>
-
-                  <Text style={styles.errors}>
-                    {props.touched.firstName && props.errors.firstName}
-                  </Text>
-                </View>
-
-                <View style={styles.inputOut}>
-                  <View style={styles.textinput}>
-                    <TextInput
-                      style={styles.inputIn}
-                      onSubmitEditing={() => {
-                        this.thirdTextInput.focus();
-                      }}
-                      ref={(input) => {
-                        this.secondTextInput = input;
-                      }}
-                      placeholder="  Last Name"
-                      keyboardType="default"
-                      placeholderTextColor="black"
-                      returnKeyType="next"
-                      onChangeText={props.handleChange('lastName')}
-                      value={props.values.lastName}
-                      onBlur={props.handleBlur('lastName')}
-                    />
-                  </View>
-                  <Text style={styles.errors}>
-                    {props.touched.lastName && props.errors.lastName}
-                  </Text>
-                </View>
-
-                <View style={styles.inputOut}>
-                  <View style={styles.textinput}>
-                    <TextInput
-                      style={styles.inputIn}
-                      onSubmitEditing={() => {
-                        this.forthTextInput.focus();
-                      }}
-                      ref={(input) => {
-                        this.thirdTextInput = input;
-                      }}
-                      placeholder="  Phone number"
-                      keyboardType="phone-pad"
-                      placeholderTextColor="black"
-                      returnKeyType="next"
-                      onChangeText={props.handleChange('phone')}
-                      value={props.values.phone}
-                      onBlur={props.handleBlur('phone')}
-                    />
-                  </View>
-                  <Text style={styles.errors}>
-                    {props.touched.phone && props.errors.phone}
-                  </Text>
-                </View>
-
-                <View style={styles.inputOut}>
-                  <View style={styles.textinput}>
-                    <TextInput
-                      style={styles.inputIn}
-                      onSubmitEditing={() => {
-                        this.fifthTextInput.focus();
-                      }}
-                      ref={(input) => {
-                        this.forthTextInput = input;
-                      }}
-                      placeholder="  Email"
-                      keyboardType="email-address"
-                      placeholderTextColor="black"
-                      returnKeyType="next"
-                      onChangeText={props.handleChange('email')}
-                      value={props.values.email}
-                      onBlur={props.handleBlur('email')}
-                    />
-                  </View>
-                  <Text style={styles.errors}>
-                    {props.touched.email && props.errors.email}
-                  </Text>
-                </View>
-
-                <View style={styles.inputOut}>
-                  <View style={styles.textinput}>
-                    <TextInput
-                      style={styles.inputIn}
-                      onSubmitEditing={() => {
-                        this.sixthTextInput.focus();
-                      }}
-                      ref={(input) => {
-                        this.fifthTextInput = input;
-                      }}
-                      placeholder="  Password"
-                      placeholderTextColor="black"
-                      secureTextEntry={true}
-                      returnKeyType="next"
-                      onChangeText={props.handleChange('password')}
-                      value={props.values.password}
-                      onBlur={props.handleBlur('password')}
-                    />
-                  </View>
-                  <Text style={styles.errors}>
-                    {props.touched.password && props.errors.password}
-                  </Text>
-                </View>
-
-                <View style={styles.inputOut}>
-                  <View style={styles.textinput}>
-                    <TextInput
-                      style={styles.inputIn}
-                      ref={(input) => {
-                        this.sixthTextInput = input;
-                      }}
-                      placeholder="  Retype Password"
-                      placeholderTextColor="black"
-                      secureTextEntry={true}
-                      returnKeyType="done"
-                      onChangeText={props.handleChange('rePassword')}
-                      value={props.values.rePassword}
-                      onBlur={props.handleBlur('rePassword')}
-                      onSubmitEditing={() => Keyboard.dismiss()}
-                    />
-                  </View>
-                  <Text style={styles.errors}>
-                    {props.touched.rePassword && props.errors.rePassword}
-                  </Text>
-                </View>
-               
-
-                <View style={[styles.inputOut,{flexDirection: 'row',alignItems:"center",justifyContent:"center"}]}>
-
-<RNPickerSelect
-            onValueChange={(value) => console.log(value)}
-            items={[
-                { label:"Jenin", value:"Jenin" },
-                { label:"Nablus", value:"Nablus" },
-                { label:"Ramallah", value:"Ramallah" },
-            ]}
+    <KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>
+      <ImageBackground style={styles.container} source={require('../../4.png')}>
+        <StatusBar
+          barStyle="light-content"
+          translucent
+          backgroundColor="transparent"
         />
-             
-                
-             
-
-
+        <Formik
+          initialValues={{
+            firstName: '',
+            lastName: '',
+            phone: '',
+            email: '',
+            password: '',
+            rePassword: '',
+            category: '',
+            city: '',
+            type: 'craftsman',
+            showModal: false,
+          }}
+          validationSchema={validationSchema}
+          onSubmit={async (values, actions) => {
+            actions.resetForm();
+            console.log(values);
+            try {
+              const x = await Auth.signUp({
+                username: values.phone,
+                password: values.password,
+                attributes: {
+                  name: values.firstName,
+                  family_name: values.lastName,
+                  email: values.email,
+                  'custom:city': values.city,
+                  'custom:category': values.category,
+                  'custom:type': values.type,
+                },
+              }).then(() => navigation.navigate('ConfRegestiration'));
+              console.log('Singed up');
+            } catch (error) {
+              console.log(error);
+            }
+          }}>
+          {(props) => (
+            <View style={styles.view}>
+              <View style={styles.inputOut}>
+                <View style={styles.textinput}>
+                  <TextInput
+                    style={styles.inputIn}
+                    placeholder="  First Name"
+                    keyboardType="default"
+                    placeholderTextColor="black"
+                    returnKeyType="next"
+                    onSubmitEditing={() => {
+                      this.secondTextInput.focus();
+                    }}
+                    onChangeText={props.handleChange('firstName')}
+                    value={props.values.firstName}
+                    onBlur={props.handleBlur('firstName')}
+                  />
                 </View>
-                 
-                   
-                   
-                
-                   
-                   
-                   
-                  
 
-
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '100%',
-                  }}>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={props.handleSubmit}>
-                    <Text style={styles.buttontext}>Confirm</Text>
-                  </TouchableOpacity>
-                </View>
+                <Text style={styles.errors}>
+                  {props.touched.firstName && props.errors.firstName}
+                </Text>
               </View>
-            )}
-          </Formik>
-        </ImageBackground>
-      </KeyboardAwareScrollView>
-    
+
+              <View style={styles.inputOut}>
+                <View style={styles.textinput}>
+                  <TextInput
+                    style={styles.inputIn}
+                    onSubmitEditing={() => {
+                      this.thirdTextInput.focus();
+                    }}
+                    ref={(input) => {
+                      this.secondTextInput = input;
+                    }}
+                    placeholder="  Last Name"
+                    keyboardType="default"
+                    placeholderTextColor="black"
+                    returnKeyType="next"
+                    onChangeText={props.handleChange('lastName')}
+                    value={props.values.lastName}
+                    onBlur={props.handleBlur('lastName')}
+                  />
+                </View>
+                <Text style={styles.errors}>
+                  {props.touched.lastName && props.errors.lastName}
+                </Text>
+              </View>
+
+              <View style={styles.inputOut}>
+                <View style={styles.textinput}>
+                  <TextInput
+                    style={styles.inputIn}
+                    onSubmitEditing={() => {
+                      this.forthTextInput.focus();
+                    }}
+                    ref={(input) => {
+                      this.thirdTextInput = input;
+                    }}
+                    placeholder="  Phone number"
+                    keyboardType="phone-pad"
+                    placeholderTextColor="black"
+                    returnKeyType="next"
+                    onChangeText={props.handleChange('phone')}
+                    value={props.values.phone}
+                    onBlur={props.handleBlur('phone')}
+                  />
+                </View>
+                <Text style={styles.errors}>
+                  {props.touched.phone && props.errors.phone}
+                </Text>
+              </View>
+
+              <View style={styles.inputOut}>
+                <View style={styles.textinput}>
+                  <TextInput
+                    style={styles.inputIn}
+                    onSubmitEditing={() => {
+                      this.fifthTextInput.focus();
+                    }}
+                    ref={(input) => {
+                      this.forthTextInput = input;
+                    }}
+                    placeholder="  Email"
+                    keyboardType="email-address"
+                    placeholderTextColor="black"
+                    returnKeyType="next"
+                    onChangeText={props.handleChange('email')}
+                    value={props.values.email}
+                    onBlur={props.handleBlur('email')}
+                  />
+                </View>
+                <Text style={styles.errors}>
+                  {props.touched.email && props.errors.email}
+                </Text>
+              </View>
+
+              <View style={styles.inputOut}>
+                <View style={styles.textinput}>
+                  <TextInput
+                    style={styles.inputIn}
+                    onSubmitEditing={() => {
+                      this.sixthTextInput.focus();
+                    }}
+                    ref={(input) => {
+                      this.fifthTextInput = input;
+                    }}
+                    placeholder="  Password"
+                    placeholderTextColor="black"
+                    secureTextEntry={true}
+                    returnKeyType="next"
+                    onChangeText={props.handleChange('password')}
+                    value={props.values.password}
+                    onBlur={props.handleBlur('password')}
+                  />
+                </View>
+                <Text style={styles.errors}>
+                  {props.touched.password && props.errors.password}
+                </Text>
+              </View>
+
+              <View style={styles.inputOut}>
+                <View style={styles.textinput}>
+                  <TextInput
+                    style={styles.inputIn}
+                    ref={(input) => {
+                      this.sixthTextInput = input;
+                    }}
+                    placeholder="  Retype Password"
+                    placeholderTextColor="black"
+                    secureTextEntry={true}
+                    returnKeyType="done"
+                    onChangeText={props.handleChange('rePassword')}
+                    value={props.values.rePassword}
+                    onBlur={props.handleBlur('rePassword')}
+                    onSubmitEditing={() => Keyboard.dismiss()}
+                  />
+                </View>
+                <Text style={styles.errors}>
+                  {props.touched.rePassword && props.errors.rePassword}
+                </Text>
+              </View>
+
+              <View
+                style={[
+                  styles.inputOut,
+                  {
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  },
+                ]}>
+                <RNPickerSelect
+                placeholder={{label: 'Select a city', value: null}}
+                  useNativeAndroidPickerStyle={false}
+                  value={props.values.city}
+                  onValueChange={ props.handleChange('city')}
+                  items={[
+                    {label: 'Jenin', value: 'Jenin'},
+                    {label: 'Nablus', value: 'Nablus'},
+                    {label: 'Ramallah', value: 'Ramallah'},
+                  ]}
+                  style={{
+                    inputIOS: {
+                      color: 'white',
+                      textAlign: 'center',
+                      marginRight:10,
+                      width: width / 2.5,
+                      backgroundColor:"rgba(255, 255, 255, 0.9)",
+                      borderRadius:20,
+                      fontWeight:"bold"
+                    },
+                    inputAndroid: {
+                      color: 'black',
+                      backgroundColor: 'white',
+                      width: width / 2.5,
+                      textAlign: 'center',
+                      marginRight:10,
+                      backgroundColor:"rgba(255, 255, 255, 0.9)",
+                      borderRadius:20,
+                      fontWeight:"bold"
+
+                    },
+                    placeholder:{
+                      color:"black"
+                      
+                    }
+
+                    
+                  }}
+                />
+                <RNPickerSelect
+                  placeholder={{label: 'Select a Category', value: null}}
+                  useNativeAndroidPickerStyle={false}
+                  value={props.values.category}
+                  onValueChange={props.handleChange('category')}
+                  items={[
+                    {label: 'Blacksmith', value: 'Blacksmith'},
+                    {label: 'Carpenter', value: 'Carpenter'},
+                    {label: 'Plumber', value: 'Plumber'},
+                  ]}
+                  style={{
+
+
+
+                    
+                    inputIOS: {
+                      color: 'white',
+                      textAlign: 'center',
+                      marginLeft:10,
+                      width: width / 2.5,
+                      backgroundColor:"rgba(255, 255, 255, 0.9)",
+                      borderRadius:20,
+                      fontWeight:"bold"
+                    },
+                    inputAndroid: {
+                      
+                      color: 'black',
+                      backgroundColor: 'white',
+                      width: width / 2.5,
+                      textAlign: 'center',
+                      marginLeft:10,
+                      backgroundColor:"rgba(255, 255, 255, 0.9)",
+                      borderRadius:20,
+                      fontWeight:"bold"
+                    },
+                    placeholder:{
+                      color:"black"
+                    }
+
+                    
+                  }}
+                />
+
+
+
+
+
+
+              </View>
+
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                }}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={props.handleSubmit}>
+                  <Text style={styles.buttontext}>Confirm</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+        </Formik>
+      </ImageBackground>
+    </KeyboardAwareScrollView>
   );
 }
 
