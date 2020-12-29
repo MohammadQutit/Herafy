@@ -230,10 +230,10 @@ export default function CraftsmanReg({navigation}, props) {
                   </Text>
                 </View>
 
-                <View style={[styles.inputOut, {flexDirection: 'row'}]}>
+                <View style={[styles.inputOut,{flexDirection: 'row',justifyContent:"center",}]}>
                   <Picker
                     selectedValue={props.values.city}
-                    style={{height: 80, width:"50%",justifyContent:"center", margin:10, color: 'white'}}
+                    style={{height: 80, width:"45%",justifyContent:"center",alignItems:"center", margin:10, color: 'white'}}
                     onValueChange={props.handleChange('city')}>
                     <Picker.Item label="Jenin" value="Jenin" />
                     <Picker.Item label="Nablus" value="Nablus" />
@@ -244,7 +244,7 @@ export default function CraftsmanReg({navigation}, props) {
 
                   <Picker
                     selectedValue={props.values.category}
-                    style={{height: 50, width: 150, margin: 5, color: 'white'}}
+                    style={{height: 50, width:"45%", margin: 5,justifyContent:"center",alignItems:"center", color: 'white'}}
                     onValueChange={props.handleChange('category')}
                     mode="dialog">
                     <Picker.Item label="Blacksmith" value="Blacksmith" />
