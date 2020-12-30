@@ -15,7 +15,7 @@ export  default  App = () => {
   };
 
   const showMode = (currentMode) => {
-    setShow(true);
+    setShow(!show);
     setMode(currentMode);
   };
 
@@ -24,24 +24,23 @@ export  default  App = () => {
   };
 //-----------------
 const [date2, setDate2] = useState(new Date(1598051730000));
-  const [mode2, setMode2] = useState('date2');
+  const [mode2, setMode2] = useState('date');
   const [show2, setShow2] = useState(false);
 
   const onChange2 = (event2, selectedDate2) => {
     const currentDate2 = selectedDate2 || date2;
     setShow2(Platform.OS === 'ios');
-   
     setDate2(currentDate2)
     console.log(currentDate2)
   };
 
   const showMode2 = (currentMode2) => {
-    setShow2(true);
+    setShow2(!show2);
     setMode2(currentMode2);
   };
 
   const showDatepicker2 = () => {
-    showMode2('date2');
+    showMode2('date');
   };
   
 
@@ -49,13 +48,13 @@ const [date2, setDate2] = useState(new Date(1598051730000));
     <View style={style.container} >
         
         <View style={style.First_view}>
-        <Text style={style.Text_}>{date.toString()}</Text>
+        <Text style={style.Text_}>{new Date (date).toISOString().slice(0, 10).toString()}</Text>
         <TouchableOpacity onPress={showDatepicker} style={style.Button_} >
         <Text style={style.Text_Button}>Choose Start Date</Text>
         </TouchableOpacity>
        </View>
         <View style={style.Second_View}>
-        <Text style={style.Text_}>{date2.toString()}</Text>
+        <Text style={style.Text_}>{new Date (date2).toISOString().slice(0, 10).toString()}</Text>
         <TouchableOpacity onPress={showDatepicker2} style={style.Button_}>
         <Text style={style.Text_Button}>Choose End Date</Text>
         </TouchableOpacity>
