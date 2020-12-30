@@ -415,7 +415,7 @@ const styles = StyleSheet.create({
   errors: {
     marginTop:3,
     height: 20,
-    color: 'red',
+    color: 'yellow',
     fontWeight: 'bold',
     width: '90%',
     paddingStart: 20,
