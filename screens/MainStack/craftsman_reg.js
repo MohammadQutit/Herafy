@@ -257,7 +257,7 @@ export default function CraftsmanReg({navigation}, props) {
                   ]}
                   style={{
                     inputIOS: {
-                      color: 'white',
+                      color: 'black',
                       textAlign: 'center',
                       marginRight: 10,
                       width: width / 2.5,
@@ -300,7 +300,7 @@ export default function CraftsmanReg({navigation}, props) {
                   ]}
                   style={{
                     inputIOS: {
-                      color: 'white',
+                      color: 'black',
                       textAlign: 'center',
                       marginLeft: 10,
                       width: width / 2.5,
