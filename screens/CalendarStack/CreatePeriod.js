@@ -30,7 +30,8 @@ const [date2, setDate2] = useState(new Date(1598051730000));
   const onChange2 = (event2, selectedDate2) => {
     const currentDate2 = selectedDate2 || date2;
     setShow2(Platform.OS === 'ios');
-    setDate2(currentDate2);
+   
+    setDate2(currentDate2)
     console.log(currentDate2)
   };
 
