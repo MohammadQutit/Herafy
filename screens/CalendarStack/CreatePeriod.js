@@ -22,23 +22,42 @@ export  default  App = () => {
   const showDatepicker = () => {
     showMode('date');
   };
+//-----------------
+const [date2, setDate2] = useState(new Date(1598051730000));
+  const [mode2, setMode2] = useState('date2');
+  const [show2, setShow2] = useState(false);
 
+  const onChange2 = (event2, selectedDate2) => {
+    const currentDate2 = selectedDate2 || date2;
+    setShow2(Platform.OS === 'ios');
+    setDate2(currentDate2);
+    console.log(currentDate2)
+  };
+
+  const showMode2 = (currentMode2) => {
+    setShow(true);
+    setMode2(currentMode2);
+  };
+
+  const showDatepicker2 = () => {
+    showMode2('date2');
+  };
   
 
   return (
     <View style={style.container} >
         
         <View style={style.First_view}>
-        <Text style={style.Text_}>Enter The Start Date</Text>
         <TouchableOpacity onPress={showDatepicker} style={style.Button_} >
-        <Text style={style.Text_Button}>START DATE</Text>
+        <Text style={style.Text_Button}>Choose Start Date</Text>
         </TouchableOpacity>
-       
-        
-        <Text style={style.Text_}>Enter The End Date</Text>
-        <TouchableOpacity onPress={showDatepicker} style={style.Button_}>
-        <Text style={style.Text_Button}>END DATE</Text>
+        <Text style={style.Text_}>{date.toString()}</Text>
+       </View>
+        <View style={style.Second_View}>
+        <TouchableOpacity onPress={showDatepicker2} style={style.Button_}>
+        <Text style={style.Text_Button}>Choose End Date</Text>
         </TouchableOpacity>
+        <Text style={style.Text_}>{date2.toString()}</Text>
         </View>
         
      
@@ -52,6 +71,17 @@ export  default  App = () => {
           onChange={onChange}
         />
       )}
+
+{show2 && (
+        <DateTimePicker
+          testID="dateTimePicker2"
+          value={date2}
+          mode={mode2}
+          is24Hour={true}
+          display="default"
+          onChange={onChange2}
+        />
+      )}
     </View>
   );
 };
@@ -59,13 +89,15 @@ export  default  App = () => {
 const style=StyleSheet.create({
     container:{
         flex:1,
+        backgroundColor:'white',
     },
     First_view:{
         flex:1,
         justifyContent:'center',
         alignItems:'center',
         flexDirection:'row',
-        flexDirection:'column'
+        paddingTop:100,
+        
         
         
     },
@@ -74,6 +106,7 @@ const style=StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         flexDirection:'row',
+        paddingBottom:100,
        
     },
     Button_:{
@@ -87,7 +120,8 @@ const style=StyleSheet.create({
         color:'white',
     },
     Text_:{
-        backgroundColor:'#e6e6fa',
+      
+        color:'purple',
         height:'10%',
         width:'50%',
        
