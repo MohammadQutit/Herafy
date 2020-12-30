@@ -24,24 +24,24 @@ import {Auth} from '@aws-amplify/auth';
 const validationSchema = yup.object().shape({
   firstName: yup
     .string('The name should be String')
-    .required('The First name is required')
+    .required('The First name is Required')
     .label(),
   lastName: yup
-    .string('The name should be String')
-    .required('The Last name is required')
+    .string('Last name should be String')
+    .required('Last name is Required')
     .label(),
   phone: yup.string().required().max(13),
   email: yup
     .string()
-    .required('Emial address is required')
+    .required('Emial address is Required')
     .email('Please Enter valid Email'),
-  password: yup.string().required('Password is required').min(8),
+  password: yup.string().required('Password is Required').min(8),
   rePassword: yup
     .string()
     .required('Please Enter password agian')
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
-  city: yup.string().required("City is required"),
-  category: yup.string().required("Category is required"),
+  city: yup.string().required("City is Required"),
+  category: yup.string().required("Category is Required"),
 });
 
 const {width} = Dimensions.get('window');

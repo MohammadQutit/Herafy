@@ -21,21 +21,21 @@ import * as yup from 'yup';
 const validationSchema = yup.object().shape({
   firstName: yup
     .string('The name should be String')
-    .required('The First name is required')
+    .required('First name is Required')
     .label(),
   lastName: yup
     .string('The name should be String')
-    .required('The Last name is required')
+    .required('Last name is Required')
     .label(),
-  phone: yup.string().required().max(15),
+  phone: yup.string().required("Phone Number Required").max(15),
   email: yup
     .string()
     .required('Emial address is required')
     .email('Please Enter valid Email'),
-  password: yup.string().required('Password is required').min(8),
+  password: yup.string().required('Password is Required').min(8),
   rePassword: yup
     .string()
-    .required()
+    .required("Enter Password again")
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
   city: yup.string().required(),
 });
@@ -310,8 +310,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
   errors: {
+    marginTop:3,
     height: 20,
-    color: 'orange',
+    color: 'yellow',
     fontWeight: 'bold',
     width: '90%',
     paddingStart: 20,
