@@ -77,6 +77,11 @@ export default function Craftprofile({navigation}) {
           <Text>Rate</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={()=>{ navigation.navigate('')}}>
+          <Icon name="comment-text-multiple" color="purple" size={60} />
+          <Text>Show Reviews</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={()=>{ navigation.navigate('Calender')}}>
           <Icon name="calendar" color="purple" size={60} />
           <Text>Calendar</Text>

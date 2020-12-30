@@ -35,7 +35,7 @@ const [date2, setDate2] = useState(new Date(1598051730000));
   };
 
   const showMode2 = (currentMode2) => {
-    setShow(true);
+    setShow2(true);
     setMode2(currentMode2);
   };
 
