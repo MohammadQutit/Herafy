@@ -48,16 +48,16 @@ const [date2, setDate2] = useState(new Date(1598051730000));
     <View style={style.container} >
         
         <View style={style.First_view}>
+        <Text style={style.Text_}>{date.toString()}</Text>
         <TouchableOpacity onPress={showDatepicker} style={style.Button_} >
         <Text style={style.Text_Button}>Choose Start Date</Text>
         </TouchableOpacity>
-        <Text style={style.Text_}>{date.toString()}</Text>
        </View>
         <View style={style.Second_View}>
+        <Text style={style.Text_}>{date2.toString()}</Text>
         <TouchableOpacity onPress={showDatepicker2} style={style.Button_}>
         <Text style={style.Text_Button}>Choose End Date</Text>
         </TouchableOpacity>
-        <Text style={style.Text_}>{date2.toString()}</Text>
         </View>
         
      
@@ -97,6 +97,8 @@ const style=StyleSheet.create({
         alignItems:'center',
         flexDirection:'row',
         paddingTop:100,
+        
+        
         
         
         
