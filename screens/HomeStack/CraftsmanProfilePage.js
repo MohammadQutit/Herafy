@@ -69,23 +69,29 @@ export default function Craftprofile({navigation}) {
         style={{
           flex: 1,
           alignItems: 'center',
-          alignItems: 'center',
+    
           flexDirection: 'row',
         }}>
-        <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={()=>{ navigation.navigate('Rating')}}>
+          <View style={{flex: 1,alignItems:"center"}}>
+        <TouchableOpacity style={{ alignItems: 'center'}} onPress={()=>{ navigation.navigate('Rating')}}>
           <Icon name="star" color="purple" size={60} />
           <Text>Rate</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={()=>{ navigation.navigate('')}}>
+        </View>
+        
+        <View style={{flex: 1,alignItems:"center"}}>
+        <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{ navigation.navigate('')}}>
           <Icon name="comment-text-multiple" color="purple" size={60} />
           <Text>Show Reviews</Text>
         </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={()=>{ navigation.navigate('Calender')}}>
+        <View style={{flex: 1,alignItems:"center"}}>
+        <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{ navigation.navigate('Calender')}}>
           <Icon name="calendar" color="purple" size={60} />
           <Text>Calendar</Text>
         </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
     //plz change the width of the buttons of calender and rate
