@@ -413,8 +413,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
   errors: {
+    marginTop:3,
     height: 20,
-    color: 'orange',
+    color: 'red',
     fontWeight: 'bold',
     width: '90%',
     paddingStart: 20,
