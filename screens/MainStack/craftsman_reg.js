@@ -40,8 +40,8 @@ const validationSchema = yup.object().shape({
     .string()
     .required('Please Enter password agian')
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
-  city: yup.string().required(),
-  category: yup.string().required(),
+  city: yup.string().required("City is required"),
+  category: yup.string().required("Category is required"),
 });
 
 const {width} = Dimensions.get('window');
@@ -240,10 +240,13 @@ export default function CraftsmanReg({navigation}, props) {
                     flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    width:"90%"
                   },
                 ]}>
+
+                  <View style={{flexDirection:"column",flex:1,justifyContent:"center",alignItems:"center"}}>
                 <RNPickerSelect
-                  placeholder={{label: 'Select a city', value: null}}
+                  placeholder={{label: 'Select a city', value: ""}}
                   useNativeAndroidPickerStyle={false}
                   value={props.values.city}
                   onValueChange={props.handleChange('city')}
@@ -279,8 +282,14 @@ export default function CraftsmanReg({navigation}, props) {
                     },
                   }}
                 />
+                <Text style={styles.errors}>
+                  {props.touched.city && props.errors.city}
+                </Text>
+                </View>
+
+                <View style={{flexDirection:"column",flex:1,justifyContent:"center",alignItems:"center"}}>
                 <RNPickerSelect
-                  placeholder={{label: 'Select a Category', value: null}}
+                  placeholder={{label: 'Select a Category', value: ""}}
                   useNativeAndroidPickerStyle={false}
                   value={props.values.category}
                   onValueChange={props.handleChange('category')}
@@ -316,6 +325,10 @@ export default function CraftsmanReg({navigation}, props) {
                     },
                   }}
                 />
+                <Text style={styles.errors}>
+                  {props.touched.category && props.errors.category}
+                </Text>
+                </View>
               </View>
 
               <View
