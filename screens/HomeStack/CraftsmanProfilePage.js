@@ -75,21 +75,21 @@ export default function Craftprofile({navigation}) {
           <View style={{flex: 1,alignItems:"center"}}>
         <TouchableOpacity style={{ alignItems: 'center'}} onPress={()=>{ navigation.navigate('Rating')}}>
           <Icon name="star" color="purple" size={60} />
-          <Text>Rate</Text>
+          <Text style={styles.textFont}>Rate</Text>
         </TouchableOpacity>
         </View>
         
         <View style={{flex: 1,alignItems:"center"}}>
         <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{ navigation.navigate('')}}>
           <Icon name="comment-text-multiple" color="purple" size={60} />
-          <Text>Show Reviews</Text>
+          <Text style={styles.textFont}>Show Reviews</Text>
         </TouchableOpacity>
         </View>
 
         <View style={{flex: 1,alignItems:"center"}}>
         <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{ navigation.navigate('Calender')}}>
           <Icon name="calendar" color="purple" size={60} />
-          <Text>Calendar</Text>
+          <Text style={styles.textFont}>Calendar</Text>
         </TouchableOpacity>
         </View>
       </View>
@@ -162,4 +162,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
+  textFont:{
+    fontWeight:"bold",
+
+
+  }
 });
