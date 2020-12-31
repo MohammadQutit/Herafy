@@ -47,20 +47,17 @@ export default class A extends React.Component {
 
         <SafeAreaView style={style.container}>
               <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
-            <View style={{flex:3}}>
+            <View style={style.textinput}> 
            
                 <TextInput
                 placeholder="type your review"
-                style={style.TextInput}
+                style={style.inline_text_style}
                 textAlignVertical='top'
                 backgroundColor='#e6e6fa'
                 placeholderTextColor='black'
                 fontWeight='bold'
                 onChangeText={this.handleReview}
-                multiline={true}
-                numberOfLines={8}
-                autoCorrect={true}
-                maxLength={477}
+                
                 
                 
                 />
@@ -136,15 +133,4 @@ const style=StyleSheet.create({
         color: 'white',
 
     },
-    TextInput: {
-        fontSize: 20,
-        lineHeight: 30,
-        padding: 10,
-        textDecorationLine: 'none',
-        flex: 3,
-        margin: 3,
-        padding: 10,
-        fontSize: 18,
-        backgroundColor: 'white',
-      },
 })
