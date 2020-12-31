@@ -136,4 +136,15 @@ const style=StyleSheet.create({
         color: 'white',
 
     },
+    TextInput: {
+        fontSize: 20,
+        lineHeight: 30,
+        padding: 10,
+        textDecorationLine: 'none',
+        flex: 3,
+        margin: 3,
+        padding: 10,
+        fontSize: 18,
+        backgroundColor: 'white',
+      },
 })
