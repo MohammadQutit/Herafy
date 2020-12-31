@@ -47,11 +47,11 @@ export default class A extends React.Component {
 
         <SafeAreaView style={style.container}>
               <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
-            <View style={style.textinput}>
+            <View style={{flex:3}}>
            
                 <TextInput
                 placeholder="type your review"
-                style={style.inline_text_style}
+                style={style.TextInput}
                 textAlignVertical='top'
                 backgroundColor='#e6e6fa'
                 placeholderTextColor='black'
@@ -133,4 +133,15 @@ const style=StyleSheet.create({
         color: 'white',
 
     },
+    TextInput: {
+        fontSize: 20,
+        lineHeight: 30,
+        padding: 10,
+        textDecorationLine: 'none',
+        flex: 3,
+        margin: 3,
+        padding: 10,
+        fontSize: 18,
+        backgroundColor: 'white',
+      },
 })
