@@ -51,13 +51,16 @@ export default class A extends React.Component {
            
                 <TextInput
                 placeholder="type your review"
-                style={style.inline_text_style}
+                style={style.TextInput}
                 textAlignVertical='top'
                 backgroundColor='#e6e6fa'
                 placeholderTextColor='black'
                 fontWeight='bold'
                 onChangeText={this.handleReview}
-                
+                multiline={true}
+                numberOfLines={8}
+                autoCorrect={true}
+                maxLength={477}
                 
                 
                 />
