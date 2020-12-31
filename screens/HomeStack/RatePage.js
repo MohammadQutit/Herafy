@@ -95,8 +95,6 @@ const style=StyleSheet.create({
     },
     textinput:{
         flex:2,
-        paddingTop:10,
-        paddingLeft:10,
         
     },
     inline_text_style:{
