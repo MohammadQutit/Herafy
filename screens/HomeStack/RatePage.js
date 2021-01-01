@@ -46,14 +46,14 @@ export default class A extends React.Component {
     
 
         <SafeAreaView style={style.container}>
-              <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
+              <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
             <View style={style.textinput}> 
            
                 <TextInput
-                placeholder="type your review"
+                placeholder="Type your review"
                 style={style.TextInput}
                 textAlignVertical='top'
-                backgroundColor='#e6e6fa'
+                backgroundColor='white'
                 placeholderTextColor='black'
                 fontWeight='bold'
                 onChangeText={this.handleReview}
@@ -83,7 +83,7 @@ class Star extends React.Component {
     return(
         <Icon name={this.props.filled === true ? 'star' : 'star-o'} 
         color="blue" 
-        size={32} 
+        size={40} 
         style={{marginHorizontal:6}}/>
     )
     }
@@ -91,7 +91,7 @@ class Star extends React.Component {
 const style=StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'white',
+        
     },
     textinput:{
         flex:2,
@@ -107,11 +107,14 @@ const style=StyleSheet.create({
         flex:1,
         justifyContent:'center',
         alignItems:'center',
+        backgroundColor:"white",
+        marginVertical:4
     },
     Button_View:{
         flex:2,
         justifyContent:'center',
         alignItems:'center',
+        backgroundColor:"white"
         
 
 
@@ -140,10 +143,11 @@ const style=StyleSheet.create({
         padding: 10,
         textDecorationLine: 'none',
         flex: 3,
-        margin: 3,
+        borderRadius:10,
         padding: 10,
         fontSize: 18,
         backgroundColor: 'white',
+       
       },
     
 })

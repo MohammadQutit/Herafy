@@ -15,7 +15,7 @@ export default function Post(props) {
           </Text>
         </TouchableOpacity>
 
-        <View style={{paddingStart:50,flexDirection:"row",flex:1,justifyContent:"center"}}>
+        <View style={{paddingStart:50,flexDirection:"row",flex:1,justifyContent:"flex-end",paddingEnd:10}}>
            <Text style={{fontSize:16,fontWeight:'bold'}}>
               {props.rating}
            </Text>
