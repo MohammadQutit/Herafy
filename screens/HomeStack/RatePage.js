@@ -54,13 +54,13 @@ export default class A extends React.Component {
                 style={style.TextInput}
                 textAlignVertical='top'
                 backgroundColor='white'
-                placeholderTextColor='black'
                 fontWeight='bold'
                 onChangeText={this.handleReview}
                 multiline={true}
                 numberOfLines={8}
                 autoCorrect={true}
                 maxLength={477}
+                
                 
                 
                 />
