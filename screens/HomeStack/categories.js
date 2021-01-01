@@ -40,27 +40,27 @@ export default function catigories({navigation}) {
 
         <TouchableOpacity style={styles.category_button} onPress={() => {}}>
           <Image
-            source={require('../../assets/carpenter.png')}
+            source={require('../../assets/plumber.png')}
             style={styles.category_icon}
           />
-          <Text style={styles.texticon}>Carpenter</Text>
+          <Text style={styles.texticon}>Plumber</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.category_button} onPress={() => {}}>
           <Image
-            source={require('../../assets/carpenter.png')}
+            source={require('../../assets/builder.png')}
             style={styles.category_icon}
           />
-          <Text style={styles.texticon}>Carpenter</Text>
+          <Text style={styles.texticon}>Builder</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.category_container}>
         <TouchableOpacity style={styles.category_button} onPress={() => {}}>
           <Image
-            source={require('../../assets/carpenter.png')}
+            source={require('../../assets/electrician.png')}
             style={styles.category_icon}
           />
-          <Text style={styles.texticon}>Carpenter</Text>
+          <Text style={styles.texticon}>Electrician</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.category_button} onPress={() => {}}>
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 35,
     borderRadius: 15,
-    backgroundColor: 'grey',
+    backgroundColor:'white',
   },
 
   texticon: {
@@ -143,5 +143,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 17,
     fontFamily: 'Cochin',
+
   },
 });

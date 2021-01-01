@@ -82,7 +82,7 @@ class Star extends React.Component {
     render(){
     return(
         <Icon name={this.props.filled === true ? 'star' : 'star-o'} 
-        color="blue" 
+        color="#4D3886" 
         size={40} 
         style={{marginHorizontal:6}}/>
     )
