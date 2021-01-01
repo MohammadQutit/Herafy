@@ -5,6 +5,7 @@ import List from './CraftsmenList';
 import ProfilePage from './CraftsmanProfilePage';
 import Rate from './RatePage'
 import Calender from './CalenderPage'
+import ReviewList from './ReviewsList'
 
 export default function Nested_stack() {
   const HomeStack = createStackNavigator();
@@ -26,6 +27,7 @@ export default function Nested_stack() {
       <HomeStack.Screen name="ProfilePage" component={ProfilePage} />
       <HomeStack.Screen name="Rating" component={Rate} />
       <HomeStack.Screen name="Calender" component={Calender} />
+      <HomeStack.Screen name="Reviews" component={ReviewList}/>
     </HomeStack.Navigator>
   );
 }

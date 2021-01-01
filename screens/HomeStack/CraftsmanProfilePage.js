@@ -80,7 +80,7 @@ export default function Craftprofile({navigation}) {
         </View>
         
         <View style={{flex: 1,alignItems:"center"}}>
-        <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{ navigation.navigate('')}}>
+        <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{ navigation.navigate('Reviews')}}>
           <Icon name="comment-text-multiple" color="purple" size={60} />
           <Text style={styles.textFont}>Show Reviews</Text>
         </TouchableOpacity>

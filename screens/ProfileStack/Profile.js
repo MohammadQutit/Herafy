@@ -76,6 +76,15 @@ export default function Craftprofile({navigation}) {
           </Text>
         </View>
       </View>
+      <View style={{flex: 1,alignItems:"center"}}>
+        <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{ navigation.navigate('Review')}}>
+          <Icon name="comment-text-multiple" color="purple" size={60} />
+          <Text style={styles.textFont}>Show Users Reviews</Text>
+        </TouchableOpacity>
+        </View>
+
+
+
     </SafeAreaView>
   );
 }
@@ -86,6 +95,8 @@ const styles = StyleSheet.create({
   },
   info: {
     paddingHorizontal: 30,
+    justifyContent:"flex-start"
+  
   },
   headear: {
     marginTop: 50,
@@ -101,7 +112,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    marginBottom: 10,
+    marginTop:20
   },
   category_icon: {
     height: 100,
@@ -144,4 +155,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
+  textFont:{
+    fontWeight:"bold",
+
+
+  }
 });

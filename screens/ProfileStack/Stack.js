@@ -2,6 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import EditProfilePage from './EditProfilePage';
 import ProfilePage from './Profile';
+import Reviews from './ReviewsList'
 export default function HomeStack() {
   const HomeStack = createStackNavigator();
   return (
@@ -19,6 +20,8 @@ export default function HomeStack() {
       }}>
       <HomeStack.Screen name="ProfilePage" component={ProfilePage} />
       <HomeStack.Screen name="Edit" component={EditProfilePage} />
+      <HomeStack.Screen name="Review" component={Reviews} />
+
     </HomeStack.Navigator>
   );
 }

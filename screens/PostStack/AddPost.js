@@ -85,10 +85,7 @@ export default function AddPost({navigation}) {
           source={{uri: image}}
           style={style.image}
         />
-        <Image
-          source={{uri: image}}
-          style={style.image}
-        />
+        
       </View>
     </View>
   );
