@@ -40,7 +40,8 @@ export default Login = ({navigation}) => {
           await Auth.currentUserInfo().then((userInfo) => {
             const {attributes = {}} = userInfo;
             signIn(phone, pass, attributes['custom:type']);
-          }),
+            
+          })
       );
     } catch (error) {
       console.log(error.message);
