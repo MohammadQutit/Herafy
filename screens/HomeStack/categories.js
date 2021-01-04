@@ -77,12 +77,12 @@ const GoTOList=(category)=>{
           />
           <Text style={styles.texticon}>Painter</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.category_button} onPress={()=>GoTOList('Mechanic')}>
+        <TouchableOpacity style={styles.category_button} onPress={()=>GoTOList('Tiles Setter')}>
           <Image
-            source={require('../../assets/mechanic.png')}
+            source={require('../../assets/tiles.png')}
             style={styles.category_icon}
           />
-          <Text style={styles.texticon}>Mechanic</Text>
+          <Text style={styles.texticon}>Tiles Setter</Text>
         </TouchableOpacity>
       </View>
 
