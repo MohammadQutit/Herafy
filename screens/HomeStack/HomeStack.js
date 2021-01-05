@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator, HeaderBackground} from '@react-navigation/stack';
+import {createStackNavigator, HeaderBackground,CardStyleInterpolators} from '@react-navigation/stack';
 import Categories from './categories';
 import List from './CraftsmenList';
 import ProfilePage from './CraftsmanProfilePage';
@@ -17,6 +17,9 @@ export default function Nested_stack() {
           borderBottomLeftRadius: 5,
           borderBottomRightRadius: 5,
         },
+        gestureEnabled:true,
+        gestureDirection:"horizontal",
+        cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',

@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator,CardStyleInterpolators} from '@react-navigation/stack';
 import {TouchableOpacity, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ProfilePage from './CraftsmanProfilePage'
@@ -10,17 +10,20 @@ export default function Nested_stack() {
   const HomeStack = createStackNavigator();
   return (
     <HomeStack.Navigator
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: '#4D3886',
-          borderBottomLeftRadius: 5,
-          borderBottomRightRadius: 5,
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}>
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: '#4D3886',
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
+      },
+      gestureEnabled:true,
+      gestureDirection:"horizontal",
+      cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS,
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}>
       <HomeStack.Screen
         name="Posts"
         component={PostList}
