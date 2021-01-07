@@ -23,7 +23,8 @@ export default drawerRoot = () => {
             <DrawerItem
               label="Logout"
               onPress={async () => {
-                await Auth.signOut().then(() => signOut());
+                await Auth.signOut().then(() => {signOut()
+                });
               }}
             />
           </DrawerContentScrollView>

@@ -8,11 +8,12 @@ import {
   Image,
   TouchableWithoutFeedback,
   Keyboard,
+  Dimensions
 } from 'react-native';
 
 import ImagePicker from 'react-native-image-crop-picker';
 import Ionicons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+const {height}=Dimensions.get("window")
 export default function AddPost({navigation}) {
   const [PostText, SetPostText] = React.useState('');
   const [image, setImage] = React.useState(
@@ -141,5 +142,5 @@ const style = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  image:{flex: 1, margin: 2, height: '99.5%', width: '50%',resizeMode: 'contain',}
+  image:{flex: 1, margin: 2, height: '99.5%', width: '50%',resizeMode: 'contain'}
 });
