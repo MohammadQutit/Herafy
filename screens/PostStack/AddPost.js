@@ -141,5 +141,5 @@ const style = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  image:{flex: 1, margin: 2, height: '99.5%', width: '50%'}
+  image:{flex: 1, margin: 2, height: '99.5%', width: '50%',resizeMode: 'contain',}
 });

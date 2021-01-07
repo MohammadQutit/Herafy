@@ -14,6 +14,7 @@ import {
   Dimensions,
   StatusBar,
   Alert,
+  ActivityIndicator
 } from 'react-native';
 
 const {height, width} = Dimensions.get('screen');
@@ -24,7 +25,7 @@ import {Auth} from '@aws-amplify/auth';
 
 export default Login = ({navigation}) => {
   const inpute = useRef(null);
-
+  const [isLoading,setIsloading]=useState(false)
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState(' ');
   const [secure, setSecure] = useState(true);
@@ -35,21 +36,38 @@ export default Login = ({navigation}) => {
   };
   const login = async (phone, pass) => {
     try {
+      setIsloading(true)
       const x = await Auth.signIn(phone, pass).then(
         async () =>
           await Auth.currentUserInfo().then((userInfo) => {
             const {attributes = {}} = userInfo;
             signIn(phone, pass, attributes['custom:type']);
+           
             
           })
       );
     } catch (error) {
-      console.log(error.message);
+      setIsloading(false)
       Alert.alert('Error', error.message);
     }
   };
 
   return (
+
+    isLoading ===true ?
+    (
+      <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"#4D3886"}}>
+        <ActivityIndicator color="white" size="large"  />
+      </View>
+
+    )
+
+
+
+    :
+    (
+
+
     <KeyboardAvoidingView
       style={styles.Keyboard}
       behavior={Platform.OS === 'ios' ? 'padding' : null}
@@ -187,6 +205,7 @@ export default Login = ({navigation}) => {
         </TouchableWithoutFeedback>
       </ImageBackground>
     </KeyboardAvoidingView>
+    )
   );
 };
 
