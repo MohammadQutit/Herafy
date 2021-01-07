@@ -1,6 +1,6 @@
 {
 	"AWSTemplateFormatVersion": "2010-09-09",
-	"Description": "Root stack for the Amplify AWS CloudFormation provider",
+	"Description": "Root Stack for AWS Amplify CLI",
 	"Parameters": {
 		"DeploymentBucketName": {
 			"Description": "Name of the common deployment bucket provided by the parent stack",
@@ -119,27 +119,6 @@
 					},
 					"permissions": "",
 					"dependsOn": "",
-					"env": "dev"
-				}
-			}
-		},
-		"apicraftsman": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/api/cloudformation-template.json",
-				"Parameters": {
-					"CreateAPIKey": 0,
-					"AppSyncApiName": "craftsman",
-					"DynamoDBBillingMode": "PAY_PER_REQUEST",
-					"DynamoDBEnableServerSideEncryption": false,
-					"AuthCognitoUserPoolId": {
-						"Fn::GetAtt": [
-							"authsenior5e6dbb86",
-							"Outputs.UserPoolId"
-						]
-					},
-					"S3DeploymentBucket": "amplify-senior-dev-180356-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/ed2c84ff5e7a58286e842acd4cbd8137dc5639cf",
 					"env": "dev"
 				}
 			}

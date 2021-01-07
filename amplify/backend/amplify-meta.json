@@ -22,7 +22,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/auth/senior5e6dbb86-cloudformation-template.yml",
         "logicalId": "authsenior5e6dbb86"
       },
-      "lastPushTimeStamp": "2020-10-27T15:20:02.141Z",
+      "lastPushTimeStamp": "2021-01-07T19:07:12.134Z",
       "output": {
         "AppClientSecret": "vtjntvnjso981hftu5urorernlj7iesatp2logqejue5n7so17i",
         "UserPoolId": "eu-west-1_pHga1nCvn",
@@ -35,29 +35,5 @@
       "lastPushDirHash": "JlEYZZTxNO7f5uUshpOxAagpABo="
     }
   },
-  "api": {
-    "craftsman": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authsenior5e6dbb86"
-            }
-          },
-          "additionalAuthenticationProviders": []
-        },
-        "GraphQLAPIIdOutput": "5ycd735njnd37gpyuwggjw7eka",
-        "GraphQLAPIEndpointOutput": "https://3kja2hs4qndlzopxh5axy2ugve.appsync-api.eu-west-1.amazonaws.com/graphql"
-      },
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/api/cloudformation-template.json",
-        "logicalId": "apicraftsman"
-      },
-      "lastPushTimeStamp": "2020-10-27T15:20:02.141Z",
-      "lastPushDirHash": "UGF1fMkk3U35AB3169/XnN5GvVI="
-    }
-  }
+  "api": {}
 }
