@@ -22,7 +22,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/auth/senior5e6dbb86-cloudformation-template.yml",
         "logicalId": "authsenior5e6dbb86"
       },
-      "lastPushTimeStamp": "2021-01-07T19:07:12.134Z",
+      "lastPushTimeStamp": "2021-01-07T20:49:07.621Z",
       "output": {
         "AppClientSecret": "vtjntvnjso981hftu5urorernlj7iesatp2logqejue5n7so17i",
         "UserPoolId": "eu-west-1_pHga1nCvn",
@@ -35,5 +35,21 @@
       "lastPushDirHash": "JlEYZZTxNO7f5uUshpOxAagpABo="
     }
   },
-  "api": {}
+  "api": {},
+  "storage": {
+    "herafyimage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+        "logicalId": "storageherafyimage"
+      },
+      "lastPushTimeStamp": "2021-01-07T20:49:07.639Z",
+      "output": {
+        "BucketName": "herafy180356-dev",
+        "Region": "eu-west-1"
+      },
+      "lastPushDirHash": "CCJIeHYCI2y+sZwIVDKwV/nVd5I="
+    }
+  }
 }

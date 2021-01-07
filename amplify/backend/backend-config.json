@@ -7,5 +7,11 @@
       "customAuth": false
     }
   },
-  "api": {}
+  "api": {},
+  "storage": {
+    "herafyimage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
+  }
 }
