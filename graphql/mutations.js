@@ -1,19 +1,55 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createBlog = /* GraphQL */ `
-  mutation CreateBlog(
-    $input: CreateBlogInput!
-    $condition: ModelBlogConditionInput
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    createBlog(input: $input, condition: $condition) {
+    createUser(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      PhoneNumber
+      Email
+      FirstName
+      LastName
+      Pasword
+      Image {
+        bucket
+        region
+        key
+      }
+      City
+      Category
+      Rating
+      NumberOfUsers
+      Posts {
         items {
           id
-          title
-          blogID
+          Text
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Calenders {
+        items {
+          id
+          StartTime
+          EndTime
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Reviews {
+        items {
+          id
+          ReviewerID
+          CraftmanID
+          Comment
+          Rate
           createdAt
           updatedAt
         }
@@ -24,19 +60,55 @@ export const createBlog = /* GraphQL */ `
     }
   }
 `;
-export const updateBlog = /* GraphQL */ `
-  mutation UpdateBlog(
-    $input: UpdateBlogInput!
-    $condition: ModelBlogConditionInput
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    updateBlog(input: $input, condition: $condition) {
+    updateUser(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      PhoneNumber
+      Email
+      FirstName
+      LastName
+      Pasword
+      Image {
+        bucket
+        region
+        key
+      }
+      City
+      Category
+      Rating
+      NumberOfUsers
+      Posts {
         items {
           id
-          title
-          blogID
+          Text
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Calenders {
+        items {
+          id
+          StartTime
+          EndTime
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Reviews {
+        items {
+          id
+          ReviewerID
+          CraftmanID
+          Comment
+          Rate
           createdAt
           updatedAt
         }
@@ -47,19 +119,55 @@ export const updateBlog = /* GraphQL */ `
     }
   }
 `;
-export const deleteBlog = /* GraphQL */ `
-  mutation DeleteBlog(
-    $input: DeleteBlogInput!
-    $condition: ModelBlogConditionInput
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    deleteBlog(input: $input, condition: $condition) {
+    deleteUser(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      PhoneNumber
+      Email
+      FirstName
+      LastName
+      Pasword
+      Image {
+        bucket
+        region
+        key
+      }
+      City
+      Category
+      Rating
+      NumberOfUsers
+      Posts {
         items {
           id
-          title
-          blogID
+          Text
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Calenders {
+        items {
+          id
+          StartTime
+          EndTime
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Reviews {
+        items {
+          id
+          ReviewerID
+          CraftmanID
+          Comment
+          Rate
           createdAt
           updatedAt
         }
@@ -77,26 +185,40 @@ export const createPost = /* GraphQL */ `
   ) {
     createPost(input: $input, condition: $condition) {
       id
-      title
-      blogID
-      blog {
+      Text
+      Image {
+        bucket
+        region
+        key
+      }
+      userID
+      User {
         id
-        name
-        posts {
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
-      }
-      comments {
-        items {
-          id
-          postID
-          content
-          createdAt
-          updatedAt
-        }
-        nextToken
       }
       createdAt
       updatedAt
@@ -110,26 +232,40 @@ export const updatePost = /* GraphQL */ `
   ) {
     updatePost(input: $input, condition: $condition) {
       id
-      title
-      blogID
-      blog {
+      Text
+      Image {
+        bucket
+        region
+        key
+      }
+      userID
+      User {
         id
-        name
-        posts {
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
-      }
-      comments {
-        items {
-          id
-          postID
-          content
-          createdAt
-          updatedAt
-        }
-        nextToken
       }
       createdAt
       updatedAt
@@ -143,117 +279,302 @@ export const deletePost = /* GraphQL */ `
   ) {
     deletePost(input: $input, condition: $condition) {
       id
-      title
-      blogID
-      blog {
+      Text
+      Image {
+        bucket
+        region
+        key
+      }
+      userID
+      User {
         id
-        name
-        posts {
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
-      }
-      comments {
-        items {
-          id
-          postID
-          content
-          createdAt
-          updatedAt
-        }
-        nextToken
       }
       createdAt
       updatedAt
     }
   }
 `;
-export const createComment = /* GraphQL */ `
-  mutation CreateComment(
-    $input: CreateCommentInput!
-    $condition: ModelCommentConditionInput
+export const createReview = /* GraphQL */ `
+  mutation CreateReview(
+    $input: CreateReviewInput!
+    $condition: ModelReviewConditionInput
   ) {
-    createComment(input: $input, condition: $condition) {
+    createReview(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      ReviewerID
+      CraftmanID
+      User {
         id
-        title
-        blogID
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
         }
-        comments {
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
+      Comment
+      Rate
       createdAt
       updatedAt
     }
   }
 `;
-export const updateComment = /* GraphQL */ `
-  mutation UpdateComment(
-    $input: UpdateCommentInput!
-    $condition: ModelCommentConditionInput
+export const updateReview = /* GraphQL */ `
+  mutation UpdateReview(
+    $input: UpdateReviewInput!
+    $condition: ModelReviewConditionInput
   ) {
-    updateComment(input: $input, condition: $condition) {
+    updateReview(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      ReviewerID
+      CraftmanID
+      User {
         id
-        title
-        blogID
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
         }
-        comments {
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
+      Comment
+      Rate
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteComment = /* GraphQL */ `
-  mutation DeleteComment(
-    $input: DeleteCommentInput!
-    $condition: ModelCommentConditionInput
+export const deleteReview = /* GraphQL */ `
+  mutation DeleteReview(
+    $input: DeleteReviewInput!
+    $condition: ModelReviewConditionInput
   ) {
-    deleteComment(input: $input, condition: $condition) {
+    deleteReview(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      ReviewerID
+      CraftmanID
+      User {
         id
-        title
-        blogID
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
         }
-        comments {
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
+      Comment
+      Rate
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createCalender = /* GraphQL */ `
+  mutation CreateCalender(
+    $input: CreateCalenderInput!
+    $condition: ModelCalenderConditionInput
+  ) {
+    createCalender(input: $input, condition: $condition) {
+      id
+      StartTime
+      EndTime
+      userID
+      User {
+        id
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateCalender = /* GraphQL */ `
+  mutation UpdateCalender(
+    $input: UpdateCalenderInput!
+    $condition: ModelCalenderConditionInput
+  ) {
+    updateCalender(input: $input, condition: $condition) {
+      id
+      StartTime
+      EndTime
+      userID
+      User {
+        id
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteCalender = /* GraphQL */ `
+  mutation DeleteCalender(
+    $input: DeleteCalenderInput!
+    $condition: ModelCalenderConditionInput
+  ) {
+    deleteCalender(input: $input, condition: $condition) {
+      id
+      StartTime
+      EndTime
+      userID
+      User {
+        id
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

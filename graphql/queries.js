@@ -1,16 +1,52 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getBlog = /* GraphQL */ `
-  query GetBlog($id: ID!) {
-    getBlog(id: $id) {
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
       id
-      name
-      posts {
+      PhoneNumber
+      Email
+      FirstName
+      LastName
+      Pasword
+      Image {
+        bucket
+        region
+        key
+      }
+      City
+      Category
+      Rating
+      NumberOfUsers
+      Posts {
         items {
           id
-          title
-          blogID
+          Text
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Calenders {
+        items {
+          id
+          StartTime
+          EndTime
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Reviews {
+        items {
+          id
+          ReviewerID
+          CraftmanID
+          Comment
+          Rate
           createdAt
           updatedAt
         }
@@ -21,17 +57,36 @@ export const getBlog = /* GraphQL */ `
     }
   }
 `;
-export const listBlogs = /* GraphQL */ `
-  query ListBlogs(
-    $filter: ModelBlogFilterInput
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        posts {
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
@@ -45,26 +100,40 @@ export const getPost = /* GraphQL */ `
   query GetPost($id: ID!) {
     getPost(id: $id) {
       id
-      title
-      blogID
-      blog {
+      Text
+      Image {
+        bucket
+        region
+        key
+      }
+      userID
+      User {
         id
-        name
-        posts {
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
-      }
-      comments {
-        items {
-          id
-          postID
-          content
-          createdAt
-          updatedAt
-        }
-        nextToken
       }
       createdAt
       updatedAt
@@ -80,16 +149,26 @@ export const listPosts = /* GraphQL */ `
     listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
-        blogID
-        blog {
+        Text
+        Image {
+          bucket
+          region
+          key
+        }
+        userID
+        User {
           id
-          name
+          PhoneNumber
+          Email
+          FirstName
+          LastName
+          Pasword
+          City
+          Category
+          Rating
+          NumberOfUsers
           createdAt
           updatedAt
-        }
-        comments {
-          nextToken
         }
         createdAt
         updatedAt
@@ -98,51 +177,147 @@ export const listPosts = /* GraphQL */ `
     }
   }
 `;
-export const getComment = /* GraphQL */ `
-  query GetComment($id: ID!) {
-    getComment(id: $id) {
+export const getReview = /* GraphQL */ `
+  query GetReview($id: ID!) {
+    getReview(id: $id) {
       id
-      postID
-      post {
+      ReviewerID
+      CraftmanID
+      User {
         id
-        title
-        blogID
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
         }
-        comments {
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
+      Comment
+      Rate
       createdAt
       updatedAt
     }
   }
 `;
-export const listComments = /* GraphQL */ `
-  query ListComments(
-    $filter: ModelCommentFilterInput
+export const listReviews = /* GraphQL */ `
+  query ListReviews(
+    $filter: ModelReviewFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listReviews(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        postID
-        post {
+        ReviewerID
+        CraftmanID
+        User {
           id
-          title
-          blogID
+          PhoneNumber
+          Email
+          FirstName
+          LastName
+          Pasword
+          City
+          Category
+          Rating
+          NumberOfUsers
           createdAt
           updatedAt
         }
-        content
+        Comment
+        Rate
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getCalender = /* GraphQL */ `
+  query GetCalender($id: ID!) {
+    getCalender(id: $id) {
+      id
+      StartTime
+      EndTime
+      userID
+      User {
+        id
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listCalenders = /* GraphQL */ `
+  query ListCalenders(
+    $filter: ModelCalenderFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCalenders(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        StartTime
+        EndTime
+        userID
+        User {
+          id
+          PhoneNumber
+          Email
+          FirstName
+          LastName
+          Pasword
+          City
+          Category
+          Rating
+          NumberOfUsers
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }

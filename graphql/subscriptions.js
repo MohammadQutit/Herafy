@@ -1,16 +1,52 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBlog = /* GraphQL */ `
-  subscription OnCreateBlog {
-    onCreateBlog {
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser {
+    onCreateUser {
       id
-      name
-      posts {
+      PhoneNumber
+      Email
+      FirstName
+      LastName
+      Pasword
+      Image {
+        bucket
+        region
+        key
+      }
+      City
+      Category
+      Rating
+      NumberOfUsers
+      Posts {
         items {
           id
-          title
-          blogID
+          Text
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Calenders {
+        items {
+          id
+          StartTime
+          EndTime
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Reviews {
+        items {
+          id
+          ReviewerID
+          CraftmanID
+          Comment
+          Rate
           createdAt
           updatedAt
         }
@@ -21,16 +57,52 @@ export const onCreateBlog = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateBlog = /* GraphQL */ `
-  subscription OnUpdateBlog {
-    onUpdateBlog {
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser {
+    onUpdateUser {
       id
-      name
-      posts {
+      PhoneNumber
+      Email
+      FirstName
+      LastName
+      Pasword
+      Image {
+        bucket
+        region
+        key
+      }
+      City
+      Category
+      Rating
+      NumberOfUsers
+      Posts {
         items {
           id
-          title
-          blogID
+          Text
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Calenders {
+        items {
+          id
+          StartTime
+          EndTime
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Reviews {
+        items {
+          id
+          ReviewerID
+          CraftmanID
+          Comment
+          Rate
           createdAt
           updatedAt
         }
@@ -41,16 +113,52 @@ export const onUpdateBlog = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteBlog = /* GraphQL */ `
-  subscription OnDeleteBlog {
-    onDeleteBlog {
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser {
+    onDeleteUser {
       id
-      name
-      posts {
+      PhoneNumber
+      Email
+      FirstName
+      LastName
+      Pasword
+      Image {
+        bucket
+        region
+        key
+      }
+      City
+      Category
+      Rating
+      NumberOfUsers
+      Posts {
         items {
           id
-          title
-          blogID
+          Text
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Calenders {
+        items {
+          id
+          StartTime
+          EndTime
+          userID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      Reviews {
+        items {
+          id
+          ReviewerID
+          CraftmanID
+          Comment
+          Rate
           createdAt
           updatedAt
         }
@@ -65,26 +173,40 @@ export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost {
     onCreatePost {
       id
-      title
-      blogID
-      blog {
+      Text
+      Image {
+        bucket
+        region
+        key
+      }
+      userID
+      User {
         id
-        name
-        posts {
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
-      }
-      comments {
-        items {
-          id
-          postID
-          content
-          createdAt
-          updatedAt
-        }
-        nextToken
       }
       createdAt
       updatedAt
@@ -95,26 +217,40 @@ export const onUpdatePost = /* GraphQL */ `
   subscription OnUpdatePost {
     onUpdatePost {
       id
-      title
-      blogID
-      blog {
+      Text
+      Image {
+        bucket
+        region
+        key
+      }
+      userID
+      User {
         id
-        name
-        posts {
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
-      }
-      comments {
-        items {
-          id
-          postID
-          content
-          createdAt
-          updatedAt
-        }
-        nextToken
       }
       createdAt
       updatedAt
@@ -125,108 +261,284 @@ export const onDeletePost = /* GraphQL */ `
   subscription OnDeletePost {
     onDeletePost {
       id
-      title
-      blogID
-      blog {
+      Text
+      Image {
+        bucket
+        region
+        key
+      }
+      userID
+      User {
         id
-        name
-        posts {
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
-      }
-      comments {
-        items {
-          id
-          postID
-          content
-          createdAt
-          updatedAt
-        }
-        nextToken
       }
       createdAt
       updatedAt
     }
   }
 `;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
+export const onCreateReview = /* GraphQL */ `
+  subscription OnCreateReview {
+    onCreateReview {
       id
-      postID
-      post {
+      ReviewerID
+      CraftmanID
+      User {
         id
-        title
-        blogID
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
         }
-        comments {
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
+      Comment
+      Rate
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
+export const onUpdateReview = /* GraphQL */ `
+  subscription OnUpdateReview {
+    onUpdateReview {
       id
-      postID
-      post {
+      ReviewerID
+      CraftmanID
+      User {
         id
-        title
-        blogID
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
         }
-        comments {
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
+      Comment
+      Rate
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
+export const onDeleteReview = /* GraphQL */ `
+  subscription OnDeleteReview {
+    onDeleteReview {
       id
-      postID
-      post {
+      ReviewerID
+      CraftmanID
+      User {
         id
-        title
-        blogID
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
         }
-        comments {
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
           nextToken
         }
         createdAt
         updatedAt
       }
-      content
+      Comment
+      Rate
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateCalender = /* GraphQL */ `
+  subscription OnCreateCalender {
+    onCreateCalender {
+      id
+      StartTime
+      EndTime
+      userID
+      User {
+        id
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateCalender = /* GraphQL */ `
+  subscription OnUpdateCalender {
+    onUpdateCalender {
+      id
+      StartTime
+      EndTime
+      userID
+      User {
+        id
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteCalender = /* GraphQL */ `
+  subscription OnDeleteCalender {
+    onDeleteCalender {
+      id
+      StartTime
+      EndTime
+      userID
+      User {
+        id
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

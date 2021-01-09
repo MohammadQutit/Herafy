@@ -22,7 +22,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/auth/senior5e6dbb86-cloudformation-template.yml",
         "logicalId": "authsenior5e6dbb86"
       },
-      "lastPushTimeStamp": "2021-01-07T20:49:07.621Z",
+      "lastPushTimeStamp": "2021-01-07T23:14:37.609Z",
       "output": {
         "AppClientSecret": "vtjntvnjso981hftu5urorernlj7iesatp2logqejue5n7so17i",
         "UserPoolId": "eu-west-1_pHga1nCvn",
@@ -35,7 +35,31 @@
       "lastPushDirHash": "JlEYZZTxNO7f5uUshpOxAagpABo="
     }
   },
-  "api": {},
+  "api": {
+    "HerafyDB": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authsenior5e6dbb86"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "5mdgfnavrreujn4xqq3izi7nia",
+        "GraphQLAPIEndpointOutput": "https://zavpwg2n7vfclc5a2kc3cxdeqa.appsync-api.eu-west-1.amazonaws.com/graphql"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiHerafyDB"
+      },
+      "lastPushTimeStamp": "2021-01-07T23:14:40.902Z",
+      "lastPushDirHash": "WkAXKp8R5ADSx/t4BvmKu8NwL3w="
+    }
+  },
   "storage": {
     "herafyimage": {
       "service": "S3",
@@ -44,7 +68,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
         "logicalId": "storageherafyimage"
       },
-      "lastPushTimeStamp": "2021-01-07T20:49:07.639Z",
+      "lastPushTimeStamp": "2021-01-07T23:14:37.615Z",
       "output": {
         "BucketName": "herafy180356-dev",
         "Region": "eu-west-1"

@@ -1,0 +1,45 @@
+type User @model @key(name:"byCategory",fields:["Category"]){
+    id: ID!
+    PhoneNumber: Int!
+    Email: AWSEmail!
+    FirstName: String!
+    LastName: String!
+    Pasword: String!
+    Image: S3Object
+    City: String
+    Category: String
+    Rating: Int
+    NumberOfUsers: Int
+    Posts:[Post] @connection(name:"userpost")
+    Calenders:[Calender] @connection(name:"userCalendar")
+    Reviews:[Review] @connection(name:"userReview")
+    
+}
+type Post @model{
+    id: ID!
+    Text: String!
+    Image: S3Object
+    User:User @connection(name:"userpost")
+    
+}
+type Review @model @key(name:"craftmanID",fields:["CraftmanID"]){
+    id: ID!
+    ReviewerID:ID!
+    CraftmanID:ID!
+    User:User @connection(name:"userReview")
+    Comment: String!
+    Rate: Int!
+}
+type Calender @model{
+    id: ID!
+    StartTime: String!
+    EndTime: String!
+    userID:ID!
+    User:User @connection(name:"userCalendar")
+
+}
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+}

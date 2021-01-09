@@ -56,9 +56,9 @@ const style = StyleSheet.create({
   },
   Touchable: {flexDirection: 'row', alignItems: 'center'},
   profileImage: {
-    height: 50,
-    width: 50,
-    borderRadius: 60,
+    height: 55,
+    width: 55,
+    borderRadius :30 ,
     marginLeft: 10,
     resizeMode: 'contain',
   },

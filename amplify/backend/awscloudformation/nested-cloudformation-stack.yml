@@ -123,6 +123,27 @@
 				}
 			}
 		},
+		"apiHerafyDB": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"Parameters": {
+					"CreateAPIKey": 0,
+					"AppSyncApiName": "HerafyDB",
+					"DynamoDBBillingMode": "PAY_PER_REQUEST",
+					"DynamoDBEnableServerSideEncryption": false,
+					"AuthCognitoUserPoolId": {
+						"Fn::GetAtt": [
+							"authsenior5e6dbb86",
+							"Outputs.UserPoolId"
+						]
+					},
+					"S3DeploymentBucket": "amplify-senior-dev-180356-deployment",
+					"S3DeploymentRootKey": "amplify-appsync-files/d01e44d5d7ff0b866fdf60296b3b212f050fc403",
+					"env": "dev"
+				}
+			}
+		},
 		"storageherafyimage": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
