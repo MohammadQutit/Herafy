@@ -1,6 +1,6 @@
 type User @model @key(name:"byCategory",fields:["Category"]){
     id: ID!
-    PhoneNumber: Int!
+    PhoneNumber: String!
     Email: AWSEmail!
     FirstName: String!
     LastName: String!
@@ -19,7 +19,6 @@ type Post @model{
     id: ID!
     Text: String!
     Image: S3Object
-    userID:ID!
     User:User @connection(name:"userpost")
     
 }

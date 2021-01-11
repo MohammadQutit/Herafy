@@ -26,7 +26,6 @@ export const createUser = /* GraphQL */ `
         items {
           id
           Text
-          userID
           createdAt
           updatedAt
         }
@@ -85,7 +84,6 @@ export const updateUser = /* GraphQL */ `
         items {
           id
           Text
-          userID
           createdAt
           updatedAt
         }
@@ -144,7 +142,6 @@ export const deleteUser = /* GraphQL */ `
         items {
           id
           Text
-          userID
           createdAt
           updatedAt
         }
@@ -191,7 +188,6 @@ export const createPost = /* GraphQL */ `
         region
         key
       }
-      userID
       User {
         id
         PhoneNumber
@@ -238,7 +234,6 @@ export const updatePost = /* GraphQL */ `
         region
         key
       }
-      userID
       User {
         id
         PhoneNumber
@@ -285,7 +280,6 @@ export const deletePost = /* GraphQL */ `
         region
         key
       }
-      userID
       User {
         id
         PhoneNumber

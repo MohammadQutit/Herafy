@@ -23,7 +23,6 @@ export const getUser = /* GraphQL */ `
         items {
           id
           Text
-          userID
           createdAt
           updatedAt
         }
@@ -106,7 +105,6 @@ export const getPost = /* GraphQL */ `
         region
         key
       }
-      userID
       User {
         id
         PhoneNumber
@@ -155,7 +153,6 @@ export const listPosts = /* GraphQL */ `
           region
           key
         }
-        userID
         User {
           id
           PhoneNumber

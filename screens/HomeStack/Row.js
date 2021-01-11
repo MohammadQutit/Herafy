@@ -22,17 +22,33 @@ function Row(props) {
             alignContent: 'center',
             height: '100%',
           }}>
-          <Text>{props.name}</Text>
-          <Text>{props.phone}</Text>
+          <Text style={styles.Text}>{props.FirstName+" "+props.LastName}</Text>
+          <Text style={styles.Text}>{props.PhoneNumber}</Text>
+          <Text style={styles.Text}>
+              {props.Rating}
+            </Text>
+            <Text style={styles.Text}>
+              {props.NumberOFRater}
+            </Text>
+         
         </View>
+        <View style={{flexDirection:"row",flex:1}}>
+          
+            
+
+
+          </View>
       </TouchableOpacity>
     </View>
   );
 }
 
 Row.propTypes = {
-  name: PropTypes.string,
-  phone: PropTypes.string,
+  FirstName: PropTypes.string,
+  LastName:PropTypes.string,
+  PhoneNumber: PropTypes.number,
+  NumberOFRater:PropTypes.number,
+  Rating:PropTypes.number,
   navigation:PropTypes.object
 };
 
@@ -48,4 +64,10 @@ const styles = StyleSheet.create({
     //borderBottomWidth:1,
     borderRadius: 15,
   },
+  Text:{
+    fontWeight:'bold',
+    fontSize:15,
+    color:"black"
+
+  }
 });

@@ -23,7 +23,6 @@ export const onCreateUser = /* GraphQL */ `
         items {
           id
           Text
-          userID
           createdAt
           updatedAt
         }
@@ -79,7 +78,6 @@ export const onUpdateUser = /* GraphQL */ `
         items {
           id
           Text
-          userID
           createdAt
           updatedAt
         }
@@ -135,7 +133,6 @@ export const onDeleteUser = /* GraphQL */ `
         items {
           id
           Text
-          userID
           createdAt
           updatedAt
         }
@@ -179,7 +176,6 @@ export const onCreatePost = /* GraphQL */ `
         region
         key
       }
-      userID
       User {
         id
         PhoneNumber
@@ -223,7 +219,6 @@ export const onUpdatePost = /* GraphQL */ `
         region
         key
       }
-      userID
       User {
         id
         PhoneNumber
@@ -267,7 +262,6 @@ export const onDeletePost = /* GraphQL */ `
         region
         key
       }
-      userID
       User {
         id
         PhoneNumber
