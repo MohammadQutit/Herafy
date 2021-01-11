@@ -101,15 +101,21 @@ App = () => {
   }
   return (
     <AuthContext.Provider value={authContext}>
-      <NavigationContainer>
+      
         {loginState.userToken === null ? (
+          <NavigationContainer>
           <MainStack />
+          </NavigationContainer>
         ) : loginState.userType === 'craftsman' ? (
+          <NavigationContainer>
           <CraftDrawerNav />
+          </NavigationContainer>
         ) : (
+          <NavigationContainer>
           <OrdinaryDrawerNav />
+          </NavigationContainer>
         )}
-      </NavigationContainer>
+     
     </AuthContext.Provider>
   );
 };

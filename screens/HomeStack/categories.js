@@ -8,12 +8,15 @@ import {
   Text,
   Dimensions,
 } from 'react-native';
+import {CategoriesContext} from '../../context/CategoriesContext' 
 let {width, height} = Dimensions.get('window');
 export default function catigories({navigation}) {
+ const [UserState,dispatch]=React.useContext(CategoriesContext)
 
-const GoTOList=(category)=>{
-  navigation.navigate('ListPage');
-  console.log("haha")
+const GoTOList= (category)=>{
+  dispatch({type:"ChooseCategory", Category:category})
+  navigation.navigate('ListPage')
+  
 
 }
 
@@ -34,7 +37,7 @@ const GoTOList=(category)=>{
       <View style={styles.category_container}>
         <TouchableOpacity
           style={styles.category_button}
-          onPress={()=>GoTOList('carpenter')
+          onPress={()=>GoTOList('Carpenter')
            
           }>
           <Image

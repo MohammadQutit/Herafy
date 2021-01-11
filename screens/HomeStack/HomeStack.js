@@ -6,10 +6,16 @@ import ProfilePage from './CraftsmanProfilePage';
 import Rate from './RatePage'
 import Calender from './CalenderPage'
 import ReviewList from './ReviewsList'
+import {CategoriesContext} from '../../context/CategoriesContext'
+import CategoriesReducer,{initialUserState} from '../../reducer/CategoriesReducer'
+
 
 export default function Nested_stack() {
+  const [UserState,dispatch]=React.useReducer(CategoriesReducer,initialUserState);
+
   const HomeStack = createStackNavigator();
   return (
+    <CategoriesContext.Provider value={[UserState,dispatch]}>
     <HomeStack.Navigator
       screenOptions={{
         headerStyle: {
@@ -32,5 +38,6 @@ export default function Nested_stack() {
       <HomeStack.Screen name="Calender" component={Calender} />
       <HomeStack.Screen name="Reviews" component={ReviewList}/>
     </HomeStack.Navigator>
+    </CategoriesContext.Provider>
   );
 }

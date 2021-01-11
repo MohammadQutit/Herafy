@@ -1,8 +1,27 @@
 import React from 'react';
 import {View, FlatList, StyleSheet, SafeAreaView, Text} from 'react-native';
 import Row from './Row';
+import {CategoriesContext} from '../../context/CategoriesContext';
+import {API, graphqlOperation} from 'aws-amplify';
+import {listUsers,getUser} from '../../graphql/queries';
+
 
 export default List = ({navigation}) => {
+  const [hello, sethello] = React.useState('');
+  const [UserState, dispatch] = React.useContext(CategoriesContext);
+  React.useEffect(() => {
+    async function a() {
+      console.log('hello');
+      try {
+        const x = await API.graphql(graphqlOperation(listUsers,{filter:{Category:{eq:UserState.Category}}}));
+        console.log(x.data.listUsers.items);
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    a();
+  }, []);
+
   const [Data, setData] = React.useState([
     {name: 'Mohammad', phone: '10'},
     {name: 'Mohammad', phone: '20'},

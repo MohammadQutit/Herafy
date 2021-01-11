@@ -4,6 +4,7 @@ import {
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import {CommonActions} from '@react-navigation/native'
 import React from 'react';
 import {Auth} from '@aws-amplify/auth';
 import {AuthContext} from '../context/Authcontext';
@@ -23,7 +24,10 @@ export default drawerRoot = () => {
             <DrawerItem
               label="Logout"
               onPress={async () => {
-                await Auth.signOut().then(() => {signOut()
+                await Auth.signOut().then(() => {
+                  signOut()
+                  
+
                 });
               }}
             />
