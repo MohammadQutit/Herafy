@@ -1,6 +1,7 @@
 import React from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import PostRow from './PostRow';
+ 
 
 export default function PostList({navigation}) {
   
@@ -16,6 +17,7 @@ export default function PostList({navigation}) {
       secondImage: require('../../4.png'),
       FirstName: 'Mohammad',
       LastName: 'Qutit',
+      ID:'',
       postText:
         'I neeed a Carpenter to do a quick job for me, for anyone who is freenow, please, contact me on my phone number',
     },
@@ -26,6 +28,7 @@ export default function PostList({navigation}) {
       secondImage: require('../../4.png'),
       FirstName: 'Mosab',
       LastName: 'Zakarneh',
+      ID:'',
       postText:
         'I neeed a BlackSMith to do a quick job for me, for anyone who is freenow, please, contact me on my phone number',
     },
@@ -36,6 +39,7 @@ export default function PostList({navigation}) {
       secondImage: require('../../4.png'),
       FirstName: 'Hothayfa',
       LastName: 'Abu-Arra',
+      ID:'',
       postText:
         'I neeed a Carpenter to do a quick job for me, for anyone who is freenow, please, contact me on my phone number',
     },
@@ -49,6 +53,8 @@ export default function PostList({navigation}) {
       firstImage={obj.item.firstImage}
       secondImage={obj.item.secondImage}
       navigation={navigation}
+      ID={obj.item.ID}
+      
     />
   );
 

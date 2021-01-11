@@ -6,9 +6,13 @@ import ProfilePage from './CraftsmanProfilePage'
 import PostList from './PostList';
 import AddPost from './AddPost';
 import {NavigationContainer} from '@react-navigation/native';
+import {PostsContext} from '../../context/PostsContext'
+import PostsReducer,{initialglobalstate} from '../../reducer/PostsReducer'
 export default function Nested_stack() {
+  const [UserState,dispatch]=React.useReducer(PostsReducer,initialglobalstate);
   const HomeStack = createStackNavigator();
   return (
+    <PostsContext.Provider value={[UserState,dispatch]}>
     <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
@@ -49,5 +53,6 @@ export default function Nested_stack() {
       <HomeStack.Screen name="AddPost" component={AddPost} />
       <HomeStack.Screen name="Profile" component={ProfilePage}/>
     </HomeStack.Navigator>
+    </PostsContext.Provider>
   );
 }

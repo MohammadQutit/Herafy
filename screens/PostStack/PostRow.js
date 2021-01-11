@@ -1,13 +1,22 @@
 import React from 'react';
 import {View, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
+import {PostsContext} from '../../context/PostsContext'
 
 export default function Post(props) {
+  const [UserState,dispatch]=React.useContext(PostsContext);
+  
+  const PickPoster= (ID)=>{
+    dispatch({type:"choosePost", PosterID:ID})
+    props.navigation.navigate('Profile')
+    
+  
+  }
  
   return (
     <View style={style.container}>
       <View style={style.CreatorInfo}>
-        <TouchableOpacity style={style.Touchable} onPress={() => {props.navigation.navigate('Profile')}}>
+        <TouchableOpacity style={style.Touchable} onPress={() => {PickPoster(props.ID)}}>
           <Image source={props.Profileurl} style={style.profileImage} />
           <Text style={style.CreatorText}>
             {props.FirstName + ' ' + props.LastName}
@@ -19,7 +28,7 @@ export default function Post(props) {
           {props.postText}
         </Text>
       </View>
-      <View style={style.PostImagesView}>
+      <View style={style.PostImagesView}> 
           <Image style={style.postImages} source={props.firstImage} />
           <Image style={style.postImages} source={props.secondImage}/>
 
@@ -34,7 +43,8 @@ Post.propTypes = {
     postText:PropTypes.string,
     firstImage:PropTypes.number,
     secondImage:PropTypes.number,
-    navigation:PropTypes.object
+    navigation:PropTypes.object,
+    ID:PropTypes.string,
   };
 
 const style = StyleSheet.create({
