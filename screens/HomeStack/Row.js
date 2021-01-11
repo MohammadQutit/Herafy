@@ -23,16 +23,16 @@ function Row(props) {
             height: '100%',
           }}>
           <Text style={styles.Text}>{props.FirstName+" "+props.LastName}</Text>
-          <Text style={styles.Text}>{props.PhoneNumber}</Text>
-          <Text style={styles.Text}>
+          
+        </View>
+        <View style={{flexDirection:"row",backgroundColor:"red",width:"100%"}}>
+        <Text style={styles.Text1}>
               {props.Rating}
             </Text>
-            <Text style={styles.Text}>
+            <Text style={styles.Text1}>
               {props.NumberOFRater}
             </Text>
          
-        </View>
-        <View style={{flexDirection:"row",flex:1}}>
           
             
 
@@ -67,6 +67,12 @@ const styles = StyleSheet.create({
   Text:{
     fontWeight:'bold',
     fontSize:15,
+    color:"black"
+
+  },
+  Text1:{
+    fontWeight:'bold',
+    fontSize:13,
     color:"black"
 
   }
