@@ -7,13 +7,11 @@ import {
   StatusBar,
   Text,
   SafeAreaView,
-  TouchableWithoutFeedback,
-  Linking
 } from 'react-native';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CategoriesContext} from '../../context/CategoriesContext';
-import {callNumber}from './callFunction'
+import {callNumber} from '../../functions/OpenDialar'
+
 
 //const [phone, setphone] = useState('')
 //const [email, setemail] = useState('')
@@ -24,7 +22,6 @@ import {callNumber}from './callFunction'
 
 export default function Craftprofile({navigation}) {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
-  console.log(UserState.RequstedUserID)
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar

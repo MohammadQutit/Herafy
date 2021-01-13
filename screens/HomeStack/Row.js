@@ -12,7 +12,10 @@ function Row(props) {
         style={styles.row}
         onPress={() => {
           props.navigation.navigate('ProfilePage');
-          props.SelectUser({type:"ChooseUser",RequstedUserID:props.ID})
+          setTimeout(() => {
+            props.SelectUser({type:"ChooseUser",RequstedUserID:props.ID})
+            
+          }, 100); 
 
         }}>
         <View
@@ -38,7 +41,7 @@ function Row(props) {
           </Text>
           <View style={{flexDirection:"row",alignItems:"center",paddingStart:10,paddingTop:10}}>
             <Icon name="star" color="#4D3886" size={22}/>
-            <Text style={{paddingStart:10,fontSize:14,fontWeight:"bold"}}>{(props.Rating/props.NumberOFRater)}</Text>
+            <Text style={{paddingStart:10,fontSize:14,fontWeight:"bold"}}>{( props.Rating/props.NumberOFRater).toFixed(1)}</Text>
 
             <Icon style={{marginStart:width/10}} name="person" color="#4D3886" size={22}/>
             <Text style={{paddingStart:10,fontSize:14,fontWeight:"bold"}}>{props.NumberOFRater}</Text>

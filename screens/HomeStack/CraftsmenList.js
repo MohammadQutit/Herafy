@@ -10,14 +10,17 @@ import {
 } from 'react-native';
 import Row from './Row';
 import {CategoriesContext} from '../../context/CategoriesContext';
-import {API, graphqlOperation} from 'aws-amplify';
-import {listUsers, getUser} from '../../graphql/queries';
+import RNPickerSelect from 'react-native-picker-select';
+//import {API, graphqlOperation} from 'aws-amplify';
+//import {listUsers, getUser} from '../../graphql/queries';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {NameSort,RateSort,UsedSort} from '../../functions/Sorting'
 
 export default List = ({navigation}) => {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
   const [isReady, SetIsReady] = React.useState(true);
+  const [City,SetCity]=React.useState("")
   const [Data, setData] = React.useState([
     {
       id: '1',
@@ -42,7 +45,7 @@ export default List = ({navigation}) => {
       FirstName: 'Mohammad',
       LastName: 'Saleem',
       Rating: 20,
-      NumberOfUsers: 5,
+      NumberOfUsers: 7,
       PhoneNumber: '+972568606090',
       City: 'Ramallah',
     },
@@ -50,38 +53,12 @@ export default List = ({navigation}) => {
       id: '4',
       FirstName: 'Mohammad',
       LastName: 'Saleem',
-      Rating: 20,
-      NumberOfUsers: 5,
+      Rating: 30,
+      NumberOfUsers: 6,
       PhoneNumber: '+972568606090',
       City: 'Ramallah',
     },
-    {
-      id: '5',
-      FirstName: 'Mohammad',
-      LastName: 'Saleem',
-      Rating: 20,
-      NumberOfUsers: 5,
-      PhoneNumber: '+972568606090',
-      City: 'Ramallah',
-    },
-    {
-      id: '6',
-      FirstName: 'Mohammad',
-      LastName: 'Saleem',
-      Rating: 20,
-      NumberOfUsers: 5,
-      PhoneNumber: '+972568606090',
-      City: 'Ramallah',
-    },
-    {
-      id: '7',
-      FirstName: 'Ahmad',
-      LastName: 'Kareem',
-      Rating: 20,
-      NumberOfUsers: 5,
-      PhoneNumber: '+972568606090',
-      City: 'Ramallah',
-    },
+    
     {
       id: '8',
       FirstName: 'Ahmad',
@@ -93,28 +70,7 @@ export default List = ({navigation}) => {
     },
   ]);
 
-   const NameSort=()=>{let [...x]= Data.sort(function(a, b) {
-    let aFirstChar = a.FirstName.charAt(0);
-    let bFirstChar = b.FirstName.charAt(0);
-    if (aFirstChar > bFirstChar) {
-      return 1;
-    } else if (aFirstChar < bFirstChar) {
-      return -1;
-    } else {
-      let aLastChar = a.LastName.charAt(0);
-      let bLastChar = b.LastName.charAt(0);
-      if (aLastChar > bLastChar) {
-        return 1;
-      } else if (aLastChar < bLastChar) {
-        return -1;
-      } else {
-        return 0;
-      }    
-    }
-  })
-  console.log(x)
-setData(x)
-};
+   
 
 
   function RenderHeader() {
@@ -126,8 +82,7 @@ setData(x)
           flexDirection: 'row',
           height: 100,
           backgroundColor:"#F2F2F2",
-          borderBottomColor: '#4D3886',
-          borderBottomWidth: 3,
+       
         }}>
         <View
           style={{
@@ -137,6 +92,9 @@ setData(x)
             height: '100%',
             marginEnd: 1,
             borderRadius: 10,
+            justifyContent:"center",
+            alignItems:"center",
+            
           }}>
           <TextInput
             autoCapitalize="none"
@@ -144,10 +102,13 @@ setData(x)
             clearButtonMode="always"
             placeholder="Search"
             style={{
-              backgroundColor: 'white',
+              marginStart:10,
+              backgroundColor: '#F2F2F2',
               paddingHorizontal: 20,
-              width: '80%',
+              width: '75%',
               fontWeight: 'bold',
+              height:"50%",
+              borderRadius:20
             }}
           />
           <View
@@ -171,29 +132,63 @@ setData(x)
           <View style={{flex: 1, flexDirection: 'column'}}>
             <View
               style={style.FilterButtonView}>
-                <TouchableOpacity onPress={()=>NameSort()}>
-                <Text>Name</Text>
+                <TouchableOpacity   onPress={()=>setData(NameSort(Data))}>
+                <Text style={style.TextStyle}>Name</Text>
                 </TouchableOpacity>
               
             </View>
             <View
               style={style.FilterButtonView}>
-                <TouchableOpacity>
-              <Text>Locations</Text>
-              </TouchableOpacity>
+                <RNPickerSelect
+                  placeholder={{label: 'Location', value: ""}}
+                  useNativeAndroidPickerStyle={false}
+                  value={City}
+                  onValueChange={(value)=>SetCity(value)}
+                  items={[
+                    {label: 'Jenin', value: 'Jenin'},
+                    {label: 'Nablus', value: 'Nablus'},
+                    {label: 'Ramallah', value: 'Ramallah'},
+                    {label: 'Bethlehem', value: 'Bethlehem'},
+                    {label: 'Hebron', value: 'Hebron'}
+                    
+                  ]}
+                  style={{
+                    inputIOS: {
+                      color: 'white',
+                      textAlign: 'center',
+                      marginRight: 10,
+                      width:50,
+                      backgroundColor: '#4D3886',
+                      fontWeight: 'bold',
+                      height: "100%",
+                    },
+                    inputAndroid: {
+                      color: 'white',
+                      width: "100%",
+                      textAlign: 'center',
+                      marginRight: 10,
+                      backgroundColor: '#4D3886',
+                      fontWeight: 'bold',
+                      height: "100%",
+                    },
+                    placeholder: {
+                      color: 'white',
+                    },
+                  }}
+                />
             </View>
           </View>
           <View style={{flex: 1}}>
             <View
               style={style.FilterButtonView}>
-                <TouchableOpacity>
-              <Text>Rating</Text>
+                <TouchableOpacity onPress={()=>setData(RateSort(Data))}>
+              <Text style={style.TextStyle}>Rating</Text>
               </TouchableOpacity>
             </View>
             <View
               style={style.FilterButtonView}>
-                <TouchableOpacity>
-              <Text>Most Used</Text>
+                <TouchableOpacity onPress={()=>setData(UsedSort(Data))} >
+              <Text style={style.TextStyle}>Most Used</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -221,6 +216,7 @@ setData(x)
     }
     a();
   }, []);*/
+  const key=(item) => (item.id);
 
   const renderit = (obj) => (
     <Row
@@ -245,11 +241,12 @@ setData(x)
       ) : (
         <SafeAreaView>
           <FlatList
+          maxToRenderPerBatch={4}
             ListHeaderComponent={<RenderHeader />}
             stickyHeaderIndices={[0]}
             data={Data}
             renderItem={renderit}
-            keyExtractor={(item) => (item.id)}
+            keyExtractor={key}
           />
         </SafeAreaView>
       )}
@@ -268,6 +265,14 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 0.5,
-    backgroundColor: 'white',
+    backgroundColor: '#4D3886',
+    borderRadius:10
+  },
+  TextStyle:{
+    fontWeight:"900",
+   
+    fontFamily:'Arial',
+    fontWeight:"bold",
+    color:"white"
   }
 });

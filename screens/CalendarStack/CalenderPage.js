@@ -31,12 +31,13 @@ const style=StyleSheet.create({
     flex:1,
   },
   Calender_View:{
-    flex:1,
+    flex:2,
   },
   Button_View:{
     flex:1,
     justifyContent:'center',
     alignItems:'center',
+    
   },
   Button:{
     padding: 15,
