@@ -33,7 +33,6 @@ export const onCreateUser = /* GraphQL */ `
           id
           StartTime
           EndTime
-          userID
           createdAt
           updatedAt
         }
@@ -42,7 +41,17 @@ export const onCreateUser = /* GraphQL */ `
       Reviews {
         items {
           id
-          ReviewerID
+          CraftmanID
+          Comment
+          Rate
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      RviewsByUser {
+        items {
+          id
           CraftmanID
           Comment
           Rate
@@ -88,7 +97,6 @@ export const onUpdateUser = /* GraphQL */ `
           id
           StartTime
           EndTime
-          userID
           createdAt
           updatedAt
         }
@@ -97,7 +105,17 @@ export const onUpdateUser = /* GraphQL */ `
       Reviews {
         items {
           id
-          ReviewerID
+          CraftmanID
+          Comment
+          Rate
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      RviewsByUser {
+        items {
+          id
           CraftmanID
           Comment
           Rate
@@ -143,7 +161,6 @@ export const onDeleteUser = /* GraphQL */ `
           id
           StartTime
           EndTime
-          userID
           createdAt
           updatedAt
         }
@@ -152,7 +169,17 @@ export const onDeleteUser = /* GraphQL */ `
       Reviews {
         items {
           id
-          ReviewerID
+          CraftmanID
+          Comment
+          Rate
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      RviewsByUser {
+        items {
+          id
           CraftmanID
           Comment
           Rate
@@ -201,6 +228,9 @@ export const onCreatePost = /* GraphQL */ `
         Reviews {
           nextToken
         }
+        RviewsByUser {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -242,6 +272,9 @@ export const onUpdatePost = /* GraphQL */ `
           nextToken
         }
         Reviews {
+          nextToken
+        }
+        RviewsByUser {
           nextToken
         }
         createdAt
@@ -287,6 +320,9 @@ export const onDeletePost = /* GraphQL */ `
         Reviews {
           nextToken
         }
+        RviewsByUser {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -299,7 +335,6 @@ export const onCreateReview = /* GraphQL */ `
   subscription OnCreateReview {
     onCreateReview {
       id
-      ReviewerID
       CraftmanID
       User {
         id
@@ -324,6 +359,40 @@ export const onCreateReview = /* GraphQL */ `
           nextToken
         }
         Reviews {
+          nextToken
+        }
+        RviewsByUser {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      Reviewer {
+        id
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
+          nextToken
+        }
+        RviewsByUser {
           nextToken
         }
         createdAt
@@ -340,7 +409,6 @@ export const onUpdateReview = /* GraphQL */ `
   subscription OnUpdateReview {
     onUpdateReview {
       id
-      ReviewerID
       CraftmanID
       User {
         id
@@ -365,6 +433,40 @@ export const onUpdateReview = /* GraphQL */ `
           nextToken
         }
         Reviews {
+          nextToken
+        }
+        RviewsByUser {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      Reviewer {
+        id
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
+          nextToken
+        }
+        RviewsByUser {
           nextToken
         }
         createdAt
@@ -381,7 +483,6 @@ export const onDeleteReview = /* GraphQL */ `
   subscription OnDeleteReview {
     onDeleteReview {
       id
-      ReviewerID
       CraftmanID
       User {
         id
@@ -406,6 +507,40 @@ export const onDeleteReview = /* GraphQL */ `
           nextToken
         }
         Reviews {
+          nextToken
+        }
+        RviewsByUser {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      Reviewer {
+        id
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
+          nextToken
+        }
+        RviewsByUser {
           nextToken
         }
         createdAt
@@ -424,7 +559,6 @@ export const onCreateCalender = /* GraphQL */ `
       id
       StartTime
       EndTime
-      userID
       User {
         id
         PhoneNumber
@@ -448,6 +582,9 @@ export const onCreateCalender = /* GraphQL */ `
           nextToken
         }
         Reviews {
+          nextToken
+        }
+        RviewsByUser {
           nextToken
         }
         createdAt
@@ -464,7 +601,6 @@ export const onUpdateCalender = /* GraphQL */ `
       id
       StartTime
       EndTime
-      userID
       User {
         id
         PhoneNumber
@@ -488,6 +624,9 @@ export const onUpdateCalender = /* GraphQL */ `
           nextToken
         }
         Reviews {
+          nextToken
+        }
+        RviewsByUser {
           nextToken
         }
         createdAt
@@ -504,7 +643,6 @@ export const onDeleteCalender = /* GraphQL */ `
       id
       StartTime
       EndTime
-      userID
       User {
         id
         PhoneNumber
@@ -528,6 +666,9 @@ export const onDeleteCalender = /* GraphQL */ `
           nextToken
         }
         Reviews {
+          nextToken
+        }
+        RviewsByUser {
           nextToken
         }
         createdAt

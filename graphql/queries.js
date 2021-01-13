@@ -33,7 +33,6 @@ export const getUser = /* GraphQL */ `
           id
           StartTime
           EndTime
-          userID
           createdAt
           updatedAt
         }
@@ -42,7 +41,17 @@ export const getUser = /* GraphQL */ `
       Reviews {
         items {
           id
-          ReviewerID
+          CraftmanID
+          Comment
+          Rate
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      RviewsByUser {
+        items {
+          id
           CraftmanID
           Comment
           Rate
@@ -88,6 +97,9 @@ export const listUsers = /* GraphQL */ `
         Reviews {
           nextToken
         }
+        RviewsByUser {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -128,6 +140,9 @@ export const getPost = /* GraphQL */ `
           nextToken
         }
         Reviews {
+          nextToken
+        }
+        RviewsByUser {
           nextToken
         }
         createdAt
@@ -178,7 +193,6 @@ export const getReview = /* GraphQL */ `
   query GetReview($id: ID!) {
     getReview(id: $id) {
       id
-      ReviewerID
       CraftmanID
       User {
         id
@@ -205,6 +219,40 @@ export const getReview = /* GraphQL */ `
         Reviews {
           nextToken
         }
+        RviewsByUser {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      Reviewer {
+        id
+        PhoneNumber
+        Email
+        FirstName
+        LastName
+        Pasword
+        Image {
+          bucket
+          region
+          key
+        }
+        City
+        Category
+        Rating
+        NumberOfUsers
+        Posts {
+          nextToken
+        }
+        Calenders {
+          nextToken
+        }
+        Reviews {
+          nextToken
+        }
+        RviewsByUser {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -224,9 +272,22 @@ export const listReviews = /* GraphQL */ `
     listReviews(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        ReviewerID
         CraftmanID
         User {
+          id
+          PhoneNumber
+          Email
+          FirstName
+          LastName
+          Pasword
+          City
+          Category
+          Rating
+          NumberOfUsers
+          createdAt
+          updatedAt
+        }
+        Reviewer {
           id
           PhoneNumber
           Email
@@ -255,7 +316,6 @@ export const getCalender = /* GraphQL */ `
       id
       StartTime
       EndTime
-      userID
       User {
         id
         PhoneNumber
@@ -281,6 +341,9 @@ export const getCalender = /* GraphQL */ `
         Reviews {
           nextToken
         }
+        RviewsByUser {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -300,7 +363,6 @@ export const listCalenders = /* GraphQL */ `
         id
         StartTime
         EndTime
-        userID
         User {
           id
           PhoneNumber

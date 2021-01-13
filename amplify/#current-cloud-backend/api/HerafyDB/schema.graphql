@@ -13,6 +13,7 @@ type User @model @key(name:"byCategory",fields:["Category"]){
     Posts:[Post] @connection(name:"userpost")
     Calenders:[Calender] @connection(name:"userCalendar")
     Reviews:[Review] @connection(name:"userReview")
+    RviewsByUser:[Review]@connection(name:"Reviewer")
     
 }
 type Post @model{
@@ -24,9 +25,9 @@ type Post @model{
 }
 type Review @model @key(name:"craftmanID",fields:["CraftmanID"]){
     id: ID!
-    ReviewerID:ID!
     CraftmanID:ID!
     User:User @connection(name:"userReview")
+    Reviewer:User @connection(name:"Reviewer")
     Comment: String!
     Rate: Int!
 }
@@ -34,7 +35,6 @@ type Calender @model{
     id: ID!
     StartTime: String!
     EndTime: String!
-    userID:ID!
     User:User @connection(name:"userCalendar")
 
 }
