@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {CategoriesContext} from '../../context/CategoriesContext';
 
 //const [phone, setphone] = useState('')
 //const [email, setemail] = useState('')
@@ -20,6 +21,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 //const [rate, setrate] = useState('')
 
 export default function Craftprofile({navigation}) {
+  const [UserState, dispatch] = React.useContext(CategoriesContext);
+  console.log(UserState.RequstedUserID)
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar

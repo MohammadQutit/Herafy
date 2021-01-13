@@ -22,7 +22,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/auth/senior5e6dbb86-cloudformation-template.yml",
         "logicalId": "authsenior5e6dbb86"
       },
-      "lastPushTimeStamp": "2021-01-11T22:34:13.290Z",
+      "lastPushTimeStamp": "2021-01-12T17:14:21.198Z",
       "output": {
         "AppClientSecret": "vtjntvnjso981hftu5urorernlj7iesatp2logqejue5n7so17i",
         "UserPoolId": "eu-west-1_pHga1nCvn",
@@ -56,7 +56,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiHerafyDB"
       },
-      "lastPushTimeStamp": "2021-01-11T22:34:16.310Z",
+      "lastPushTimeStamp": "2021-01-12T17:14:21.216Z",
       "lastPushDirHash": "JNPD2J0PAXh9CF6rSJnUfbANQGs="
     }
   },
@@ -68,7 +68,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-senior-dev-180356-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
         "logicalId": "storageherafyimage"
       },
-      "lastPushTimeStamp": "2021-01-11T22:34:13.298Z",
+      "lastPushTimeStamp": "2021-01-12T17:14:21.222Z",
       "output": {
         "BucketName": "herafy180356-dev",
         "Region": "eu-west-1"
