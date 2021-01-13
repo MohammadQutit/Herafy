@@ -8,10 +8,12 @@ import {
   Text,
   SafeAreaView,
   TouchableWithoutFeedback,
+  Linking
 } from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CategoriesContext} from '../../context/CategoriesContext';
+import {callNumber}from './callFunction'
 
 //const [phone, setphone] = useState('')
 //const [email, setemail] = useState('')
@@ -38,31 +40,35 @@ export default function Craftprofile({navigation}) {
           />
           <View style={styles.headear}>
             <Text style={styles.title}>Here UserName</Text>
-            <Text style={{color: 'purple'}}>Here what he work</Text>
+            <Text style={{color: '#4D3886'}}>Here what he work</Text>
           </View>
         </View>
       </View>
 
       <View style={[styles.info, {flex: 1}]}>
         <View style={styles.row}>
-          <Icon name="map-marker-radius" color="purple" size={25} />
+          <Icon name="map-marker-radius" color="#4D3886" size={30} />
+          
           <Text style={styles.textstyle}>Here Location</Text>
+         
         </View>
 
         <View style={styles.row}>
-          <Icon name="phone" color="purple" size={25} />
+          <Icon name="phone" color="#4D3886" size={30} />
+          <TouchableOpacity onPress={()=>{callNumber('+972568606090')}}>
           <Text style={styles.textstyle} selectable>
             Here phone
           </Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.row}>
-          <Icon name="email" color="purple" size={25} />
+          <Icon name="email" color="#4D3886" size={30} />
           <Text style={styles.textstyle}>Here email</Text>
         </View>
 
         <View style={styles.row}>
-          <Icon name="star" color="purple" size={25} />
+          <Icon name="star" color="#4D3886" size={30} />
           <Text style={styles.textstyle} selectable>
             Rating
           </Text>
@@ -77,21 +83,21 @@ export default function Craftprofile({navigation}) {
         }}>
           <View style={{flex: 1,alignItems:"center"}}>
         <TouchableOpacity style={{ alignItems: 'center'}} onPress={()=>{ navigation.navigate('Rating')}}>
-          <Icon name="star" color="purple" size={60} />
+          <Icon name="star" color="#4D3886" size={60} />
           <Text style={styles.textFont}>Rate</Text>
         </TouchableOpacity>
         </View>
         
         <View style={{flex: 1,alignItems:"center"}}>
         <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{ navigation.navigate('Reviews')}}>
-          <Icon name="comment-text-multiple" color="purple" size={60} />
+          <Icon name="comment-text-multiple" color="#4D3886" size={60} />
           <Text style={styles.textFont}>Show Reviews</Text>
         </TouchableOpacity>
         </View>
 
         <View style={{flex: 1,alignItems:"center"}}>
         <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{ navigation.navigate('Calender')}}>
-          <Icon name="calendar" color="purple" size={60} />
+          <Icon name="calendar" color="#4D3886" size={60} />
           <Text style={styles.textFont}>Calendar</Text>
         </TouchableOpacity>
         </View>
@@ -104,6 +110,7 @@ export default function Craftprofile({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:"white"
   },
   info: {
     paddingHorizontal: 30,
@@ -118,7 +125,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'purple',
+    color: '#4D3886',
   },
   row: {
     flexDirection: 'row',
@@ -156,7 +163,7 @@ const styles = StyleSheet.create({
   },
   textstyle: {
     marginLeft: 10,
-    color: 'purple',
+    color: '#4D3886',
     fontSize: 20,
   },
   buttonview: {

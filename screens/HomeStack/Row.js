@@ -21,7 +21,7 @@ function Row(props) {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Ionicons name="person" size={70} color="purple" />
+          <Ionicons name="person" size={70} color="#4D3886" />
         </View>
 
         <View
