@@ -18,6 +18,7 @@ import {listUsers, getUser} from '../../graphql/queries';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {NameSort,RateSort,UsedSort} from '../../functions/Sorting'
+import { and } from 'react-native-reanimated';
 
 export default List = ({navigation}) => {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
@@ -71,6 +72,23 @@ export default List = ({navigation}) => {
       City: 'Ramallah',
     },
   ]);
+
+  const FetchData=async(city)=>{
+    try {
+      console.log(city)
+      const x = await API.graphql(
+        graphqlOperation(listUsers, {
+          filter: { and: [{Category: {eq: UserState.Category}},{City:{eq:city}}] },
+        }),
+      ).then(SetIsReady(true));
+      //dispatch({type:"ChooseUser",RequstedUserID:x.data.listUsers.items.id})
+      setData(x.data.listUsers.items);
+      console.log(x.data.listUsers.items);
+    } catch (error) {
+      console.log(error.message);
+    }
+
+  }
 
    
 
@@ -145,7 +163,10 @@ export default List = ({navigation}) => {
                   placeholder={{label: 'Location', value: ""}}
                   useNativeAndroidPickerStyle={false}
                   value={City}
-                  onValueChange={(value)=>SetCity(value)}
+                  onValueChange={(value)=>{SetCity(value)
+                 FetchData(value);
+                  
+                  }}
                   items={[
                     {label: 'Jenin', value: 'Jenin'},
                     {label: 'Nablus', value: 'Nablus'},

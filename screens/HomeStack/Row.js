@@ -12,10 +12,10 @@ function Row(props) {
         style={styles.row}
         onPress={() => {
           props.navigation.navigate('ProfilePage');
-          setTimeout(() => {
-            props.SelectUser({type:"ChooseUser",RequstedUserID:props.ID})
+          props.SelectUser({type:"ChooseUser",RequstedUserID:props.ID})
+
             
-          }, 100); 
+       
 
         }}>
         <View

@@ -9,6 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import {CategoriesContext} from '../../context/CategoriesContext' 
+import {Auth} from "@aws-amplify/auth"
 let {width, height} = Dimensions.get('window');
 export default function catigories({navigation}) {
  const [UserState,dispatch]=React.useContext(CategoriesContext)
@@ -19,6 +20,27 @@ const GoTOList= (category)=>{
   
 
 }
+
+ React.useEffect(()=>{
+   async function GetUserID(params) {
+     try {
+      const {attributes} =await Auth.currentUserInfo().then(
+        await Auth.currentUserInfo().then((userInfo) => {
+          const {attributes = {}} = userInfo
+          dispatch({type:"SetUserID",UserID:attributes['sub']})
+          
+          
+        }
+      ))
+       
+     } catch (error) {
+       console.log(error.message);
+     }
+     
+   }
+ GetUserID()
+ },[])
+
 
   return (
     <View

@@ -1,153 +1,168 @@
-import react from 'react'
-import React, { useState,setState } from 'react'
-import {View,TouchableWithoutFeedback,StyleSheet, SafeAreaView,StatusBar, Text,Easing} from 'react-native'
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
-import Animated from 'react-native-reanimated'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, {useState, setState} from 'react';
+import {
+  View,
+  TouchableWithoutFeedback,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  Text,
+  Alert,
+} from 'react-native';
+import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import Animated from 'react-native-reanimated';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {CategoriesContext} from '../../context/CategoriesContext';
+import {API} from '@aws-amplify/api/src/API';
+import {graphqlOperation} from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql';
+import {createReview} from '../../graphql/mutations';
 
-const numstar=5
+//const [UserState, dispatch] = React.useContext(CategoriesContext);
+const numstar = 5;
 export default class A extends React.Component {
-    state={
-        rate:1,
-        Review:'',
-    }
-    rate = star=>{
-        this.setState({rate:star})
-        
-    }
-    handleReview = (text) => {
-        this.setState({ Review: text })
-     }
-   
+    static contextType = CategoriesContext;
+    
+  state = {
+    rate: 1,
+    Review: '',
+  };
+  rate = (star) => {
+    this.setState({rate: star});
+  };
+  handleReview = (text) => {
+    this.setState({Review: text});
+  };
 
-    
-    render()
-    {
-    let stars =[]
-    
-    for(let x=1;x<=numstar;x++)
-    {
-        stars.push(     
-                <TouchableWithoutFeedback 
-                 key={x} 
-                 onPress={()=>{
-                    this.rate(x);
-                }}>
-                <Animated.View >
-                    <Star filled={x <= this.state.rate ? true : false}  />
-                </Animated.View>
-                 </TouchableWithoutFeedback>   
-        )
+  submitReview = async (UserState) => {
+    if (this.state.Review === '') {
+      Alert.alert('Error', 'Review is empty, Please Write one ');
+    } else {
+      try {
+        await API.graphql(
+          graphqlOperation(createReview, {
+            input: {
+              CraftmanID: UserState.UserID,
+              Comment: this.state.Review,
+              Rate: this.state.rate,
+              reviewReviewerId: UserState.UserID,
+              reviewUserId: UserState.RequstedUserID,
+            },
+          }),
+        );
+      } catch (error) {
+        console.log(error);
+      }
     }
-    
+  };
 
-    return(
+  render() {
+    const [UserState, dispatch]=this.context
+    let stars = [];
 
-    
-
-        <SafeAreaView style={style.container}>
-              <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
-            <View style={style.textinput}> 
-           
-                <TextInput
-                placeholder="Type your review"
-                style={style.TextInput}
-                textAlignVertical='top'
-                backgroundColor='white'
-                fontWeight='bold'
-                onChangeText={this.handleReview}
-                multiline={true}
-                numberOfLines={8}
-                autoCorrect={true}
-                maxLength={477}
-                
-                
-                
-                />
-            </View>
-            <View style={style.stars_view}>{stars}</View>
-            <View style={style.Button_View}>
-                <TouchableOpacity style={style.Button} onPress={()=>{}}>
-                    <Text style={style.Text_Button}>
-                        Submit
-                     </Text>
-                </TouchableOpacity>
-            </View>
-        </SafeAreaView>    
-    )
+    for (let x = 1; x <= numstar; x++) {
+      stars.push(
+        <TouchableWithoutFeedback
+          key={x}
+          onPress={() => {
+            this.rate(x);
+          }}>
+          <Animated.View>
+            <Star filled={x <= this.state.rate ? true : false} />
+          </Animated.View>
+        </TouchableWithoutFeedback>,
+      );
     }
-    
+
+    return (
+      <SafeAreaView style={style.container}>
+        <StatusBar
+          barStyle="light-content"
+          translucent
+          backgroundColor="transparent"
+        />
+        <View style={style.textinput}>
+          <TextInput
+            placeholder="Type your review"
+            style={style.TextInput}
+            textAlignVertical="top"
+            backgroundColor="white"
+            fontWeight="bold"
+            onChangeText={this.handleReview}
+            multiline={true}
+            numberOfLines={8}
+            autoCorrect={true}
+            maxLength={477}
+          />
+        </View>
+        <View style={style.stars_view}>{stars}</View>
+        <View style={style.Button_View}>
+          <TouchableOpacity style={style.Button} onPress={() => {this.submitReview(UserState)}}>
+            <Text style={style.Text_Button}>Submit</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
 }
 class Star extends React.Component {
-    render(){
-    return(
-        <Icon name={this.props.filled === true ? 'star' : 'star-o'} 
-        color="#4D3886" 
-        size={40} 
-        style={{marginHorizontal:6}}/>
-    )
-    }
+  render() {
+    return (
+      <Icon
+        name={this.props.filled === true ? 'star' : 'star-o'}
+        color="#4D3886"
+        size={40}
+        style={{marginHorizontal: 6}}
+      />
+    );
+  }
 }
-const style=StyleSheet.create({
-    container:{
-        flex:1,
-        
-    },
-    textinput:{
-        flex:2,
-        
-    },
-    inline_text_style:{
-        width:'98%',
-        height:'90%',
-        
-    },
-    stars_view:{
-        flexDirection:'row',
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:"white",
-        marginVertical:4
-    },
-    Button_View:{
-        flex:2,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:"white"
-        
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  textinput: {
+    flex: 2,
+  },
+  inline_text_style: {
+    width: '98%',
+    height: '90%',
+  },
+  stars_view: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    marginVertical: 4,
+  },
+  Button_View: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  Button: {
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: '#4D3886',
+    alignItems: 'center',
+    width: 150,
 
-
-    },
-    Button:{
-        padding: 15,
-        borderRadius: 10,
-        backgroundColor: '#4D3886',
-        alignItems: 'center',
-        width:150,
-        
-        
-        
-        
-       // marginTop: 10,
-    },
-    Text_Button:{
-        fontSize: 17,
-        fontWeight: 'bold',
-        color: 'white',
-
-    },
-    TextInput: {
-        fontSize: 20,
-        lineHeight: 30,
-        padding: 10,
-        textDecorationLine: 'none',
-        flex: 3,
-        borderRadius:10,
-        padding: 10,
-        fontSize: 18,
-        backgroundColor: 'white',
-       
-      },
-    
-})
+    // marginTop: 10,
+  },
+  Text_Button: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  TextInput: {
+    fontSize: 20,
+    lineHeight: 30,
+    padding: 10,
+    textDecorationLine: 'none',
+    flex: 3,
+    borderRadius: 10,
+    padding: 10,
+    fontSize: 18,
+    backgroundColor: 'white',
+  },
+});
