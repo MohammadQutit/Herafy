@@ -11,8 +11,8 @@ import {
 import Row from './Row';
 import {CategoriesContext} from '../../context/CategoriesContext';
 import RNPickerSelect from 'react-native-picker-select';
-//import {API, graphqlOperation} from 'aws-amplify';
-//import {listUsers, getUser} from '../../graphql/queries';
+import {API, graphqlOperation} from 'aws-amplify';
+import {listUsers, getUser} from '../../graphql/queries';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {NameSort,RateSort,UsedSort} from '../../functions/Sorting'
