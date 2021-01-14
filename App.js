@@ -22,6 +22,8 @@ import config from './aws-exports';
 import ss from './solveAmplify';
 import MainStack from './screens/MainStack/Stack';
 import loginReducer, {initialLoginState} from './reducer/mainReducer';
+import { enableScreens } from 'react-native-screens';
+enableScreens();
 Amplify.configure(config);
 Auth.configure({
   storage: ss,

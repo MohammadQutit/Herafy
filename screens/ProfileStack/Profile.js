@@ -92,6 +92,7 @@ export default function Craftprofile({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:"white",
   },
   info: {
     paddingHorizontal: 30,

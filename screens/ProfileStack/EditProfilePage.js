@@ -5,14 +5,15 @@ import {
   StyleSheet,
   Image,
   Platform,
-  SafeAreaView,
+  Dimensions
 } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+const {width}=Dimensions.get("window")
 export default function A() {
   return (
-    <SafeAreaView style={style.Container}>
+    <View style={style.Container}>
       <View style={style.firstview}>
         <Image
           source={require('../../assets/Profile.png')}
@@ -66,17 +67,17 @@ export default function A() {
           <Text style={style.PannelButtonTitle}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const style = StyleSheet.create({
   Container: {
     flex: 1,
-    margin: 20,
+    backgroundColor: 'white',
   },
   headertext: {
-    marginTop: 10,
+    marginTop: 30,
     fontSize: 18,
     fontWeight: 'bold',
   },
@@ -88,12 +89,17 @@ const style = StyleSheet.create({
   firstview: {
     alignItems: 'center',
     flex: 1,
+    justifyContent:"center"
+
   },
   secondview: {
-    flex: 2,
+    flex:3,
+    marginHorizontal: 20,
   },
   thirdview: {
-    flex: 1,
+   
+    justifyContent:"center",
+    alignItems:"center",
   },
   Action: {
     flexDirection: 'row',
@@ -101,7 +107,7 @@ const style = StyleSheet.create({
     marginBottom: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#f2f2f2',
-    paddingBottom: 0,
+    
   },
   textInput: {
     marginTop: Platform.OS === 'ios' ? 0 : -12,
@@ -110,11 +116,17 @@ const style = StyleSheet.create({
     width: '80%',
   },
   CommandButton: {
-    padding: 15,
+    
+    flexDirection:"row",
     borderRadius: 10,
     backgroundColor: '#4D3886',
     alignItems: 'center',
-    marginTop: 10,
+    justifyContent:"center",
+    width:width*0.8,
+    height:60,
+    margin:10
+    
+
   },
   PannelButtonTitle: {
     fontSize: 17,
