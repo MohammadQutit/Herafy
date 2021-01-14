@@ -11,7 +11,9 @@ import {
 import Row from './Row';
 import {CategoriesContext} from '../../context/CategoriesContext';
 import RNPickerSelect from 'react-native-picker-select';
-import {API, graphqlOperation} from 'aws-amplify';
+import {API}from '@aws-amplify/api/src/API'
+import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
+
 import {listUsers, getUser} from '../../graphql/queries';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
