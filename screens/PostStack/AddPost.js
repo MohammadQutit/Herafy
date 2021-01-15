@@ -10,6 +10,8 @@ import {
   Keyboard,
   Dimensions
 } from 'react-native';
+import {Storage}from "@aws-amplify/storage"
+import awsExports from '../../aws-exports'
 
 import ImagePicker from 'react-native-image-crop-picker';
 import Ionicons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -19,15 +21,58 @@ export default function AddPost({navigation}) {
   const [image, setImage] = React.useState(
     'https://www.generationsforpeace.org/wp-content/uploads/2018/07/empty.jpg',
   );
+  const [ImageObj,setImageObj]=React.useState({})
+  const [dbImage,setDbImage]=React.useState({})
+  const get=()=>{
+    Storage.get("91051149_2486666781584973_6752788586271080448_o.jpg").then((result)=>{
+     setImage(result)
+    })
+  }
+  const CreatePost=async()=>{
+    const filename = ImageObj.path.replace(/^.*[\\\/]/, '')
+    const {mime}=ImageObj
+    const imageData = await fetch(ImageObj.path)
+    const blobData = await imageData.blob()
+    console.log(imageData)
+    console.log(blobData)
+   
+    
+   try {
+     
+      Storage.put(filename,blobData,{
+        contentType:mime
+      }).then((result)=>{
+        console.log(result)
+        const ob={
+          bucket:awsExports.aws_user_files_s3_bucket,
+          region:awsExports.aws_user_files_s3_bucket_region,
+          key:filename
+        }
+  
+  
+      }
+  
+      )
+       
+     } catch (error) {
+       console.log(error)
+       
+     }
+  }
+
+
   const AddPicture = () => {
     try {
       ImagePicker.openPicker({
         width: 300,
         height: 300,
-        cropping: true,
+        cropping: false,
+        includeBase64:true,
       }).then((image) => {
         console.log(image);
         setImage(image.path);
+        setImageObj(image)
+        console.log(image)
       });
     } catch (error) {
       console.log(error.message);
@@ -55,7 +100,12 @@ export default function AddPost({navigation}) {
         <View style={style.mainViewButtons}>
           <View
             style={style.postButtonView}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>{
+              CreatePost()
+              //get()
+
+            
+            }}>
               <Text style={style.Text}>Post</Text>
             </TouchableOpacity>
           </View>
