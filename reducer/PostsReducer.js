@@ -9,6 +9,11 @@ export default PostsReducer=(prevState,action)=>{
         return{
             ...prevState,
             PosterID:action.PosterID,
+        };
+        case'SetUserID':
+        return{
+            ...prevState,
+            UserID:action.UserID
         }
         
     }
