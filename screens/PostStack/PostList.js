@@ -1,11 +1,12 @@
 import React from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import PostRow from './PostRow';
- 
+import {PostsContext} from '../../context/PostsContext'
+import {Auth} from "@aws-amplify/auth"
 
 export default function PostList({navigation}) {
   
-
+const [UserState,dispatch]=React.useContext(PostsContext)
 
 
 
@@ -44,6 +45,29 @@ export default function PostList({navigation}) {
         'I neeed a Carpenter to do a quick job for me, for anyone who is freenow, please, contact me on my phone number',
     },
   ];
+
+  React.useEffect(()=>{
+    async function GetUserID(params) {
+      try {
+       const {attributes} =await Auth.currentUserInfo().then(
+         await Auth.currentUserInfo().then((userInfo) => {
+           const {attributes = {}} = userInfo
+           dispatch({type:"SetUserID",UserID:attributes['sub']})
+           
+           
+         }
+       ))
+        
+      } catch (error) {
+        console.log(error.message);
+      }
+      
+    }
+  GetUserID()
+  },[])
+ 
+
+
   const renderit = (obj) => (
     <PostRow
       FirstName={obj.item.FirstName}
