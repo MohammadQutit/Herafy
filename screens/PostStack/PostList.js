@@ -78,6 +78,7 @@ const [UserState,dispatch]=React.useContext(PostsContext)
       secondImage={obj.item.secondImage}
       navigation={navigation}
       ID={obj.item.ID}
+      dispatch={dispatch}
       
     />
   );

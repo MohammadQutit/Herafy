@@ -1,13 +1,11 @@
 import React from 'react';
 import {View, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
-import {PostsContext} from '../../context/PostsContext'
 
 export default function Post(props) {
-  const [UserState,dispatch]=React.useContext(PostsContext);
   
   const PickPoster= (ID)=>{
-    dispatch({type:"choosePost", PosterID:ID})
+    props.dispatch({type:"choosePost", PosterID:ID})
     props.navigation.navigate('Profile')
     
   
@@ -45,6 +43,7 @@ Post.propTypes = {
     secondImage:PropTypes.number,
     navigation:PropTypes.object,
     ID:PropTypes.string,
+    dispatch:PropTypes.func,
   };
 
 const style = StyleSheet.create({

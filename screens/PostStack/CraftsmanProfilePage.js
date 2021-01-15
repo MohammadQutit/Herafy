@@ -10,6 +10,8 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {PostsContext} from '../../context/PostsContext'
+
 
 //const [phone, setphone] = useState('')
 //const [email, setemail] = useState('')
@@ -19,6 +21,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 //const [rate, setrate] = useState('')
 
 export default function Craftprofile({navigation}) {
+
+  const [UserState,dispatch]=React.useContext(PostsContext)
+  console.log(UserState)
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
