@@ -9,7 +9,6 @@ import {
   SafeAreaView,
   TouchableWithoutFeedback,
 } from 'react-native';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 //const [phone, setphone] = useState('')
@@ -66,7 +65,6 @@ export default function Craftprofile({navigation}) {
         </View>
       </View>
     </SafeAreaView>
-    //plz change the width of the buttons of calender and rate
   );
 }
 

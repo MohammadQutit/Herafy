@@ -26,7 +26,7 @@ export default function AddPost({navigation}) {
   const [image, setImage] = React.useState(DefPath);
   const [ImageObj,setImageObj]=React.useState(DefPath)
   const [UserState,dispatch]=React.useContext(PostsContext)
-  console.log(UserState)
+
   const get=()=>{
     Storage.get("IMG_٢٠٢٠٠٧١٠_١٩٠١٤٧.jpg").then((result)=>{
      setImage(result)
