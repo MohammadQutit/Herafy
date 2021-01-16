@@ -50,7 +50,7 @@ export default function CraftsmanReg({navigation}, props) {
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>
-      <ImageBackground style={styles.container} source={require('../../4.png')}>
+      <ImageBackground style={styles.container} source={require('../../4.jpg')}>
         <StatusBar
           barStyle="light-content"
           translucent
