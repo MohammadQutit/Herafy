@@ -16,18 +16,18 @@ import RNPickerSelect from 'react-native-picker-select';
 const validationSchema = yup.object().shape({
   firstName: yup
     .string('The name should be String')
-    .required('The First name is Required')
+    .required('Required Field')
     .label(),
   lastName: yup
     .string('Last name should be String')
-    .required('Last name is Required')
+    .required('Required Field')
     .label(),
-  phone: yup.string().required().max(13),
+  phone: yup.string().required("Required Field").max(13),
   email: yup
     .string()
-    .required('Emial address is Required')
+    .required('Required Field')
     .email('Please Enter valid Email'),
-  city: yup.string().required("City is Required"),
+  city: yup.string().required("Required Field"),
 });
 
 const {width}=Dimensions.get("window")
@@ -36,7 +36,7 @@ export default function A() {
 
     <Formik
           initialValues={{
-            firstName: '',
+            firstName: 'Mohammad',
             lastName: '',
             phone: '',
             email: '',
@@ -71,11 +71,12 @@ export default function A() {
             onBlur={props.handleBlur('firstName')}
             returnKeyType="next"
           />
-           
-        </View>
-        <Text style={style.errors}>
+            <Text style={style.errors}>
                   {props.touched.firstName && props.errors.firstName}
             </Text>
+           
+        </View>
+      
         <View style={style.Action}>
           <Icon name="user-o" size={20} />
           <TextInput
@@ -93,11 +94,12 @@ export default function A() {
             onBlur={props.handleBlur('lastName')}
             returnKeyType="next"
           />
-         
-        </View>
-        <Text style={style.errors}>
+          <Text style={style.errors}>
                   {props.touched.lastName && props.errors.lastName}
           </Text>
+         
+        </View>
+        
         <View style={style.Action}>
           <Icon name="envelope-o" size={20} />
           <TextInput
@@ -115,10 +117,11 @@ export default function A() {
             onBlur={props.handleBlur('email')}
             returnKeyType="next"
           />
-        </View>
-        <Text style={style.errors}>
+           <Text style={style.errors}>
                   {props.touched.email && props.errors.email}
           </Text>
+        </View>
+       
           <View style={style.Action}>
           <Icon name="phone" size={20} />
           <TextInput
@@ -136,11 +139,11 @@ export default function A() {
             onBlur={props.handleBlur('phone')}
             returnKeyType="done"
           />
-        </View>
-        <Text style={style.errors}>
+           <Text style={style.errors}>
                   {props.touched.phone && props.errors.phone}
         </Text>
-      </View>
+        </View>
+       
         <View style={style.Action}>
           <Icon name="globe" size={20} />
           <RNPickerSelect
@@ -181,6 +184,8 @@ export default function A() {
                   }}
                 />
         </View>    
+      </View>
+        
       <View style={style.thirdview}>
         <TouchableOpacity style={style.CommandButton} onPress={() => {}}>
           <Text style={style.PannelButtonTitle}>Submit</Text>
@@ -209,33 +214,36 @@ const style = StyleSheet.create({
   },
   firstview: {
     alignItems: 'center',
-    flex: 3,
+    flex: 1,
     justifyContent:"center"
 
   },
   secondview: {
-    flex:10,
+    
+    flex:2,
     marginHorizontal: 20,
   },
   thirdview: {
    
     justifyContent:"center",
     alignItems:"center",
-    flex:2,
+    flex:1,
   },
   Action: {
     flexDirection: 'row',
-    marginTop: 5,
-    marginBottom: 5,
+    alignItems:"center",
+    marginTop: 10,
+    marginBottom: 10,
     borderBottomWidth: 1,
+    width:"100%",
     borderBottomColor: '#f2f2f2',
     
   },
   textInput: {
+    flex:3,
     marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
     color: '#05375a',
-    width: '80%',
   },
   CommandButton: {
     
@@ -256,11 +264,10 @@ const style = StyleSheet.create({
     color: 'white',
   },
   errors: {
+    flex:2,
     marginTop:3,
     height: 20,
-    color: 'purple',
-    fontWeight: 'bold',
-    width: '90%',
+    color: 'red',
     paddingStart: 20,
     fontSize: 15,
   },

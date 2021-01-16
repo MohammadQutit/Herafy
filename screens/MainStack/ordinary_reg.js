@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     height: 55,
     width: '90%',
     color: 'white',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
     borderColor: 'white',
     borderWidth: 2,
     borderRadius: 20,
@@ -285,7 +285,8 @@ const styles = StyleSheet.create({
     width: '90%',
     fontSize: 17,
     marginTop: 7,
-    fontWeight: 'bold',
+    borderBottomColor: 'grey',
+    borderBottomWidth:1,
   },
   inputOut: {
     flex: 1,
@@ -312,7 +313,7 @@ const styles = StyleSheet.create({
   errors: {
     marginTop:3,
     height: 20,
-    color: 'yellow',
+    color: 'red',
     fontWeight: 'bold',
     width: '90%',
     paddingStart: 20,
