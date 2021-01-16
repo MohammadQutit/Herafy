@@ -8,6 +8,7 @@ export default function PostList({navigation}) {
   
 const [UserState,dispatch]=React.useContext(PostsContext)
 
+console.log(UserState.UserID)
 
 
   const postdata = [
