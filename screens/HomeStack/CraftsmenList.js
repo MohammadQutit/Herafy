@@ -221,7 +221,7 @@ export default List = ({navigation}) => {
   }
 
   
-  /*React.useEffect(() => {
+  React.useEffect(() => {
     async function a() {
       console.log('hello');
       try {
@@ -238,7 +238,7 @@ export default List = ({navigation}) => {
       }
     }
     a();
-  }, []);*/
+  }, []);
   const key=(item) => (item.id);
 
   const renderit = (obj) => (

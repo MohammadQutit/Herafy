@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 export default function Post(props) {
   
   const PickPoster= (ID)=>{
+    console.log(ID)
     props.dispatch({type:"choosePost", PosterID:ID})
     props.navigation.navigate('Profile')
     
