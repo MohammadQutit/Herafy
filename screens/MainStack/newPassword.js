@@ -42,7 +42,7 @@ export default function NewPassword({navigation}, props) {
       <KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>
         <ImageBackground
           style={styles.container}
-          source={require('../../4.png')}>
+          source={require('../../4.jpg')}>
           <StatusBar
             barStyle="dark-content"
             translucent

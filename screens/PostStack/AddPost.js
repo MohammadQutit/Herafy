@@ -43,6 +43,7 @@ export default function AddPost({navigation}) {
    try {
      console.log("hahahahah")
      if(image===DefPath){
+       
         API.graphql(graphqlOperation(createPost,{input:{Text:PostText,postUserId:UserState.UserID}}))
        .then(navigation.pop())
        
@@ -61,13 +62,13 @@ export default function AddPost({navigation}) {
       Storage.put(filename,blobData,{
         contentType:mime
       }).then((result)=>{
-        console.log(result)
         const ob={
           bucket:awsExports.aws_user_files_s3_bucket,
           key:"public/"+filename,
           region:awsExports.aws_user_files_s3_bucket_region,
          
         }
+
          API.graphql(graphqlOperation(createPost,{input:{Text:PostText,postUserId:UserState.UserID,Image:ob}}))
        .then(navigation.pop())
         

@@ -215,37 +215,6 @@ export const createPost = /* GraphQL */ `
         region
         key
       }
-      User {
-        id
-        PhoneNumber
-        Email
-        FirstName
-        LastName
-        Pasword
-        Image {
-          bucket
-          region
-          key
-        }
-        City
-        Category
-        Rating
-        NumberOfUsers
-        Posts {
-          nextToken
-        }
-        Calenders {
-          nextToken
-        }
-        Reviews {
-          nextToken
-        }
-        RviewsByUser {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       createdAt
       updatedAt
     }

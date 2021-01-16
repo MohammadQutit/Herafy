@@ -84,7 +84,7 @@ export default Login = ({navigation}) => {
         backgroundColor="transparent"
       />
 
-      <ImageBackground style={styles.container} source={require('../../4.png')}>
+      <ImageBackground style={styles.container} source={require('../../4.jpg')}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.view}>
             <View
@@ -97,7 +97,7 @@ export default Login = ({navigation}) => {
               }}>
               <Image
                 source={require('../../2.png')}
-                style={{height: '50%', width: '30%', marginTop: 20}}
+                style={{height: '50%', width: '30%', marginTop: 20,resizeMode:"contain"}}
               />
               <Text style={{marginTop: 20, fontSize: 40, fontWeight: 'bold'}}>
                 The Craftsmen

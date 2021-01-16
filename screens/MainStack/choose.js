@@ -12,7 +12,7 @@ const {height} = Dimensions.get('screen');
 
 export default function Choose({navigation}) {
   return (
-    <ImageBackground style={styles.container} source={require('../../4.png')}>
+    <ImageBackground style={styles.container} source={require('../../4.jpg')}>
       <StatusBar
         barStyle="light-content"
         translucent
