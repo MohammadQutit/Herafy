@@ -30,7 +30,7 @@ export default function AddPost({navigation}) {
   const get=()=>{
     Storage.get("IMG_٢٠٢٠٠٧١٠_١٩٠١٤٧.jpg").then((result)=>{
      setImage(result)
-     console.log(result)
+    
     })
   }
   const CreatePost=async()=>{

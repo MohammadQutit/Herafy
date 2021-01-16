@@ -35,7 +35,6 @@ export default function Tabmenu({navigation}) {
         activeTintColor: 'white',
         inactiveTintColor: '#ADA5B0',
         style: {
-          height: 60,
           backgroundColor: '#4D3886',
           borderTopLeftRadius: 5,
           borderTopRightRadius: 5,
