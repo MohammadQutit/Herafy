@@ -128,8 +128,8 @@ export default function AddPost({navigation}) {
           <View
             style={style.postButtonView}>
             <TouchableOpacity onPress={()=>{
-              CreatePost()
-              //get()
+              //CreatePost()
+              get()
 
             
             }}>

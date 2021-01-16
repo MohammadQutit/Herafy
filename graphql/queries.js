@@ -101,7 +101,7 @@ export const listUsers = /* GraphQL */ `
           nextToken
         }
         createdAt
-        updatedAt
+        
       }
       nextToken
     }
