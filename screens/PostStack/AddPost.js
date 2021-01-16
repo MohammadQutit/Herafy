@@ -30,7 +30,7 @@ export default function AddPost({navigation}) {
   const get=()=>{
     Storage.get("IMG_٢٠٢٠٠٧١٠_١٩٠١٤٧.jpg").then((result)=>{
      setImage(result)
-    
+     console.log(result)
     })
   }
   const CreatePost=async()=>{
@@ -129,8 +129,8 @@ export default function AddPost({navigation}) {
           <View
             style={style.postButtonView}>
             <TouchableOpacity onPress={()=>{
-              //CreatePost()
-              get()
+              CreatePost()
+              //get()
 
             
             }}>
