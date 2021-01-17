@@ -8,7 +8,6 @@ import {
   StatusBar,
   ImageBackground,
   Keyboard,
-  SafeAreaView,
   Alert,
 } from 'react-native';
 import {} from 'react-native-vector-icons/MaterialCommunityIcons';
