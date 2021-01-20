@@ -56,12 +56,10 @@ export const getUser = /* GraphQL */ `
           Comment
           Rate
           createdAt
-          updatedAt
         }
         nextToken
       }
       createdAt
-      updatedAt
     }
   }
 `;
