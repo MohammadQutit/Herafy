@@ -28,8 +28,6 @@ import { API } from '@aws-amplify/api/src/API'
 
 export default function Craftprofile({ navigation }) {
 
-  const [isReady, SetIsReady] = React.useState(true);
-  const [idd, setid] = React.useState(0)
   const [data, setdata] = React.useState(0)
 
 
@@ -46,7 +44,11 @@ export default function Craftprofile({ navigation }) {
         firstname: obj.FirstName,
         lastname: obj.LastName,
         phonenumber: obj.PhoneNumber,
-        rate: "3.5",
+        email:obj.Email,
+        category:obj.Category,
+        rate:obj.Rating,
+      
+        
       }
 
 
@@ -61,9 +63,13 @@ export default function Craftprofile({ navigation }) {
          await Auth.currentUserInfo().then((userInfo) => {
            const {attributes = {}} = userInfo
            attributes['sub']
-            API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then((x)=> console.log(x)
+            API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then( 
+          (x)=>{
+            set(x.data.getUser)
+          }
+             // set(x.data.getUser)
            
-
+             
             )
           
            
@@ -105,8 +111,8 @@ export default function Craftprofile({ navigation }) {
             style={styles.category_icon}
           />
           <View style={styles.headear}>
-            <Text style={styles.title}>Here UserName</Text>
-            <Text style={{ color: 'purple' }}>Here what he work</Text>
+            <Text style={styles.title}>{data.firstname}</Text>
+            <Text style={{ color: 'purple' }}>{data.category}</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('Edit')}
               style={{
@@ -125,25 +131,25 @@ export default function Craftprofile({ navigation }) {
       <View style={[styles.info, { flex: 2 }]}>
         <View style={styles.row}>
           <Icon name="map-marker-radius" color="purple" size={25} />
-          <Text style={styles.textstyle}>Here Location</Text>
+          <Text style={styles.textstyle}>{data.city}</Text>
         </View>
 
         <View style={styles.row}>
           <Icon name="phone" color="purple" size={25} />
           <Text style={styles.textstyle} selectable>
-            Here phone
+            {data.phonenumber}
           </Text>
         </View>
 
         <View style={styles.row}>
           <Icon name="email" color="purple" size={25} />
-          <Text style={styles.textstyle}>Here email</Text>
+          <Text style={styles.textstyle}>{data.email}</Text>
         </View>
 
         <View style={styles.row}>
           <Icon name="star" color="purple" size={25} />
           <Text style={styles.textstyle} selectable>
-            Rating
+            {data.rate}
           </Text>
         </View>
       </View>
