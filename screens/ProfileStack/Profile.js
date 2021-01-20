@@ -15,7 +15,7 @@ import { Auth } from "@aws-amplify/auth"
 import { graphqlOperation } from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import { getUser } from '../../graphql/queries';
 import { API } from '@aws-amplify/api/src/API'
-import react from 'react';
+
 
 
 //const [phone, setphone] = useState('')
@@ -57,50 +57,39 @@ export default function Craftprofile({ navigation }) {
   React.useEffect(() => {
     async function GetUserID(params) {
       try {
-        const { attributes } = await Auth.currentUserInfo().then(
-          await Auth.currentUserInfo().then((userInfo) => {
-            const { attributes = {} } = userInfo
-            sets(attributes['sub'])
-            // console.log(Data)
+       const {attributes} =await Auth.currentUserInfo().then(
+         await Auth.currentUserInfo().then((userInfo) => {
+           const {attributes = {}} = userInfo
+           attributes['sub']
+            API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then((x)=> console.log(x)
+           
 
-          }
-          ))
-
+            )
+          
+           
+         }
+       ))
+        
       } catch (error) {
         console.log(error.message);
       }
-
+      
     }
-    GetUserID()
+
+
+
+
+
+
+
+
+
+    
+      GetUserID()
+    
+    
 
   }, [])
-
-  React.useEffect(() => {
-    async function a() {
-       console.log(idd)
-    //  console.log(idd)
-      try {
-         const x = await API.graphql(
-          graphqlOperation(getUser, {
-            filter: { id: { eq: idd } },
-          }),
-
-        ).then(SetIsReady(true));
-        console.log(x)
-        //set(a=x.data.getUser.items)
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-    a();
-
-  }, []);
-
-
-
-
-
-
 
   return (
     <SafeAreaView style={styles.container}>
