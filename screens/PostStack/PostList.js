@@ -72,7 +72,7 @@ const [Ready,setReady]=React.useState(false)
       firstImage={obj.item.Image.key}
       //secondImage={obj.item.Image.key}
       navigation={navigation}
-      ID={obj.item.id}
+      ID={obj.item.User.id}
       dispatch={dispatch}
       
     />
