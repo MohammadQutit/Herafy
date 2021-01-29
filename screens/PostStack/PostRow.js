@@ -52,14 +52,12 @@ fetchImage()
       <View style={style.PostImagesView}> 
       
           <Image style={style.postImages} source={{uri:image}} />
-          <Image style={style.postImages} source={{uri:image}}/>
-
+         
       </View>
       :
       <View style={style.PostImagesView}> 
       
           <Image style={style.postImages} source={{uri:"https://www.generationsforpeace.org/wp-content/uploads/2018/07/empty.jpg"}} />
-          <Image style={style.postImages} source={{uri:"https://www.generationsforpeace.org/wp-content/uploads/2018/07/empty.jpg"}}/>
 
       </View>
 }
@@ -82,7 +80,7 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    height: 420,
+    height: 430,
     backgroundColor: 'white',
     marginTop:5,
     marginBottom:5,
@@ -105,7 +103,7 @@ const style = StyleSheet.create({
   },
   CreatorText: {paddingStart: 10, fontSize: 16, fontWeight: 'bold'},
   PostText: {padding: 10, fontSize: 17},
-  PostTextView: {width: '100%', height: 100},
-  PostImagesView: {width:"100%",height:230,flexDirection:"row",},
-  postImages:{width:"49.5%",height:"90%",margin:4}
+  PostTextView: {width: '100%', height: 110},
+  PostImagesView: {width:"100%",height:260,flexDirection:"row",justifyContent:"center"},
+  postImages:{width:"99.5%",height:"95%",margin:4}
 });
