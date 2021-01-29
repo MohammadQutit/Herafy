@@ -47,6 +47,7 @@ export default function Craftprofile({navigation}) {
       try {
          await API.graphql(graphqlOperation(getUser,{id:UserState.RequstedUserID})).then((x)=>{
             set(x.data.getUser)
+            
           }
             )  
       } catch (error) {

@@ -11,6 +11,10 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {PostsContext} from '../../context/PostsContext'
+import {callNumber} from '../../functions/OpenDialar';
+import { graphqlOperation } from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
+import { getUser } from '../../graphql/queries';
+import { API } from '@aws-amplify/api/src/API';
 
 
 //const [phone, setphone] = useState('')
@@ -23,7 +27,42 @@ import {PostsContext} from '../../context/PostsContext'
 export default function Craftprofile({navigation}) {
 
   const [UserState,dispatch]=React.useContext(PostsContext)
-  console.log(UserState)
+  
+console.log(UserState)
+  const [data, setdata] = React.useState(0);
+  
+  const set = (obj) => {
+    setdata(
+      {
+        city: obj.City,
+        firstname: obj.FirstName,
+        lastname: obj.LastName,
+        phonenumber: obj.PhoneNumber,
+        email:obj.Email,
+        category:obj.Category,
+        rate:obj.Rating,  
+      }
+    )
+   
+  }
+  console.log(data)
+
+  React.useEffect(() => {
+    async function GetUser() {
+      try {
+         await API.graphql(graphqlOperation(getUser,{id:UserState.PosterID})).then((x)=>{
+            set(x.data.getUser)  
+           
+          }
+            )  
+      } catch (error) {
+        console.log(error.message);
+      } 
+    }
+      GetUser()
+  }, [])
+
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -38,34 +77,36 @@ export default function Craftprofile({navigation}) {
             style={styles.category_icon}
           />
           <View style={styles.headear}>
-            <Text style={styles.title}>Here UserName</Text>
-            <Text style={{color: 'purple'}}>Here what he work</Text>
+            <Text style={styles.title}>{data.firstname+" "+data.lastname}</Text>
+            <Text style={{color: 'purple'}}>{data.category}</Text>
           </View>
         </View>
       </View>
 
-      <View style={[styles.info, {flex: 1}]}>
+      <View style={[styles.info, {flex: 2}]}>
         <View style={styles.row}>
           <Icon name="map-marker-radius" color="purple" size={25} />
-          <Text style={styles.textstyle}>Here Location</Text>
+          <Text style={styles.textstyle}>{data.city}</Text>
         </View>
 
         <View style={styles.row}>
           <Icon name="phone" color="purple" size={25} />
+          <TouchableOpacity onPress={()=>{callNumber(data.phonenumber)}}>
           <Text style={styles.textstyle} selectable>
-            Here phone
+            {data.phonenumber}
           </Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.row}>
           <Icon name="email" color="purple" size={25} />
-          <Text style={styles.textstyle}>Here email</Text>
+          <Text style={styles.textstyle}>{data.email}</Text>
         </View>
 
         <View style={styles.row}>
           <Icon name="star" color="purple" size={25} />
           <Text style={styles.textstyle} selectable>
-            Rating
+            {data.rate}
           </Text>
         </View>
       </View>
