@@ -12,6 +12,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import RNPickerSelect from 'react-native-picker-select';
+import { Auth } from "@aws-amplify/auth"
+import { graphqlOperation } from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
+import { getUser } from '../../graphql/queries';
+import { API } from '@aws-amplify/api/src/API'
 
 const validationSchema = yup.object().shape({
   firstName: yup
@@ -32,17 +36,61 @@ const validationSchema = yup.object().shape({
 
 const {width}=Dimensions.get("window")
 export default function A() {
+  const [data, setdata] = React.useState(0)
+
+  console.log(data)
+  const sets = (id) => {
+    setid(id)
+
+  }
+
+  const set = (obj) => {
+    setdata(
+
+      {
+        city: obj.City,
+        firstname: obj.FirstName,
+        lastname: obj.LastName,
+        phonenumber: obj.PhoneNumber,
+        email:obj.Email,
+        category:obj.Category,
+        rate:obj.Rating,
+      
+        
+      }
+
+
+    )
+
+  }
+
+  React.useEffect(() => {
+    async function GetUserID(params) {
+      try {
+       const {attributes} =await Auth.currentUserInfo().then(
+         await Auth.currentUserInfo().then((userInfo) => {
+           const {attributes = {}} = userInfo
+           attributes['sub']
+            API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then( 
+          (x)=>{
+            set(x.data.getUser)
+          }
+             // set(x.data.getUser)
+            )  
+         }
+       )) 
+      } catch (error) {
+        console.log(error.message);
+      } 
+    }
+      GetUserID()
+  }, [])
+
   return (
 
     <Formik
-          initialValues={{
-            firstName: 'Mohammad',
-            lastName: '',
-            phone: '',
-            email: '',
-            city: '',
-            showModal: false,
-          }}
+          initialValues={data}
+        
           validationSchema={validationSchema}
           onSubmit={async (values, actions) => {
             actions.resetForm();
@@ -60,14 +108,14 @@ export default function A() {
         <View style={style.Action}>
           <Icon name="user-o" size={20} />
           <TextInput
-            placeholder="FirstName"
+            placeholder='firstname'
             placeholderTextColor="#666666"
             style={style.textInput}
             onSubmitEditing={()=>{
               this.secondTextInput.focus();
             }}
             onChangeText={props.handleChange('firstName')}
-            value={props.values.firstName}
+            value={data.firstname}
             onBlur={props.handleBlur('firstName')}
             returnKeyType="next"
           />
@@ -90,7 +138,7 @@ export default function A() {
               this.secondTextInput = input;
             }}
             onChangeText={props.handleChange('lastName')}
-            value={props.values.lastName}
+            value={data.lastname}
             onBlur={props.handleBlur('lastName')}
             returnKeyType="next"
           />
@@ -113,7 +161,7 @@ export default function A() {
               this.thirdTextInput = input;
             }}
             onChangeText={props.handleChange('email')}
-            value={props.values.email}
+            value={data.email}
             onBlur={props.handleBlur('email')}
             returnKeyType="next"
           />
@@ -135,7 +183,7 @@ export default function A() {
               this.forthTextInput = input;
             }}
             onChangeText={props.handleChange('phone')}
-            value={props.values.phone}
+            value={data.phonenumber}
             onBlur={props.handleBlur('phone')}
             returnKeyType="done"
           />
