@@ -28,7 +28,7 @@ export default function AddPost({navigation}) {
   const [UserState,dispatch]=React.useContext(PostsContext)
 
   const get=()=>{
-    Storage.get("IMG_٢٠٢٠٠٧١٠_١٩٠١٤٧.jpg").then((result)=>{
+    Storage.get("public/91051149_2486666781584973_6752788586271080448_o.jpg").then((result)=>{
      setImage(result)
     
     })
@@ -130,7 +130,7 @@ export default function AddPost({navigation}) {
           <View
             style={style.postButtonView}>
             <TouchableOpacity onPress={()=>{
-              CreatePost()
+             CreatePost()
               //get()
 
             

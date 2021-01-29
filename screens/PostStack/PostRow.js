@@ -1,8 +1,11 @@
 import React from 'react';
 import {View, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {Storage}from "@aws-amplify/storage"
 import PropTypes from 'prop-types';
 
 export default function Post(props) {
+  const [ready,setReady]=React.useState(false)
+  const [image,setImage]=React.useState("");
   
   const PickPoster= (ID)=>{
     console.log(ID)
@@ -11,6 +14,23 @@ export default function Post(props) {
     
   
   }
+
+  const  fetchImage= async()=>{
+    console.log("inside fetch function ")
+    console.log(props.firstImage.slice(7))
+    await Storage.get(props.firstImage.slice(7)).then(
+      (result)=>{
+        console.log(result)
+        setImage(result)
+        setReady(true)
+      
+      }
+    )
+  }
+
+  React.useEffect(()=>{
+fetchImage()
+  },[])
  
   return (
     <View style={style.container}>
@@ -27,11 +47,22 @@ export default function Post(props) {
           {props.postText}
         </Text>
       </View>
+      {
+        ready === true?
       <View style={style.PostImagesView}> 
-          <Image style={style.postImages} source={props.firstImage} />
-          <Image style={style.postImages} source={props.secondImage}/>
+      
+          <Image style={style.postImages} source={{uri:image}} />
+          <Image style={style.postImages} source={{uri:image}}/>
 
       </View>
+      :
+      <View style={style.PostImagesView}> 
+      
+          <Image style={style.postImages} source={{uri:"https://www.generationsforpeace.org/wp-content/uploads/2018/07/empty.jpg"}} />
+          <Image style={style.postImages} source={{uri:"https://www.generationsforpeace.org/wp-content/uploads/2018/07/empty.jpg"}}/>
+
+      </View>
+}
     </View>
   );
 }
@@ -40,7 +71,7 @@ Post.propTypes = {
     FirstName:PropTypes.string,
     LastName:PropTypes.string,
     postText:PropTypes.string,
-    firstImage:PropTypes.number,
+    firstImage:PropTypes.string,
     secondImage:PropTypes.number,
     navigation:PropTypes.object,
     ID:PropTypes.string,

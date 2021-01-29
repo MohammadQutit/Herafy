@@ -171,8 +171,7 @@ export const listPosts = /* GraphQL */ `
           Email
           FirstName
           LastName
-          createdAt
-          updatedAt
+         
         }
         createdAt
         updatedAt
