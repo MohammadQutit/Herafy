@@ -8,6 +8,7 @@ import {
   Text,
   SafeAreaView,
   TouchableWithoutFeedback,
+  ActivityIndicator,
 } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -28,6 +29,7 @@ import { API } from '@aws-amplify/api/src/API'
 
 export default function Craftprofile({ navigation }) {
 
+  const [isReady,SetIsReady]=React.useState(false)
   const [data, setdata] = React.useState(0)
 
 
@@ -66,6 +68,8 @@ export default function Craftprofile({ navigation }) {
             API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then( 
           (x)=>{
             set(x.data.getUser)
+            console.log(x.data.getUser)
+            SetIsReady(true)
           }
              // set(x.data.getUser)
            
@@ -98,6 +102,13 @@ export default function Craftprofile({ navigation }) {
   }, [])
 
   return (
+
+     isReady ===false?
+     <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+       <ActivityIndicator size="large" color="orange"/>
+
+     </View>
+     :
     <SafeAreaView style={styles.container}>
       <StatusBar
         barStyle="light-content"

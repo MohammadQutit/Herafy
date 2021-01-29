@@ -159,7 +159,6 @@ export default function A() {
                   style={{
                     inputIOS: {
                       color: 'black',
-                      textAlign: 'center',
                       marginRight: 10,
                       width: width / 2.5,
                       backgroundColor: 'rgba(255, 255, 255, 0.9)',
@@ -171,7 +170,6 @@ export default function A() {
                       color: 'black',
                       backgroundColor: 'white',
                       width: width / 2.5,
-                      textAlign: 'center',
                       marginRight: 10,
                       backgroundColor: 'rgba(255, 255, 255, 0.9)',
                       borderRadius: 20,
