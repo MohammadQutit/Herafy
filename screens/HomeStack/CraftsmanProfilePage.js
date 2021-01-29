@@ -10,7 +10,10 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CategoriesContext} from '../../context/CategoriesContext';
-import {callNumber} from '../../functions/OpenDialar'
+import {callNumber} from '../../functions/OpenDialar';
+import { graphqlOperation } from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
+import { getUser } from '../../graphql/queries';
+import { API } from '@aws-amplify/api/src/API';
 
 
 //const [phone, setphone] = useState('')
@@ -22,6 +25,36 @@ import {callNumber} from '../../functions/OpenDialar'
 
 export default function Craftprofile({navigation}) {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
+  const [data, setdata] = React.useState(0);
+  
+  const set = (obj) => {
+    setdata(
+      {
+        city: obj.City,
+        firstname: obj.FirstName,
+        lastname: obj.LastName,
+        phonenumber: obj.PhoneNumber,
+        email:obj.Email,
+        category:obj.Category,
+        rate:obj.Rating,  
+      }
+    )
+   
+  }
+
+  React.useEffect(() => {
+    async function GetUserdata() {
+      try {
+         await API.graphql(graphqlOperation(getUser,{id:UserState.RequstedUserID})).then((x)=>{
+            set(x.data.getUser)
+          }
+            )  
+      } catch (error) {
+        console.log(error.message);
+      } 
+    }
+      GetUserdata()
+  }, [])
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -36,8 +69,8 @@ export default function Craftprofile({navigation}) {
             style={styles.category_icon}
           />
           <View style={styles.headear}>
-            <Text style={styles.title}>Here UserName</Text>
-            <Text style={{color: '#4D3886'}}>Here what he work</Text>
+            <Text style={styles.title}>{data.firstname+" "+data.lastname}</Text>
+            <Text style={{color: '#4D3886'}}>{data.category}</Text>
           </View>
         </View>
       </View>
@@ -46,28 +79,28 @@ export default function Craftprofile({navigation}) {
         <View style={styles.row}>
           <Icon name="map-marker-radius" color="#4D3886" size={30} />
           
-          <Text style={styles.textstyle}>Here Location</Text>
+          <Text style={styles.textstyle}>{data.city}</Text>
          
         </View>
 
         <View style={styles.row}>
           <Icon name="phone" color="#4D3886" size={30} />
-          <TouchableOpacity onPress={()=>{callNumber('+972568606090')}}>
+          <TouchableOpacity onPress={()=>{callNumber(data.phonenumber)}}>
           <Text style={styles.textstyle} selectable>
-            Here phone
+            {data.phonenumber}
           </Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.row}>
           <Icon name="email" color="#4D3886" size={30} />
-          <Text style={styles.textstyle}>Here email</Text>
+          <Text style={styles.textstyle}>{data.email}</Text>
         </View>
 
         <View style={styles.row}>
           <Icon name="star" color="#4D3886" size={30} />
           <Text style={styles.textstyle} selectable>
-            Rating
+            {data.rate}
           </Text>
         </View>
       </View>
