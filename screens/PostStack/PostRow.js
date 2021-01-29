@@ -105,5 +105,5 @@ const style = StyleSheet.create({
   PostText: {padding: 10, fontSize: 17},
   PostTextView: {width: '100%', height: 110},
   PostImagesView: {width:"100%",height:260,flexDirection:"row",justifyContent:"center"},
-  postImages:{width:"99.5%",height:"95%",margin:4}
+  postImages:{width:"95%",height:"95%",margin:4}
 });
