@@ -2,6 +2,9 @@ import React from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import PostRow from './PostRow';
 import {PostsContext} from '../../context/PostsContext'
+import {listPosts} from '../../graphql/queries'
+import {API}from '@aws-amplify/api/src/API'
+import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import {Auth} from "@aws-amplify/auth"
 
 export default function PostList({navigation}) {
@@ -9,6 +12,7 @@ export default function PostList({navigation}) {
 const [UserState,dispatch]=React.useContext(PostsContext)
 
 console.log(UserState.UserID)
+const [Data,setData]=React.useState([]);
 
 
   const postdata = [
@@ -48,6 +52,13 @@ console.log(UserState.UserID)
   ];
 
   React.useEffect(()=>{
+
+    async function getPostData(){
+      const data = await API.graphql(graphqlOperation(listPosts))
+      setData(data.data.listPosts)
+      console.log(data.data.listPosts.items)
+    }
+
     async function GetUserID(params) {
       try {
        const {attributes} =await Auth.currentUserInfo().then(
@@ -64,6 +75,7 @@ console.log(UserState.UserID)
       }
       
     }
+    getPostData();
   GetUserID()
   },[])
  

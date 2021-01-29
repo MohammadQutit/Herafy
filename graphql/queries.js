@@ -168,15 +168,9 @@ export const listPosts = /* GraphQL */ `
         }
         User {
           id
-          PhoneNumber
           Email
           FirstName
           LastName
-          Pasword
-          City
-          Category
-          Rating
-          NumberOfUsers
           createdAt
           updatedAt
         }
