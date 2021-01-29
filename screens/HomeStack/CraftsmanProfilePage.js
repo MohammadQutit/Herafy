@@ -7,6 +7,7 @@ import {
   StatusBar,
   Text,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CategoriesContext} from '../../context/CategoriesContext';
@@ -26,6 +27,7 @@ import { API } from '@aws-amplify/api/src/API';
 export default function Craftprofile({navigation}) {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
   const [data, setdata] = React.useState(0);
+  const [Ready,setready]=React.useState(false);
   
   const set = (obj) => {
     setdata(
@@ -47,6 +49,8 @@ export default function Craftprofile({navigation}) {
       try {
          await API.graphql(graphqlOperation(getUser,{id:UserState.RequstedUserID})).then((x)=>{
             set(x.data.getUser)
+            setready(true)
+            
             
           }
             )  
@@ -57,6 +61,7 @@ export default function Craftprofile({navigation}) {
       GetUserdata()
   }, [])
   return (
+    Ready===true?
     <SafeAreaView style={styles.container}>
       <StatusBar
         barStyle="light-content"
@@ -134,6 +139,10 @@ export default function Craftprofile({navigation}) {
         </View>
       </View>
     </SafeAreaView>
+    :
+    <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+    <ActivityIndicator size="large" color="orange"/>
+  </View>
     //plz change the width of the buttons of calender and rate
   );
 }

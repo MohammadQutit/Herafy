@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Image,
   Platform,
-  Dimensions
+  Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -37,6 +38,7 @@ const validationSchema = yup.object().shape({
 const {width}=Dimensions.get("window")
 export default function A() {
   const [data, setdata] = React.useState(0)
+  const [Ready,setReady]=React.useState(false)
 
   console.log(data)
   const sets = (id) => {
@@ -74,6 +76,7 @@ export default function A() {
             API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then( 
           (x)=>{
             set(x.data.getUser)
+            setReady(true)
           }
              // set(x.data.getUser)
             )  
@@ -87,7 +90,8 @@ export default function A() {
   }, [])
 
   return (
-
+    
+    Ready===true?
     <Formik
           initialValues={data}
         
@@ -239,7 +243,12 @@ export default function A() {
       </View>
     </View>
 )}
+
     </Formik>
+    :
+    <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+          <ActivityIndicator size="large" color="orange"/>
+        </View>
   );
 }
 

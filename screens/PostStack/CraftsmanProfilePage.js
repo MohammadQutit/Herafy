@@ -8,6 +8,7 @@ import {
   Text,
   SafeAreaView,
   TouchableWithoutFeedback,
+  ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {PostsContext} from '../../context/PostsContext'
@@ -27,6 +28,7 @@ import { API } from '@aws-amplify/api/src/API';
 export default function Craftprofile({navigation}) {
 
   const [UserState,dispatch]=React.useContext(PostsContext)
+  const [ready,setready]=React.useState(false)
   
 console.log(UserState)
   const [data, setdata] = React.useState(0);
@@ -52,6 +54,7 @@ console.log(UserState)
       try {
          await API.graphql(graphqlOperation(getUser,{id:UserState.PosterID})).then((x)=>{
             set(x.data.getUser)  
+            setready(true)
            
           }
             )  
@@ -64,6 +67,7 @@ console.log(UserState)
 
 
   return (
+    ready===true?
     <SafeAreaView style={styles.container}>
       <StatusBar
         barStyle="light-content"
@@ -111,6 +115,10 @@ console.log(UserState)
         </View>
       </View>
     </SafeAreaView>
+    :
+    <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+    <ActivityIndicator size="large" color="orange"/>
+  </View>
   );
 }
 
