@@ -14,13 +14,15 @@ import {
   Dimensions,
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import Icon from 'react-native-vector-icons/Ionicons';
+//import Icon from 'react-native-vector-icons/Ionicons';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {AuthContext} from '../../context/Authcontext';
 import {Auth} from '@aws-amplify/auth';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 const validationSchema = yup.object().shape({
   firstName: yup
     .string('The name should be String')
@@ -95,6 +97,7 @@ export default function CraftsmanReg({navigation}, props) {
             <View style={styles.view}>
               <View style={styles.inputOut}>
                 <View style={styles.textinput}>
+                <Icon name="user-o" size={20} />
                   <TextInput
                     style={styles.inputIn}
                     placeholder="  First Name"
@@ -117,6 +120,7 @@ export default function CraftsmanReg({navigation}, props) {
 
               <View style={styles.inputOut}>
                 <View style={styles.textinput}>
+                <Icon name="user-o" size={20} />
                   <TextInput
                     style={styles.inputIn}
                     onSubmitEditing={() => {
@@ -141,6 +145,7 @@ export default function CraftsmanReg({navigation}, props) {
 
               <View style={styles.inputOut}>
                 <View style={styles.textinput}>
+                <Icon name="phone" size={20} />
                   <TextInput
                     style={styles.inputIn}
                     onSubmitEditing={() => {
@@ -165,6 +170,7 @@ export default function CraftsmanReg({navigation}, props) {
 
               <View style={styles.inputOut}>
                 <View style={styles.textinput}>
+                <Icon name="envelope-o" size={20} />
                   <TextInput
                     style={styles.inputIn}
                     onSubmitEditing={() => {
@@ -189,6 +195,7 @@ export default function CraftsmanReg({navigation}, props) {
 
               <View style={styles.inputOut}>
                 <View style={styles.textinput}>
+                <Icon name="lock" size={20} />
                   <TextInput
                     style={styles.inputIn}
                     onSubmitEditing={() => {
@@ -213,6 +220,7 @@ export default function CraftsmanReg({navigation}, props) {
 
               <View style={styles.inputOut}>
                 <View style={styles.textinput}>
+                <Icon name="lock" size={20} />
                   <TextInput
                     style={styles.inputIn}
                     ref={(input) => {

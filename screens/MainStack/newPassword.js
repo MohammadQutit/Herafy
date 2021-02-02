@@ -17,6 +17,7 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import {AuthContext} from '../../context/Authcontext';
 import {Auth} from '@aws-amplify/auth';
+import Icon from 'react-native-vector-icons/FontAwesome';
 const validationSchema = yup.object().shape({
   phone: yup
     .string('The Phine number should be String')
@@ -78,6 +79,7 @@ export default function NewPassword({navigation}, props) {
               <View style={styles.view}>
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
+                  <Icon name="phone" size={20} />
                     <TextInput
                       style={styles.inputIn}
                       placeholder="  Phone number"
@@ -100,6 +102,7 @@ export default function NewPassword({navigation}, props) {
 
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
+                  <Icon name="codepen" size={20} />
                     <TextInput
                       style={styles.inputIn}
                       onSubmitEditing={() => {
@@ -126,6 +129,7 @@ export default function NewPassword({navigation}, props) {
 
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
+                  <Icon name="lock" size={20} />
                     <TextInput
                       style={styles.inputIn}
                       onSubmitEditing={() => {
@@ -152,6 +156,7 @@ export default function NewPassword({navigation}, props) {
 
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
+                  <Icon name="lock" size={20} />
                     <TextInput
                       style={styles.inputIn}
                       onSubmitEditing={() => {

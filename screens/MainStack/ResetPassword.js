@@ -15,6 +15,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {Auth} from '@aws-amplify/auth';
+import Icon from 'react-native-vector-icons/FontAwesome';
 const validationSchema = yup.object().shape({
   phone: yup
     .string('The Phine number should be String')
@@ -51,6 +52,7 @@ export default function ResetPassword({navigation}, props) {
               <View style={styles.view}>
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
+                  <Icon name="phone" size={20} />
                     <TextInput
                       style={styles.inputIn}
                       placeholder="  Phone number"
