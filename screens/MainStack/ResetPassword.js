@@ -41,7 +41,8 @@ export default function ResetPassword({navigation}, props) {
             validationSchema={validationSchema}
             onSubmit={async (values, actions) => {
               try {
-                const x=await Auth.forgotPassword(values.phone).then(()=>navigation.navigate('NewPassword'))
+                navigation.navigate('NewPassword')
+                //const x=await Auth.forgotPassword(values.phone).then(()=>navigation.navigate('NewPassword'))
               } catch (error) {
                 Alert.alert("Error",error.message)
               
@@ -51,12 +52,12 @@ export default function ResetPassword({navigation}, props) {
               <View style={styles.view}>
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
-                  <Icon name="phone" size={20} />
+                  <Icon name="mobile-phone" size={40} />
                     <TextInput
                       style={styles.inputIn}
                       placeholder="  Phone number"
                       keyboardType="phone-pad"
-                      placeholderTextColor="black"
+                      placeholderTextColor="grey"
                       returnKeyType="done"
                       onSubmitEditing={() => {
                         Keyboard.dismiss();
@@ -102,14 +103,16 @@ const styles = StyleSheet.create({
   textinput: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 5,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
     height: 60,
     width: '90%',
     color: 'white',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(254, 254, 254, 0.9)',
     borderColor: 'white',
     borderWidth: 2,
     borderRadius: 20,
+    textDecorationLine: 'underline',
   },
   button: {
     marginTop: 60,
@@ -130,8 +133,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     width: '90%',
     fontSize: 17,
-    marginTop: 7,
-    fontWeight: 'bold',
+    
   },
   inputOut: {
     width: '100%',

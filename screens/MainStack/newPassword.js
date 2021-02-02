@@ -79,12 +79,12 @@ export default function NewPassword({navigation}, props) {
               <View style={styles.view}>
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
-                  <Icon name="phone" size={20} />
+                  <Icon name="mobile-phone" size={40} />
                     <TextInput
                       style={styles.inputIn}
                       placeholder="  Phone number"
                       keyboardType="phone-pad"
-                      placeholderTextColor="black"
+                      placeholderTextColor="grey"
                       returnKeyType="next"
                       onSubmitEditing={() => {
                         this.secondTextInput.focus();
@@ -102,7 +102,7 @@ export default function NewPassword({navigation}, props) {
 
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
-                  <Icon name="codepen" size={20} />
+                  <Icon name="codepen" size={25} />
                     <TextInput
                       style={styles.inputIn}
                       onSubmitEditing={() => {
@@ -113,7 +113,7 @@ export default function NewPassword({navigation}, props) {
                       }}
                       placeholder="Confirmtion Code"
                       keyboardType="number-pad"
-                      placeholderTextColor="black"
+                      placeholderTextColor="grey"
                       onChangeText={props.handleChange('confCode')}
                       value={props.values.lastName}
                       onSubmitEditing={() => {
@@ -129,7 +129,7 @@ export default function NewPassword({navigation}, props) {
 
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
-                  <Icon name="lock" size={20} />
+                  <Icon name="lock" size={25} />
                     <TextInput
                       style={styles.inputIn}
                       onSubmitEditing={() => {
@@ -139,8 +139,8 @@ export default function NewPassword({navigation}, props) {
                         this.ThirdTextInput = input;
                       }}
                       placeholder="New Password"
-                      keyboardType="number-pad"
-                      placeholderTextColor="black"
+                      secureTextEntry={true}
+                      placeholderTextColor="grey"
                       onChangeText={props.handleChange('NewPassword')}
                       value={props.values.NewPassword}
                       onSubmitEditing={() => {
@@ -156,7 +156,7 @@ export default function NewPassword({navigation}, props) {
 
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
-                  <Icon name="lock" size={20} />
+                  <Icon name="lock" size={25} />
                     <TextInput
                       style={styles.inputIn}
                       onSubmitEditing={() => {
@@ -166,8 +166,8 @@ export default function NewPassword({navigation}, props) {
                         this.FourthTextInput = input;
                       }}
                       placeholder="Repeat Password"
-                      keyboardType="number-pad"
-                      placeholderTextColor="black"
+                      secureTextEntry={true}
+                      placeholderTextColor="grey"
                       onChangeText={props.handleChange('RePassword')}
                       value={props.values.lastName}
                       onBlur={props.handleBlur('RePassword')}
@@ -208,14 +208,16 @@ const styles = StyleSheet.create({
   textinput: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 5,
-    height: 55,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    height: 60,
     width: '90%',
     color: 'white',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(254, 254, 254, 0.9)',
     borderColor: 'white',
     borderWidth: 2,
     borderRadius: 20,
+    textDecorationLine: 'underline',
   },
   button: {
     marginTop: 60,
@@ -232,11 +234,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   inputIn: {
-    height: 40,
+    height: 60,
     marginHorizontal: 10,
     width: '90%',
     fontSize: 17,
-    marginTop: 7,
+    
   },
   inputOut: {
     margin: 10,

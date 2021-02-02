@@ -88,12 +88,12 @@ export default function CraftsmanReg({navigation}) {
               <View style={styles.view}>
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
-                  <Icon name="user-o" size={20} />
+                  <Icon name="user-o" size={25} />
                     <TextInput
                       style={styles.inputIn}
                       placeholder="  First Name"
                       keyboardType="default"
-                      placeholderTextColor="black"
+                      placeholderTextColor="grey"
                       returnKeyType="next"
                       onSubmitEditing={() => {
                         this.secondTextInput.focus();
@@ -111,7 +111,7 @@ export default function CraftsmanReg({navigation}) {
 
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
-                  <Icon name="user-o" size={20} />
+                  <Icon name="user-o" size={25} />
                     <TextInput
                       style={styles.inputIn}
                       onSubmitEditing={() => {
@@ -122,7 +122,7 @@ export default function CraftsmanReg({navigation}) {
                       }}
                       placeholder="  Last Name"
                       keyboardType="default"
-                      placeholderTextColor="black"
+                      placeholderTextColor="grey"
                       returnKeyType="next"
                       onChangeText={props.handleChange('lastName')}
                       value={props.values.lastName}
@@ -136,7 +136,7 @@ export default function CraftsmanReg({navigation}) {
 
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
-                  <Icon name="phone" size={20} />
+                  <Icon name="mobile-phone" size={40} />
                     <TextInput
                       style={styles.inputIn}
                       onSubmitEditing={() => {
@@ -147,7 +147,7 @@ export default function CraftsmanReg({navigation}) {
                       }}
                       placeholder="  Phone number"
                       keyboardType="phone-pad"
-                      placeholderTextColor="black"
+                      placeholderTextColor="grey"
                       returnKeyType="next"
                       onChangeText={props.handleChange('phone')}
                       value={props.values.phone}
@@ -161,7 +161,7 @@ export default function CraftsmanReg({navigation}) {
 
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
-                  <Icon name="envelope-o" size={20} />
+                  <Icon name="envelope-o" size={25} />
                     <TextInput
                       style={styles.inputIn}
                       onSubmitEditing={() => {
@@ -172,7 +172,7 @@ export default function CraftsmanReg({navigation}) {
                       }}
                       placeholder="  Email"
                       keyboardType="email-address"
-                      placeholderTextColor="black"
+                      placeholderTextColor="grey"
                       returnKeyType="next"
                       onChangeText={props.handleChange('email')}
                       value={props.values.email}
@@ -186,7 +186,7 @@ export default function CraftsmanReg({navigation}) {
 
                 <View style={styles.inputOut}>
                   <View style={styles.textinput}>
-                  <Icon name="lock" size={20} />
+                  <Icon name="lock" size={25} />
                     <TextInput
                       style={styles.inputIn}
                       onSubmitEditing={() => {
@@ -196,7 +196,7 @@ export default function CraftsmanReg({navigation}) {
                         this.fifthTextInput = input;
                       }}
                       placeholder="  Password"
-                      placeholderTextColor="black"
+                      placeholderTextColor="grey"
                       secureTextEntry={true}
                       returnKeyType="next"
                       onChangeText={props.handleChange('password')}
@@ -211,14 +211,14 @@ export default function CraftsmanReg({navigation}) {
 
                 <View style={[styles.inputOut, {height: 70}]}>
                   <View style={styles.textinput}>
-                  <Icon name="lock" size={20} />
+                  <Icon name="lock" size={25} />
                     <TextInput
                       style={styles.inputIn}
                       ref={(input) => {
                         this.sixthTextInput = input;
                       }}
                       placeholder="  Retype Password"
-                      placeholderTextColor="black"
+                      placeholderTextColor="grey"
                       secureTextEntry={true}
                       returnKeyType="done"
                       onChangeText={props.handleChange('rePassword')}
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   textinput: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 5,
+    paddingHorizontal: 10,
     height: 55,
     width: '90%',
     color: 'white',
@@ -286,13 +286,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   inputIn: {
-    height: 40,
+    height: 55,
     marginHorizontal: 10,
     width: '90%',
     fontSize: 17,
-    marginTop: 7,
-    borderBottomColor: 'grey',
-    borderBottomWidth:1,
   },
   inputOut: {
     flex: 1,

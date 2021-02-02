@@ -40,7 +40,7 @@ export default class A extends React.Component {
         await API.graphql(
           graphqlOperation(createReview, {
             input: {
-              CraftmanID: UserState.UserID,
+              CraftmanID: UserState.RequstedUserID,
               Comment: this.state.Review,
               Rate: this.state.rate,
               reviewReviewerId: UserState.UserID,
