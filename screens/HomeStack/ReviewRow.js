@@ -8,12 +8,12 @@ export default function Post(props) {
   return (
     <View style={style.container}>
       <View style={style.CreatorInfo}>
-        <TouchableOpacity style={style.Touchable} onPress={() => {props.navigation.navigate('ProfilePage')}}>
+        <View style={style.Touchable}>
           <Image source={props.Profileurl} style={style.profileImage} />
           <Text style={style.CreatorText}>
             {props.FirstName + ' ' + props.LastName}
           </Text>
-        </TouchableOpacity>
+        </View>
 
         <View style={{paddingStart:50,flexDirection:"row",flex:1,justifyContent:"flex-end",paddingEnd:10}}>
            <Text style={{fontSize:16,fontWeight:'bold'}}>

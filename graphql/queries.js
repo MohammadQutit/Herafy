@@ -276,7 +276,7 @@ export const listReviews = /* GraphQL */ `
           Rating
           NumberOfUsers
           createdAt
-          updatedAt
+          
         }
         Reviewer {
           id
@@ -290,12 +290,12 @@ export const listReviews = /* GraphQL */ `
           Rating
           NumberOfUsers
           createdAt
-          updatedAt
+          
         }
         Comment
         Rate
         createdAt
-        updatedAt
+       
       }
       nextToken
     }
