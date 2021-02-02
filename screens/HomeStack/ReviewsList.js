@@ -1,9 +1,30 @@
 import React from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import RevRow from './ReviewRow';
+import {ListReviews} from '../../graphql/queries';
+import {API}from '@aws-amplify/api/src/API'
+import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
+import {CategoriesContext} from '../../context/CategoriesContext';
 
 export default function PostList({navigation}) {
   
+  const [UserState, dispatch] = React.useContext(CategoriesContext);
+  console.log(UserState)
+  const [Data, setData] = React.useState(0)
+  const set=(obj)=>{
+    setData(
+      [{
+        city: obj.City,
+        firstname: obj.FirstName,
+        lastname: obj.LastName,
+        phonenumber: obj.PhoneNumber,
+        email:obj.Email,
+        category:obj.Category,
+        rate:obj.Rating,
+      
+      }]
+    )
+  }
 
 
 
