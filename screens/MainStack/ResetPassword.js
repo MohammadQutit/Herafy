@@ -9,6 +9,7 @@ import {
   ImageBackground,
   Keyboard,
   SafeAreaView,
+  Alert
 } from 'react-native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -39,13 +40,11 @@ export default function ResetPassword({navigation}, props) {
             }}
             validationSchema={validationSchema}
             onSubmit={async (values, actions) => {
-              console.log(values);
               try {
-                await Auth.forgotPassword(values.phone)
-                  .then(actions.resetForm())
-                  .then(navigation.navigate('NewPassword'));
+                const x=await Auth.forgotPassword(values.phone).then(()=>navigation.navigate('NewPassword'))
               } catch (error) {
-                console.log(error);
+                Alert.alert("Error",error.message)
+              
               }
             }}>
             {(props) => (
