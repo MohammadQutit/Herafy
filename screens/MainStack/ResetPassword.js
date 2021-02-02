@@ -41,8 +41,7 @@ export default function ResetPassword({navigation}, props) {
             validationSchema={validationSchema}
             onSubmit={async (values, actions) => {
               try {
-                navigation.navigate('NewPassword')
-                //const x=await Auth.forgotPassword(values.phone).then(()=>navigation.navigate('NewPassword'))
+                const x=await Auth.forgotPassword(values.phone).then(()=>navigation.navigate('NewPassword'))
               } catch (error) {
                 Alert.alert("Error",error.message)
               
