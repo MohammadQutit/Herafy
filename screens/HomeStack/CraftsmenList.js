@@ -79,7 +79,7 @@ export default List = ({navigation}) => {
       console.log(city)
       const x = await API.graphql(
         graphqlOperation(listUsers, {
-          filter: { and: [{Category: {eq: UserState.Category}},{City:{eq:city}}] },
+          filter: { and: [{Category: {eq: UserState.Category}},{City:{eq:city}},{id:{ne:UserState.UserID}}] },
         }),
       ).then(SetIsReady(true));
       //dispatch({type:"ChooseUser",RequstedUserID:x.data.listUsers.items.id})
