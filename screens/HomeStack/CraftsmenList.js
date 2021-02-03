@@ -24,6 +24,7 @@ export default List = ({navigation}) => {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
   const [isReady, SetIsReady] = React.useState(true);
   const [City,SetCity]=React.useState("")
+  console.log(UserState)
   const [Data, setData] = React.useState([
     {
       id: '1',
@@ -78,7 +79,7 @@ export default List = ({navigation}) => {
       console.log(city)
       const x = await API.graphql(
         graphqlOperation(listUsers, {
-          filter: { and: [{Category: {eq: UserState.Category}},{City:{eq:city}}] },
+          filter: { and: [{Category: {eq: UserState.Category}},{City:{eq:city}},{id:{ne:UserState.UserID}}] },
         }),
       ).then(SetIsReady(true));
       //dispatch({type:"ChooseUser",RequstedUserID:x.data.listUsers.items.id})
