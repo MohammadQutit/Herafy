@@ -7,6 +7,7 @@ import {
   StatusBar,
   Text,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
@@ -24,6 +25,7 @@ export default class A extends React.Component {
   state = {
     rate: 1,
     Review: '',
+    ready:true,
   };
   rate = (star) => {
     this.setState({rate: star});
@@ -31,12 +33,16 @@ export default class A extends React.Component {
   handleReview = (text) => {
     this.setState({Review: text});
   };
+  setReady=(value)=>{
+    this.setState({ready:value})
+  }
 
   submitReview = async (UserState) => {
     if (this.state.Review === '') {
       Alert.alert('Error', 'Review is empty, Please Write one ');
     } else {
       try {
+        this.setReady(false)
         await API.graphql(
           graphqlOperation(createReview, {
             input: {
@@ -46,9 +52,17 @@ export default class A extends React.Component {
               reviewReviewerId: UserState.UserID,
               reviewUserId: UserState.RequstedUserID,
             },
-          }),
-        );
+          })
+        ).then(()=>{
+          this.setReady(true)
+          this.setState({rate:1})
+          this.setState({Review:''})
+          Alert.alert("","Review Added Ruccessfully")
+        })
       } catch (error) {
+        this.setReady(true)
+        Alert.alert("Error",error.message)
+        
         console.log(error);
       }
     }
@@ -73,6 +87,7 @@ export default class A extends React.Component {
     }
 
     return (
+      this.state.ready==true?
       <SafeAreaView style={style.container}>
         <StatusBar
           barStyle="light-content"
@@ -100,6 +115,10 @@ export default class A extends React.Component {
           </TouchableOpacity>
         </View>
       </SafeAreaView>
+      :
+      <View style={{flex:1,justifyContent:'center',alignItems:"center"}}>
+        <ActivityIndicator size="large" color="orange" />
+      </View>
     );
   }
 }
