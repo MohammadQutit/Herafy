@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import { View,  Platform, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {CalenderContext} from '../../context/CalenderContext'
+import {API}from '@aws-amplify/api/src/API'
+import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
+import {createCalender} from '../../graphql/mutations'
+import { input } from 'aws-amplify';
 
 export default App = () => {
   const [UserState,dispatch]=React.useContext(CalenderContext)
-  console.log(UserState.UserID)
+  //console.log(UserState.UserID)
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
-    console.log(currentDate)
+    //console.log(currentDate)
   };
   const showMode = (currentMode) => {
     setShow(!show);
@@ -29,7 +34,7 @@ export default App = () => {
     const currentDate2 = selectedDate2 || date2;
     setShow2(Platform.OS === 'ios');
     setDate2(currentDate2)
-    console.log(currentDate2)
+    //console.log(currentDate2)
   };
   const showMode2 = (currentMode2) => {
     setShow2(!show2);
@@ -38,6 +43,31 @@ export default App = () => {
   const showDatepicker2 = () => {
     showMode2('date');
   };
+
+  
+ const  addperiod=async()=>{
+      try{
+        await API.graphql(
+          graphqlOperation(createCalender,{
+          input:{
+            StartTime:date,
+            EndTime:date2,
+            id:UserState.UserID,
+            
+          },})
+        ).then(
+          ()=>{
+            console.log("done")
+          }
+        )
+
+      }catch(error){
+        console.log(error);
+      }
+    }
+
+  
+  
   return (
     <View style={style.container} >
       <View style={style.First_view}>
@@ -53,7 +83,7 @@ export default App = () => {
         </TouchableOpacity>
       </View>
       <View style={style.Third_view}>
-        <TouchableOpacity style={style.Button_}>
+        <TouchableOpacity style={style.Button_} onPress={()=>addperiod()}>
           <Text style={style.Text_Button}>Submit</Text>
         </TouchableOpacity>
       </View>

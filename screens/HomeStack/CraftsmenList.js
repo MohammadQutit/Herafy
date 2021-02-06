@@ -25,7 +25,54 @@ export default List = ({navigation}) => {
   const [isReady, SetIsReady] = React.useState(true);
   const [City,SetCity]=React.useState("")
   console.log(UserState)
-  const [Data, setData] = React.useState([]);
+  const [Data, setData] = React.useState([
+    {
+      id: '1',
+      FirstName: 'Mohammad',
+      LastName: 'Saleem',
+      Rating: 15,
+      NumberOfUsers: 5,
+      PhoneNumber: '+972568606090',
+      City: 'Ramallah',
+    },
+    {
+      id: '2',
+      FirstName: 'Mohammad',
+      LastName: 'Saleem',
+      Rating: 20,
+      NumberOfUsers: 5,
+      PhoneNumber: '+972568606090',
+      City: 'Ramallah',
+    },
+    {
+      id: '3',
+      FirstName: 'Mohammad',
+      LastName: 'Saleem',
+      Rating: 20,
+      NumberOfUsers: 7,
+      PhoneNumber: '+972568606090',
+      City: 'Ramallah',
+    },
+    {
+      id: '4',
+      FirstName: 'Mohammad',
+      LastName: 'Saleem',
+      Rating: 30,
+      NumberOfUsers: 6,
+      PhoneNumber: '+972568606090',
+      City: 'Ramallah',
+    },
+    
+    {
+      id: '8',
+      FirstName: 'Ahmad',
+      LastName: 'Karam',
+      Rating: 20,
+      NumberOfUsers: 5,
+      PhoneNumber: '+972568606090',
+      City: 'Ramallah',
+    },
+  ]);
 
   const FetchData=async(city)=>{
     try {
