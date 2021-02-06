@@ -14,7 +14,7 @@ import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {CategoriesContext} from '../../context/CategoriesContext';
 import {API} from '@aws-amplify/api/src/API';
-import {getReview} from "../../graphql/queries"
+import {getUser2} from "../../graphql/queries"
 import {graphqlOperation} from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql';
 import {createReview,} from '../../graphql/mutations';
 
@@ -39,7 +39,11 @@ export default class A extends React.Component {
   }
 
   submitReview = async (UserState) => {
-    if (this.state.Review === '') {
+
+
+     const x= await API.graphql(graphqlOperation(getUser2,{id:UserState.UserID , CraftmanID:{eq:UserState.RequstedUserID}}))
+    console.log(x.data.getUser.RviewsByUser)
+    /*if (this.state.Review === '') {
       Alert.alert('Error', 'Review is empty, Please Write one ');
     } else {
       try {
@@ -70,7 +74,7 @@ export default class A extends React.Component {
         
         console.log(error);
       }
-    }
+    }*/
   };
 
   render() {
