@@ -1,8 +1,33 @@
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import React from 'react';
-import {View,StyleSheet,TouchableOpacity,Text} from 'react-native'
+import {View,StyleSheet,TouchableOpacity,Text} from 'react-native';
+import { Auth } from "@aws-amplify/auth";
+import {CalenderContext} from '../../context/CalenderContext'
 
 export default function A({navigation}) {
+  const [UserState,dispatch]=React.useContext(CalenderContext)
+  React.useEffect(()=>{
+    async function GetUserID(params) {
+      try {
+       const {attributes} =await Auth.currentUserInfo().then(
+         await Auth.currentUserInfo().then((userInfo) => {
+           const {attributes = {}} = userInfo
+           dispatch({type:"setID",UserID:attributes['sub']})
+           
+           
+         }
+       ))
+       
+        
+      } catch (error) {
+        console.log(error.message);
+      }
+      
+    }
+  GetUserID()
+  },[])
+  console.log(UserState.UserID)
+
   const day = {
     '2020-12-14': {startingDay: true, color: 'green'},
     '2020-12-15': {color: 'green'},

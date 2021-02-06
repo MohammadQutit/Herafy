@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { View,  Platform, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import {CalenderContext} from '../../context/CalenderContext'
 
 export default App = () => {
+  const [UserState,dispatch]=React.useContext(CalenderContext)
+  console.log(UserState.UserID)
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);

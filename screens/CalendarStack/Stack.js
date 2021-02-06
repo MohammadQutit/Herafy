@@ -1,11 +1,15 @@
 import React from 'react';
 import {createStackNavigator,CardStyleInterpolators} from '@react-navigation/stack';
 import HomeCalendar from './CalenderPage';
-import CreatePeriod from './CreatePeriod'
+import CreatePeriod from './CreatePeriod';
+import {CalenderContext} from '../../context/CalenderContext';
+import CalenderReducer,{globalstate} from '../../reducer/CalenderReducer';
 
 export default function Nested_stack() {
+  const [UserState,dispatch]=React.useReducer(CalenderReducer,globalstate);
   const HomeStack = createStackNavigator();
   return (
+    <CalenderContext.Provider value={[UserState,dispatch]}>
     <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
@@ -24,5 +28,6 @@ export default function Nested_stack() {
       <HomeStack.Screen name="HomeCalendar" component={HomeCalendar} />
       <HomeStack.Screen name="Createperiod" component={CreatePeriod} />
     </HomeStack.Navigator>
+    </CalenderContext.Provider>
   );
 }
