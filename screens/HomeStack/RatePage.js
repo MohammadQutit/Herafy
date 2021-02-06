@@ -14,8 +14,9 @@ import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {CategoriesContext} from '../../context/CategoriesContext';
 import {API} from '@aws-amplify/api/src/API';
+import {getReview} from "../../graphql/queries"
 import {graphqlOperation} from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql';
-import {createReview} from '../../graphql/mutations';
+import {createReview,} from '../../graphql/mutations';
 
 //const [UserState, dispatch] = React.useContext(CategoriesContext);
 const numstar = 5;
@@ -42,6 +43,9 @@ export default class A extends React.Component {
       Alert.alert('Error', 'Review is empty, Please Write one ');
     } else {
       try {
+        x=await API.graphql(graphqlOperation(getReview,{input:{}}))
+
+        
         this.setReady(false)
         await API.graphql(
           graphqlOperation(createReview, {
@@ -55,10 +59,11 @@ export default class A extends React.Component {
           })
         ).then(()=>{
           this.setReady(true)
-          this.setState({rate:1})
+          
+        })
+        this.setState({rate:1})
           this.setState({Review:''})
           Alert.alert("","Review Added Ruccessfully")
-        })
       } catch (error) {
         this.setReady(true)
         Alert.alert("Error",error.message)

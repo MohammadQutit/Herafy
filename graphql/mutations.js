@@ -355,7 +355,7 @@ export const createReview = /* GraphQL */ `
           nextToken
         }
         createdAt
-        updatedAt
+        
       }
       Reviewer {
         id

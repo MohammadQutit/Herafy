@@ -7,6 +7,7 @@ import {
   Platform,
   Dimensions,
   ActivityIndicator,
+  Alert
 } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -15,7 +16,8 @@ import * as yup from 'yup';
 import RNPickerSelect from 'react-native-picker-select';
 import { Auth } from "@aws-amplify/auth"
 import { graphqlOperation } from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
-import { getUser } from '../../graphql/queries';
+import { getUser} from '../../graphql/queries';
+import {updateUser} from '../../graphql/mutations';
 import { API } from '@aws-amplify/api/src/API'
 
 const validationSchema = yup.object().shape({
@@ -39,6 +41,7 @@ const {width}=Dimensions.get("window")
 export default function A() {
   const [data, setdata] = React.useState(0)
   const [Ready,setReady]=React.useState(false)
+  const [uid,setuid]=React.useState("")
 
   console.log(data)
   const sets = (id) => {
@@ -66,6 +69,47 @@ export default function A() {
 
   }
 
+  const SubmitEdit=async()=>
+  {
+    
+    try {
+      setReady(false)
+      user=await Auth.currentAuthenticatedUser()
+      console.log(user)
+      await Auth.updateUserAttributes(user,
+        {
+          name:data.firstname,
+          family_name:data.lastname,
+          email:data.email,
+          phone_number:data.phonenumber
+
+        
+        })
+        API.graphql(graphqlOperation(updateUser,{input:{
+          id:uid,
+          FirstName:data.firstname,
+          LastName:data.lastname,
+          Email:data.email,
+          PhoneNumber:data.phonenumber,
+
+        }})).then(()=>{
+              setReady(true)
+              Alert.alert("Success","User Attributes updated successfully")
+            }
+            )
+
+    
+        
+  
+      
+    } catch (error) {
+      setReady(true)
+      Alert.alert("Error",error.message)
+      console.log(error.message)
+    }
+
+  }
+
   React.useEffect(() => {
     async function GetUserID(params) {
       try {
@@ -73,6 +117,7 @@ export default function A() {
          await Auth.currentUserInfo().then((userInfo) => {
            const {attributes = {}} = userInfo
            attributes['sub']
+           setuid(attributes['sub'])
             API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then( 
           (x)=>{
             set(x.data.getUser)
@@ -118,8 +163,8 @@ export default function A() {
             onSubmitEditing={()=>{
               this.secondTextInput.focus();
             }}
-            onChangeText={props.handleChange('firstName')}
-            value={data.firstname}
+            onChangeText={setdata()}
+            value={props.values.firstname}
             onBlur={props.handleBlur('firstName')}
             returnKeyType="next"
           />
@@ -142,7 +187,7 @@ export default function A() {
               this.secondTextInput = input;
             }}
             onChangeText={props.handleChange('lastName')}
-            value={data.lastname}
+            value={props.values.lastname}
             onBlur={props.handleBlur('lastName')}
             returnKeyType="next"
           />
@@ -165,7 +210,7 @@ export default function A() {
               this.thirdTextInput = input;
             }}
             onChangeText={props.handleChange('email')}
-            value={data.email}
+            value={props.values.email}
             onBlur={props.handleBlur('email')}
             returnKeyType="next"
           />
@@ -187,7 +232,7 @@ export default function A() {
               this.forthTextInput = input;
             }}
             onChangeText={props.handleChange('phone')}
-            value={data.phonenumber}
+            value={props.values.phonenumber}
             onBlur={props.handleBlur('phone')}
             returnKeyType="done"
           />
@@ -237,7 +282,7 @@ export default function A() {
       </View>
         
       <View style={style.thirdview}>
-        <TouchableOpacity style={style.CommandButton} onPress={() => {}}>
+        <TouchableOpacity style={style.CommandButton} onPress={() => {SubmitEdit()}}>
           <Text style={style.PannelButtonTitle}>Submit</Text>
         </TouchableOpacity>
       </View>

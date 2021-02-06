@@ -7,12 +7,14 @@ import {
   StatusBar,
   Text,
   Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 import {CategoriesContext} from '../../context/CategoriesContext' 
 import {Auth} from "@aws-amplify/auth"
 let {width, height} = Dimensions.get('window');
 export default function catigories({navigation}) {
  const [UserState,dispatch]=React.useContext(CategoriesContext)
+ const [Ready,setReady]=React.useState(true)
 
 const GoTOList= (category)=>{
   dispatch({type:"ChooseCategory", Category:category})
@@ -24,6 +26,7 @@ const GoTOList= (category)=>{
  React.useEffect(()=>{
    async function GetUserID(params) {
      try {
+       setReady(false)
       const {attributes} =await Auth.currentUserInfo().then(
         await Auth.currentUserInfo().then((userInfo) => {
           const {attributes = {}} = userInfo
@@ -32,8 +35,11 @@ const GoTOList= (category)=>{
           
         }
       ))
+      setReady(true)
        
      } catch (error) {
+       
+      setReady(true)
        console.log(error.message);
      }
      
@@ -43,6 +49,7 @@ const GoTOList= (category)=>{
 
 
   return (
+    Ready=== true?
     <View
       style={{
         flex: 1,
@@ -135,6 +142,16 @@ const GoTOList= (category)=>{
           <Text style={styles.texticon}>Blacksmith</Text>
         </TouchableOpacity>
       </View>
+    </View>
+    :
+    <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+      <StatusBar
+        barStyle="light-content"
+        translucent
+        backgroundColor="transparent"
+      />
+      <ActivityIndicator size="large" color="orange"/>
+
     </View>
   );
 }
