@@ -17,6 +17,7 @@ import { Auth } from "@aws-amplify/auth"
 import { graphqlOperation } from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import { getUser } from '../../graphql/queries';
 import { API } from '@aws-amplify/api/src/API'
+import {ProfileContext} from '../../context/ProfileContext';
 
 
 
@@ -29,10 +30,10 @@ import { API } from '@aws-amplify/api/src/API'
 
 
 export default function Craftprofile({ navigation }) {
-
+  const [UserState,dispatch]=React.useContext(ProfileContext);
   const [isReady,SetIsReady]=React.useState(false)
   const [data, setdata] = React.useState(0)
-  
+
 
 
   const sets = (id) => {
@@ -59,14 +60,15 @@ export default function Craftprofile({ navigation }) {
     )
 
   }
-
+ 
   React.useEffect(() => {
     async function GetUserID(params) {
       try {
        const {attributes} =await Auth.currentUserInfo().then(
          await Auth.currentUserInfo().then((userInfo) => {
            const {attributes = {}} = userInfo
-           attributes['sub']
+          dispatch({type:'setsuserID',UserID:attributes['sub']}) 
+
             API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then( 
           (x)=>{
             set(x.data.getUser)
@@ -95,7 +97,25 @@ export default function Craftprofile({ navigation }) {
     
 
   }, [])
-
+  
+ /**  React.useEffect(() => {
+    async function GetUserID(params) {
+      try {
+        await API.graphql(graphqlOperation(getUser,{id:UserState.UserID})).then( 
+          (x)=>{
+            set(x.data.getUser)
+            console.log(x.data.getUser)
+            SetIsReady(true)
+            
+          })     
+         }catch (error) {
+        console.log(error.message);
+      }     
+    }
+      GetUserID()
+  }, [])
+*/
+ 
   return (
 
      isReady === false ?
