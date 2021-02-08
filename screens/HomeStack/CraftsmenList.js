@@ -130,10 +130,11 @@ export default List = ({navigation}) => {
                     inputIOS: {
                       color: 'white',
                       textAlign: 'center',
-                      width:60,
+                      width:"100%",
                       backgroundColor: '#4D3886',
                       fontWeight: 'bold',
                       height: "100%",
+                      borderRadius:10
                     },
                     inputAndroid: {
                       color: 'white',
