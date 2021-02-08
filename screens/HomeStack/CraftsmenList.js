@@ -13,66 +13,16 @@ import {CategoriesContext} from '../../context/CategoriesContext';
 import RNPickerSelect from 'react-native-picker-select';
 import {API}from '@aws-amplify/api/src/API'
 import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
-
 import {listUsers, getUser} from '../../graphql/queries';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {NameSort,RateSort,UsedSort} from '../../functions/Sorting'
-import { and } from 'react-native-reanimated';
-
 export default List = ({navigation}) => {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
-  const [isReady, SetIsReady] = React.useState(true);
+  const [isReady, SetIsReady] = React.useState(false);
   const [City,SetCity]=React.useState("")
   console.log(UserState)
-  const [Data, setData] = React.useState([
-    {
-      id: '1',
-      FirstName: 'Mohammad',
-      LastName: 'Saleem',
-      Rating: 15,
-      NumberOfUsers: 5,
-      PhoneNumber: '+972568606090',
-      City: 'Ramallah',
-    },
-    {
-      id: '2',
-      FirstName: 'Mohammad',
-      LastName: 'Saleem',
-      Rating: 20,
-      NumberOfUsers: 5,
-      PhoneNumber: '+972568606090',
-      City: 'Ramallah',
-    },
-    {
-      id: '3',
-      FirstName: 'Mohammad',
-      LastName: 'Saleem',
-      Rating: 20,
-      NumberOfUsers: 7,
-      PhoneNumber: '+972568606090',
-      City: 'Ramallah',
-    },
-    {
-      id: '4',
-      FirstName: 'Mohammad',
-      LastName: 'Saleem',
-      Rating: 30,
-      NumberOfUsers: 6,
-      PhoneNumber: '+972568606090',
-      City: 'Ramallah',
-    },
-    
-    {
-      id: '8',
-      FirstName: 'Ahmad',
-      LastName: 'Karam',
-      Rating: 20,
-      NumberOfUsers: 5,
-      PhoneNumber: '+972568606090',
-      City: 'Ramallah',
-    },
-  ]);
+  const [Data, setData] = React.useState([]);
 
   const FetchData=async(city)=>{
     try {

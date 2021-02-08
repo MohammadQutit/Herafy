@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, SafeAreaView, StyleSheet, View, Text} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, View, Text,ActivityIndicator} from 'react-native';
 import RevRow from './ReviewRow';
 import {listReviews} from '../../graphql/queries';
 import {API}from '@aws-amplify/api/src/API'
@@ -9,6 +9,7 @@ import { Auth } from "@aws-amplify/auth"
 export default function PostList({navigation}) {
   
   const [Data, setData] = React.useState(0)
+  const [Ready,setReady]=React.useState(false)
 
 
   React.useEffect(() => {
@@ -18,23 +19,20 @@ export default function PostList({navigation}) {
          await Auth.currentUserInfo().then((userInfo) => {
            const {attributes = {}} = userInfo
            attributes['sub']
-            API.graphql(graphqlOperation(listReviews,{filter:{CraftmanID:{eq:attributes['sub']}}})).then( 
-          (x)=>{
-            setData(x.data.listReviews.items)
-            //console.log(x.data.listReviews.items)
-            
-            
-          }
-             // set(x.data.getUser)
            
-             
-            )
           
-           
          }
        ))
+
+       const x =await API.graphql(graphqlOperation(listReviews,{filter:{CraftmanID:{eq:attributes['sub']}}})) 
+        
+          setData(x.data.listReviews.items)
+
+       setReady(true)
         
       } catch (error) {
+        setReady(true)
+        
         console.log(error.message);
       }
       
@@ -96,12 +94,19 @@ export default function PostList({navigation}) {
   return (
     <View style={style.container1}>
       <SafeAreaView style={style.container2}>
+      {Ready=== true?
         <FlatList
-          data={Data}
-          renderItem={renderit}
-          keyExtractor={(item) => item.id}
-          
-        />
+        data={Data}
+        renderItem={renderit}
+        keyExtractor={(item) => item.id}
+        
+      />:
+      <View style={{flex:1,alignItems:"center",justifyContent:"center"}}>
+        <ActivityIndicator size="large" color="orange"/>
+      </View>
+        
+        
+        }
       </SafeAreaView>
     </View>
   );
