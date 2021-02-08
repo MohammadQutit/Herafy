@@ -18,7 +18,9 @@ import { Auth } from "@aws-amplify/auth"
 import { graphqlOperation } from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import { getUser} from '../../graphql/queries';
 import {updateUser} from '../../graphql/mutations';
-import { API } from '@aws-amplify/api/src/API'
+import { API } from '@aws-amplify/api/src/API';
+import {ProfileContext} from '../../context/ProfileContext';
+
 
 const validationSchema = yup.object().shape({
   firstName: yup
@@ -39,6 +41,8 @@ const validationSchema = yup.object().shape({
 
 const {width}=Dimensions.get("window")
 export default function A() {
+  const [UserState,dispatch]=React.useContext(ProfileContext);
+  
 
   const initialValues={
     city: "",
