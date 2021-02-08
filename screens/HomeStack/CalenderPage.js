@@ -3,10 +3,30 @@ import React from 'react'
 import {View} from 'react-native'
 import {API}from '@aws-amplify/api/src/API'
 import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
-import {getCalender} from '../../graphql/queries'
+import {listCalenders} from '../../graphql/queries'
+import {CategoriesContext} from '../../context/CategoriesContext';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 
 export default function A(){
+  const [UserState, dispatch] = React.useContext(CategoriesContext);
+  const getcalender=async()=>{
+   try{
+    const x= await API.graphql(
+       graphqlOperation(
+        listCalenders,{filter:{id:{eq:"7c8a993e-7ab7-437f-ba62-f4a618c01e86"}}}
+       )
+     ).then(
+      (x)=>{
+        console.log(x.data.listCalenders.items)
+      }
+     )
+
+   }catch (error){
+    console.log(error)
+   }
+  }
+  getcalender()
 
         return(
           <View style={{flex:1,backgroundColor:'white'}}>
