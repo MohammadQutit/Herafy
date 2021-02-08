@@ -131,7 +131,7 @@ export default List = ({navigation}) => {
                       color: 'white',
                       textAlign: 'center',
                       marginRight: 10,
-                      width:50,
+                      width:60,
                       backgroundColor: '#4D3886',
                       fontWeight: 'bold',
                       height: "100%",

@@ -74,7 +74,7 @@ export default function Craftprofile({ navigation }) {
             SetIsReady(true)
             
           }
-             // set(x.data.getUser)
+            
            
              
             )
@@ -117,7 +117,7 @@ export default function Craftprofile({ navigation }) {
             style={styles.category_icon}
           />
           <View style={styles.headear}>
-            <Text style={styles.title}>{data.firstname}</Text>
+            <Text style={styles.title}>{data.firstname+ " "+data.lastname}</Text>
             <Text style={{ color: 'purple' }}>{data.category}</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('Edit')}
