@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View,  Platform, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View,  Platform, StyleSheet, TouchableOpacity, Text , Alert} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {CalenderContext} from '../../context/CalenderContext'
 import {API}from '@aws-amplify/api/src/API'
@@ -50,14 +50,15 @@ export default App = () => {
         await API.graphql(
           graphqlOperation(createCalender,{
           input:{
-            StartTime:date,
-            EndTime:date2,
+            StartTime:date.toISOString().slice(0, 10).toString(),
+            EndTime:date2.toISOString().slice(0, 10).toString(),
             id:UserState.UserID,
             
           },})
         ).then(
           ()=>{
-            console.log("done")
+            //console.log("done")
+            Alert.alert('created successfuly')
           }
         )
 
