@@ -39,7 +39,8 @@ const validationSchema = yup.object().shape({
 
 const {width}=Dimensions.get("window")
 export default function A() {
-  const [data, setdata] = React.useState( {
+
+  const initialValues={
     city: "",
     firstname: "",
     lastname: "",
@@ -50,37 +51,13 @@ export default function A() {
   
     
   }
-)
+  const [data, setdata] = React.useState( initialValues)
   const [Ready,setReady]=React.useState(false)
   const [uid,setuid]=React.useState("")
 
-  console.log(data)
-  const sets = (id) => {
-    setid(id)
+  
 
-  }
-
-  const set = (obj) => {
-    setdata(
-
-      {
-        city: obj.City,
-        firstname: obj.FirstName,
-        lastname: obj.LastName,
-        phonenumber: obj.PhoneNumber,
-        email:obj.Email,
-        category:obj.Category,
-        rate:obj.Rating,
-      
-        
-      }
-
-
-    )
-
-  }
-
-  const SubmitEdit=async()=>
+  const SubmitEdit=async(values)=>
   {
     
     try {
@@ -89,19 +66,21 @@ export default function A() {
       console.log(user)
       await Auth.updateUserAttributes(user,
         {
-          name:data.firstname,
-          family_name:data.lastname,
-          email:data.email,
-          phone_number:data.phonenumber
+          name:values.firstname,
+          family_name:values.lastname,
+          email:values.email,
+          phone_number:values.phonenumber,
+          'custom:city':values.city,
 
         
         })
         API.graphql(graphqlOperation(updateUser,{input:{
           id:uid,
-          FirstName:data.firstname,
-          LastName:data.lastname,
-          Email:data.email,
-          PhoneNumber:data.phonenumber,
+          FirstName:values.firstname,
+          LastName:values.lastname,
+          Email:values.email,
+          PhoneNumber:values.phonenumber,
+          City:values.city
 
         }})).then(()=>{
               setReady(true)
@@ -129,16 +108,30 @@ export default function A() {
            const {attributes = {}} = userInfo
            attributes['sub']
            setuid(attributes['sub'])
-            API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then( 
-          (x)=>{
-            set(x.data.getUser)
-            setReady(true)
-          }
-             // set(x.data.getUser)
-            )  
+           API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then(
+             (result)=>{
+              console.log(result.data.getUser)  
+              setdata({
+                city:result.data.getUser.City,
+                firstname:result.data.getUser.FirstName,
+                lastname:result.data.getUser.LastName,
+                email:result.data.getUser.Email,
+                phonenumber:result.data.getUser.PhoneNumber,
+                category:result.data.getUser.Category,
+                rate:result.data.getUser.Rating
+
+
+              })
+
+             }
+           )
+           
+          
          }
        )) 
+       setReady(true)
       } catch (error) {
+        setReady(true)
         console.log(error.message);
       } 
     }
@@ -176,9 +169,9 @@ export default function A() {
             onSubmitEditing={()=>{
               this.secondTextInput.focus();
             }}
-            onChangeText={setdata()}
+            onChangeText={props.handleChange("firstname")}
             value={props.values.firstname}
-            onBlur={props.handleBlur('firstName')}
+            onBlur={props.handleBlur('firstname')}
             returnKeyType="next"
           />
             <Text style={style.errors}>
@@ -199,9 +192,9 @@ export default function A() {
             ref={(input) => {
               this.secondTextInput = input;
             }}
-            onChangeText={props.handleChange('lastName')}
+            onChangeText={props.handleChange('lastname')}
             value={props.values.lastname}
-            onBlur={props.handleBlur('lastName')}
+            onBlur={props.handleBlur('lastname')}
             returnKeyType="next"
           />
           <Text style={style.errors}>
@@ -244,9 +237,9 @@ export default function A() {
             ref={(input) => {
               this.forthTextInput = input;
             }}
-            onChangeText={props.handleChange('phone')}
+            onChangeText={props.handleChange('phonenumber')}
             value={props.values.phonenumber}
-            onBlur={props.handleBlur('phone')}
+            onBlur={props.handleBlur('phonenumber')}
             returnKeyType="done"
           />
            <Text style={style.errors}>
@@ -259,7 +252,7 @@ export default function A() {
           <RNPickerSelect
                   placeholder={{label: 'Select a city', value: ""}}
                   useNativeAndroidPickerStyle={false}
-                  value={props.values}
+                  value={props.values.city}
                   onValueChange={props.handleChange('city')}
                   items={[
                     {label: 'Jenin', value: 'Jenin'},
@@ -295,7 +288,7 @@ export default function A() {
       </View>
         
       <View style={style.thirdview}>
-        <TouchableOpacity style={style.CommandButton} onPress={() => {SubmitEdit()}}>
+        <TouchableOpacity style={style.CommandButton} onPress={() => {SubmitEdit(props.values)}}>
           <Text style={style.PannelButtonTitle}>Submit</Text>
         </TouchableOpacity>
       </View>
