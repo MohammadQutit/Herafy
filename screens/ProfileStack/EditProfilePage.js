@@ -39,7 +39,18 @@ const validationSchema = yup.object().shape({
 
 const {width}=Dimensions.get("window")
 export default function A() {
-  const [data, setdata] = React.useState(0)
+  const [data, setdata] = React.useState( {
+    city: "",
+    firstname: "",
+    lastname: "",
+    phonenumber: "",
+    email:"",
+    category:"",
+    rate:"",
+  
+    
+  }
+)
   const [Ready,setReady]=React.useState(false)
   const [uid,setuid]=React.useState("")
 
@@ -139,19 +150,21 @@ export default function A() {
     Ready===true?
     <Formik
           initialValues={data}
-        
+          enableReinitialize={true}
           validationSchema={validationSchema}
           onSubmit={async (values, actions) => {
             actions.resetForm();
             console.log(values);
            
           }}>{(props)=>(
+            
     <View style={style.Container}>
       <View style={style.firstview}>
         <Image
           source={require('../../assets/Profile.png')}
           style={style.image}
         />
+        
       </View>
       <View style={style.secondview}>
         <View style={style.Action}>
@@ -169,7 +182,7 @@ export default function A() {
             returnKeyType="next"
           />
             <Text style={style.errors}>
-                  {props.touched.firstName && props.errors.firstName}
+                  {props.touched.firstname && props.errors.firstname}
             </Text>
            
         </View>
@@ -192,7 +205,7 @@ export default function A() {
             returnKeyType="next"
           />
           <Text style={style.errors}>
-                  {props.touched.lastName && props.errors.lastName}
+                  {props.touched.lastname && props.errors.lastname}
           </Text>
          
         </View>
@@ -237,7 +250,7 @@ export default function A() {
             returnKeyType="done"
           />
            <Text style={style.errors}>
-                  {props.touched.phone && props.errors.phone}
+                  {props.touched.phonenumber && props.errors.phonenumber}
         </Text>
         </View>
        
@@ -246,7 +259,7 @@ export default function A() {
           <RNPickerSelect
                   placeholder={{label: 'Select a city', value: ""}}
                   useNativeAndroidPickerStyle={false}
-                  value={props.values.city}
+                  value={props.values}
                   onValueChange={props.handleChange('city')}
                   items={[
                     {label: 'Jenin', value: 'Jenin'},

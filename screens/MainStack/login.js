@@ -124,12 +124,12 @@ export default Login = ({navigation}) => {
                         height: '100%',
                         width: '97%',
                         fontSize: 18,
-                        color: 'purple',
+                        color: 'black',
                         fontWeight: 'bold',
                       }}
                       placeholder="Phone"
                       keyboardType="phone-pad"
-                      placeholderTextColor="purple"
+                      placeholderTextColor="grey"
                       returnKeyType="next"
                       onSubmitEditing={() => {
                         this.secondTextInput.focus();
@@ -149,7 +149,7 @@ export default Login = ({navigation}) => {
                         marginHorizontal: 20,
                         width: '87%',
                         fontSize: 18,
-                        color: 'purple',
+                        color: 'black',
                       }}
                       placeholder="Password"
                       secureTextEntry={secure}
@@ -157,16 +157,16 @@ export default Login = ({navigation}) => {
                         this.secondTextInput = input;
                       }}
                       returnKeyType="done"
-                      placeholderTextColor="purple"
+                      placeholderTextColor="grey"
                       onChangeText={(text) => setPassword(text)}
                       onSubmitEditing={() => Keyboard.dismiss()}></TextInput>
                     {secure ? (
                       <TouchableOpacity onPress={visibleOrNot}>
-                        <Ionicons name="eye-off" size={30} color="purple" />
+                        <Ionicons name="eye-off" size={30} color="grey" />
                       </TouchableOpacity>
                     ) : (
                       <TouchableOpacity onPress={visibleOrNot}>
-                        <Ionicons name="eye" size={30} color="purple" />
+                        <Ionicons name="eye" size={30} color="grey" />
                       </TouchableOpacity>
                     )}
                   </View>

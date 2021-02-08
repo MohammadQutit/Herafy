@@ -14,7 +14,7 @@ import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {CategoriesContext} from '../../context/CategoriesContext';
 import {API} from '@aws-amplify/api/src/API';
-import {getUser2} from "../../graphql/queries"
+import {getUser2,getReview} from "../../graphql/queries"
 import {graphqlOperation} from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql';
 import {createReview,} from '../../graphql/mutations';
 
@@ -41,40 +41,50 @@ export default class A extends React.Component {
   submitReview = async (UserState) => {
 
 
-     const x= await API.graphql(graphqlOperation(getUser2,{id:UserState.UserID , CraftmanID:{eq:UserState.RequstedUserID}}))
-    console.log(x.data.getUser.RviewsByUser)
-    /*if (this.state.Review === '') {
-      Alert.alert('Error', 'Review is empty, Please Write one ');
-    } else {
-      try {
-        x=await API.graphql(graphqlOperation(getReview,{input:{}}))
-
-        
-        this.setReady(false)
-        await API.graphql(
-          graphqlOperation(createReview, {
-            input: {
-              CraftmanID: UserState.RequstedUserID,
-              Comment: this.state.Review,
-              Rate: this.state.rate,
-              reviewReviewerId: UserState.UserID,
-              reviewUserId: UserState.RequstedUserID,
-            },
-          })
-        ).then(()=>{
-          this.setReady(true)
+     const x1= await API.graphql(graphqlOperation(getUser2,{id:UserState.UserID , CraftmanID:{eq:UserState.RequstedUserID}}))
+     const result=x1.data.getUser.RviewsByUser.items
+     if(result.length===0){
+      if (this.state.Review === '') {
+        Alert.alert('Error', 'Review is empty, Please Write one ');
+      } else {
+        try {
+         
+  
           
-        })
-        this.setState({rate:1})
-          this.setState({Review:''})
-          Alert.alert("","Review Added Ruccessfully")
-      } catch (error) {
-        this.setReady(true)
-        Alert.alert("Error",error.message)
-        
-        console.log(error);
+          this.setReady(false)
+          await API.graphql(
+            graphqlOperation(createReview, {
+              input: {
+                CraftmanID: UserState.RequstedUserID,
+                Comment: this.state.Review,
+                Rate: this.state.rate,
+                reviewReviewerId: UserState.UserID,
+                reviewUserId: UserState.RequstedUserID,
+              },
+            })
+          ).then(()=>{
+            this.setReady(true)
+            
+          })
+          this.setState({rate:1})
+            this.setState({Review:''})
+            Alert.alert("","Review Added Ruccessfully")
+        } catch (error) {
+          this.setReady(true)
+          Alert.alert("Error",error.message)
+          
+          console.log(error);
+        }
       }
-    }*/
+       
+     }
+     else{
+       
+       Alert.alert("","You Already rate this Craftsman")
+     
+       
+    
+  }
   };
 
   render() {
