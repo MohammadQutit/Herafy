@@ -103,7 +103,7 @@ export default function A() {
     }
 
   }
-
+/** 
   React.useEffect(() => {
     async function GetUserID(params) {
       try {
@@ -141,7 +141,38 @@ export default function A() {
     }
       GetUserID()
   }, [])
+*/
 
+React.useEffect(() => {
+  async function GetUserID(params) {
+    try {         
+         setuid(UserState.UserID)
+         API.graphql(graphqlOperation(getUser,{id:UserState.UserID})).then(
+           (result)=>{
+            console.log(result.data.getUser)  
+            setdata({
+              city:result.data.getUser.City,
+              firstname:result.data.getUser.FirstName,
+              lastname:result.data.getUser.LastName,
+              email:result.data.getUser.Email,
+              phonenumber:result.data.getUser.PhoneNumber,
+              category:result.data.getUser.Category,
+              rate:result.data.getUser.Rating
+
+
+            })
+
+           }
+         )
+         
+     setReady(true)
+    } catch (error) {
+     // setReady(true)
+      console.log(error.message);
+    } 
+  }
+    GetUserID()
+}, [])
   return (
     
     Ready===true?
