@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, SafeAreaView, StyleSheet, View, Text, ActivityIndicator} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, View, Text, ActivityIndicator,RefreshControl} from 'react-native';
 import PostRow from './PostRow';
 import {PostsContext} from '../../context/PostsContext'
 import {listPosts} from '../../graphql/queries'
@@ -8,10 +8,11 @@ import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-gra
 import {Auth} from "@aws-amplify/auth"
 
 export default function PostList({navigation}) {
-  
+
 const [UserState,dispatch]=React.useContext(PostsContext)
 
 console.log(UserState.UserID)
+const [refreshing, setRefreshing] = React.useState(false);
 const [Data,setData]=React.useState([]);
 const [Ready,setReady]=React.useState(false)
 
@@ -30,15 +31,26 @@ const [Ready,setReady]=React.useState(false)
     },
       },
   ];*/
+  async function getPostData2(){
+    setRefreshing(true)
+    const data = await API.graphql(graphqlOperation(listPosts))
+    setData(data.data.listPosts.items)
+    console.log(data.data.listPosts.items)
+    setRefreshing(false)
+  }
 
   React.useEffect(()=>{
-
     async function getPostData(){
+      setReady(false)
+      setRefreshing(true)
       const data = await API.graphql(graphqlOperation(listPosts))
       setData(data.data.listPosts.items)
       console.log(data.data.listPosts.items)
       setReady(true)
+      setRefreshing(false)
     }
+
+    
 
     async function GetUserID(params) {
       try {
@@ -86,6 +98,12 @@ const [Ready,setReady]=React.useState(false)
           data={Data}
           renderItem={renderit}
           keyExtractor={(item) => item.id}
+          refreshControl={<RefreshControl colors={["green","red","black"]}
+            refreshing={refreshing}
+            onRefresh={()=>getPostData2()}
+            />
+
+          }
           
         />
       </SafeAreaView>
