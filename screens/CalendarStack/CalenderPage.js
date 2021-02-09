@@ -41,7 +41,7 @@ export default function A({navigation}) {
               }
              let obj ={}
 for(let i=0;i<gen.length;i++){
-    obj={...obj,[gen[i]]:{color: 'red'}}
+    obj={...obj,[gen[i]]:{color: 'green'}}
 }
 setPeriods(obj)
 
