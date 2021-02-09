@@ -13,10 +13,3 @@ export function getDates(startDate, stopDate) {
     }
     return dateArray;
 }
-//const d= getDates(start,end)
-//obj ={}
-//for(let i=0;i<d.length;i++){
-  //  obj={...obj,[d[i]]:{color: 'green'}}
-//}
-
-//console.log(obj)
