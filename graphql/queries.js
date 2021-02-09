@@ -17,6 +17,23 @@ export const getUser2 = /* GraphQL */ `
 }`;
 
 
+export const getUser3 = /* GraphQL */ `
+query getUser($id: ID!) {
+  getUser(id: $id) {
+    Calenders{
+      items {
+        EndTime
+        StartTime
+        id
+      }
+    }
+   
+  }
+
+}`;
+
+
+
 
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
