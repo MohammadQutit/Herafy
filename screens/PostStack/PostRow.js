@@ -16,16 +16,19 @@ export default function Post(props) {
   }
 
   const  fetchImage= async()=>{
-    console.log("inside fetch function ")
-    console.log(props.firstImage.slice(7))
-    await Storage.get(props.firstImage.slice(7)).then(
-      (result)=>{
-        console.log(result)
-        setImage(result)
-        setReady(true)
-      
+    try{
+      if(props.firstImage!==null){
+    const result =await Storage.get(props.firstImage.key.slice(7))
+    console.log(result)
+    setImage(result)
+    setReady(true)
       }
-    )
+  
+      
+    }catch(error){
+      console.log(error.message)
+
+    }
   }
 
   React.useEffect(()=>{
@@ -33,6 +36,7 @@ fetchImage()
   },[])
  
   return (
+    props.firstImage!== null?
     <View style={style.container}>
       <View style={style.CreatorInfo}>
         <TouchableOpacity style={style.Touchable} onPress={() => {PickPoster(props.ID)}}>
@@ -61,6 +65,25 @@ fetchImage()
 
       </View>
 }
+    </View>:
+    <View style={[style.container,{height:270}]}>
+      <View style={style.CreatorInfo}>
+        <TouchableOpacity style={style.Touchable} onPress={() => {PickPoster(props.ID)}}>
+          <Image source={props.Profileurl} style={style.profileImage} />
+          <Text style={style.CreatorText}>
+            {props.FirstName + ' ' + props.LastName}
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={style.PostTextView}>
+        <Text style={style.PostText}>
+          {props.postText}
+        </Text>
+      </View>
+
+
+
+
     </View>
   );
 }
@@ -69,7 +92,7 @@ Post.propTypes = {
     FirstName:PropTypes.string,
     LastName:PropTypes.string,
     postText:PropTypes.string,
-    firstImage:PropTypes.string,
+    firstImage:PropTypes.object,
     secondImage:PropTypes.number,
     navigation:PropTypes.object,
     ID:PropTypes.string,
