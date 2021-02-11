@@ -8,6 +8,7 @@ import AddPost from './AddPost';
 import {NavigationContainer} from '@react-navigation/native';
 import {PostsContext} from '../../context/PostsContext'
 import PostsReducer,{initialglobalstate} from '../../reducer/PostsReducer'
+import {Header} from '../../assets/color'
 export default function Nested_stack() {
   const [UserState,dispatch]=React.useReducer(PostsReducer,initialglobalstate);
   const HomeStack = createStackNavigator();
@@ -16,7 +17,7 @@ export default function Nested_stack() {
     <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#4D3886',
+        backgroundColor: Header,
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
       },

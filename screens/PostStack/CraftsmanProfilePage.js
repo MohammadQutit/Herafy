@@ -16,6 +16,7 @@ import {callNumber} from '../../functions/OpenDialar';
 import { graphqlOperation } from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import { getUser } from '../../graphql/queries';
 import { API } from '@aws-amplify/api/src/API';
+import {moss}from '../../assets/color'
 
 
 //const [phone, setphone] = useState('')
@@ -89,12 +90,12 @@ console.log(UserState)
 
       <View style={[styles.info, {flex: 2}]}>
         <View style={styles.row}>
-          <Icon name="map-marker-radius" color="purple" size={25} />
+          <Icon name="map-marker-radius" color={moss} size={25} />
           <Text style={styles.textstyle}>{data.city}</Text>
         </View>
 
         <View style={styles.row}>
-          <Icon name="phone" color="purple" size={25} />
+          <Icon name="phone" color={moss} size={25} />
           <TouchableOpacity onPress={()=>{callNumber(data.phonenumber)}}>
           <Text style={styles.textstyle} selectable>
             {data.phonenumber}
@@ -103,12 +104,12 @@ console.log(UserState)
         </View>
 
         <View style={styles.row}>
-          <Icon name="email" color="purple" size={25} />
+          <Icon name="email" color={moss} size={25} />
           <Text style={styles.textstyle}>{data.email}</Text>
         </View>
 
         <View style={styles.row}>
-          <Icon name="star" color="purple" size={25} />
+          <Icon name="star" color={moss} size={25} />
           <Text style={styles.textstyle} selectable>
             {data.rate}
           </Text>

@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import PropTypes from 'prop-types';
+import {moss} from '../../assets/color'
 
 export default function Post(props) {
  
@@ -20,7 +21,7 @@ export default function Post(props) {
               {props.rating}
            </Text>
 
-           <Icon name='star' size={20} color="purple" style={{marginStart:10}}  />
+           <Icon name='star' size={20} color={moss} style={{marginStart:10}}  />
 
 
         </View>

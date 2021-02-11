@@ -8,6 +8,7 @@ import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-gra
 import {getUser3} from "../../graphql/queries"
 import {getDates} from '../../functions/CalendarGEN'
 import { set } from 'react-native-reanimated';
+import {moss} from '../../assets/color'
 
 export default function A({navigation}) {
   const [UserState,dispatch]=React.useContext(CalenderContext)
@@ -107,7 +108,7 @@ const style=StyleSheet.create({
   Button:{
     padding: 15,
     borderRadius: 10,
-    backgroundColor: '#4D3886',
+    backgroundColor: moss,
     alignItems: 'center',
     width:150,
   },

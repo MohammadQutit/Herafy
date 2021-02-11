@@ -20,6 +20,7 @@ import { getUser} from '../../graphql/queries';
 import {updateUser} from '../../graphql/mutations';
 import { API } from '@aws-amplify/api/src/API';
 import {ProfileContext} from '../../context/ProfileContext';
+import {moss} from '../../assets/color'
 
 
 const validationSchema = yup.object().shape({
@@ -390,7 +391,7 @@ const style = StyleSheet.create({
     
     flexDirection:"row",
     borderRadius: 10,
-    backgroundColor: '#4D3886',
+    backgroundColor: moss,
     alignItems: 'center',
     justifyContent:"center",
     width:width*0.8,

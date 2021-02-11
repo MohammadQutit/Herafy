@@ -6,6 +6,7 @@ import Reviews from './ReviewsList';
 import {ProfileContext} from '../../context/ProfileContext';
 import profilereducer,{globalstate} from '../../reducer/ProfileReducer';
 import { Auth } from "@aws-amplify/auth"
+import {Header} from '../../assets/color'
 //import { CalenderContext } from '../../context/CalenderContext';
 export default function HomeStack() {
   const [UserState, dispatch] = React.useReducer(
@@ -22,7 +23,7 @@ export default function HomeStack() {
     <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#4D3886',
+        backgroundColor: Header,
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
       },

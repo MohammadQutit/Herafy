@@ -4,6 +4,7 @@ import HomeCalendar from './CalenderPage';
 import CreatePeriod from './CreatePeriod';
 import {CalenderContext} from '../../context/CalenderContext';
 import CalenderReducer,{globalstate} from '../../reducer/CalenderReducer';
+import {Header} from '../../assets/color'
 
 export default function Nested_stack() {
   const [UserState,dispatch]=React.useReducer(CalenderReducer,globalstate);
@@ -13,7 +14,7 @@ export default function Nested_stack() {
     <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#4D3886',
+        backgroundColor: Header,
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
       },
