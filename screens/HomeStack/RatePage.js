@@ -14,19 +14,17 @@ import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {CategoriesContext} from '../../context/CategoriesContext';
 import {API} from '@aws-amplify/api/src/API';
-import {getUser2,getReview,getUserRating} from "../../graphql/queries"
+import {getUser2, getReview, getUserRating} from '../../graphql/queries';
 import {graphqlOperation} from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql';
-import {createReview,updateUser} from '../../graphql/mutations';
-
-//const [UserState, dispatch] = React.useContext(CategoriesContext);
+import {createReview, updateUser} from '../../graphql/mutations';
 const numstar = 5;
 export default class A extends React.Component {
-    static contextType = CategoriesContext;
-    
+  static contextType = CategoriesContext;
+
   state = {
     rate: 1,
     Review: '',
-    ready:true,
+    ready: true,
   };
   rate = (star) => {
     this.setState({rate: star});
@@ -34,29 +32,39 @@ export default class A extends React.Component {
   handleReview = (text) => {
     this.setState({Review: text});
   };
-  setReady=(value)=>{
-    this.setState({ready:value})
-  }
+  setReady = (value) => {
+    this.setState({ready: value});
+  };
 
   submitReview = async (UserState) => {
-
-
-     const x1= await API.graphql(graphqlOperation(getUser2,{id:UserState.UserID , CraftmanID:{eq:UserState.RequstedUserID}}))
-     const result=x1.data.getUser.RviewsByUser.items
-     if(result.length===0){
+    const x1 = await API.graphql(
+      graphqlOperation(getUser2, {
+        id: UserState.UserID,
+        CraftmanID: {eq: UserState.RequstedUserID},
+      }),
+    );
+    const result = x1.data.getUser.RviewsByUser.items;
+    if (result.length === 0) {
       if (this.state.Review === '') {
         Alert.alert('Error', 'Review is empty, Please Write one ');
       } else {
         try {
-         
-  
-          
-          this.setReady(false)
+          this.setReady(false);
 
-          const x=await API.graphql(graphqlOperation(getUserRating,{id:UserState.RequstedUserID}))
-          let {Rating,NumberOfUsers,FirstName,LastName,Pasword,Email,PhoneNumber}=x.data.getUser
-          console.log(typeof(Rating))
-          console.log(typeof(NumberOfUsers))
+          const x = await API.graphql(
+            graphqlOperation(getUserRating, {id: UserState.RequstedUserID}),
+          );
+          let {
+            Rating,
+            NumberOfUsers,
+            FirstName,
+            LastName,
+            Pasword,
+            Email,
+            PhoneNumber,
+          } = x.data.getUser;
+          console.log(typeof Rating);
+          console.log(typeof NumberOfUsers);
           await API.graphql(
             graphqlOperation(createReview, {
               input: {
@@ -66,46 +74,43 @@ export default class A extends React.Component {
                 reviewReviewerId: UserState.UserID,
                 reviewUserId: UserState.RequstedUserID,
               },
-            })
-          )
-          Rating+=this.state.rate;
-          NumberOfUsers+=1;
-          await API.graphql(graphqlOperation(updateUser,{input:{
-            id:UserState.RequstedUserID,
-            Rating:Rating,
-            NumberOfUsers:NumberOfUsers,
-            FirstName:FirstName,
-            LastName:LastName,
-            Pasword:"",
-            Email:Email,
-            PhoneNumber:PhoneNumber
-          
-          }}))
-            
-          this.setReady(true)
-          this.setState({rate:1})
-          this.setState({Review:''})
-            Alert.alert("","Review Added Ruccessfully")
+            }),
+          );
+          Rating += this.state.rate;
+          NumberOfUsers += 1;
+          await API.graphql(
+            graphqlOperation(updateUser, {
+              input: {
+                id: UserState.RequstedUserID,
+                Rating: Rating,
+                NumberOfUsers: NumberOfUsers,
+                FirstName: FirstName,
+                LastName: LastName,
+                Pasword: '',
+                Email: Email,
+                PhoneNumber: PhoneNumber,
+              },
+            }),
+          );
+
+          this.setReady(true);
+          this.setState({rate: 1});
+          this.setState({Review: ''});
+          Alert.alert('', 'Review Added Ruccessfully');
         } catch (error) {
-          this.setReady(true)
-          Alert.alert("Error",error.message)
-          
+          this.setReady(true);
+          Alert.alert('Error', error.message);
+
           console.log(error);
         }
       }
-       
-     }
-     else{
-       
-       Alert.alert("","You Already rate this Craftsman")
-     
-       
-    
-  }
+    } else {
+      Alert.alert('', 'You Already rate this Craftsman');
+    }
   };
 
   render() {
-    const [UserState, dispatch]=this.context
+    const [UserState, dispatch] = this.context;
     let stars = [];
 
     for (let x = 1; x <= numstar; x++) {
@@ -122,8 +127,7 @@ export default class A extends React.Component {
       );
     }
 
-    return (
-      this.state.ready==true?
+    return this.state.ready == true ? (
       <SafeAreaView style={style.container}>
         <StatusBar
           barStyle="light-content"
@@ -146,13 +150,17 @@ export default class A extends React.Component {
         </View>
         <View style={style.stars_view}>{stars}</View>
         <View style={style.Button_View}>
-          <TouchableOpacity style={style.Button} onPress={() => {this.submitReview(UserState)}}>
+          <TouchableOpacity
+            style={style.Button}
+            onPress={() => {
+              this.submitReview(UserState);
+            }}>
             <Text style={style.Text_Button}>Submit</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
-      :
-      <View style={{flex:1,justifyContent:'center',alignItems:"center"}}>
+    ) : (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <ActivityIndicator size="large" color="orange" />
       </View>
     );
