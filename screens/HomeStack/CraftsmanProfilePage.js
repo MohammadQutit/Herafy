@@ -77,7 +77,7 @@ export default function Craftprofile({navigation}) {
           />
           <View style={styles.headear}>
             <Text style={styles.title}>{data.firstname+" "+data.lastname}</Text>
-            <Text style={{color: 'black'}}>{data.category}</Text>
+            <Text style={{color: 'black',fontWeight:'bold'}}>{data.category}</Text>
           </View>
         </View>
       </View>
@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: 'black',
+
   },
   row: {
     flexDirection: 'row',
@@ -206,6 +207,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: 'black',
     fontSize: 20,
+    fontWeight:'bold'
   },
   buttonview: {
     flexDirection: 'row',

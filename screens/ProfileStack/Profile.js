@@ -140,7 +140,7 @@ export default function Craftprofile({ navigation }) {
           />
           <View style={styles.headear}>
             <Text style={styles.title}>{data.firstname+ " "+data.lastname}</Text>
-            <Text style={{ color: 'purple' }}>{data.category}</Text>
+            <Text style={{ color: 'black',fontWeight:'bold' }}>{data.category}</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('Edit')}
               style={{
@@ -150,7 +150,7 @@ export default function Craftprofile({ navigation }) {
                 alignItems: 'center',
               }}>
               <Icon name="square-edit-outline" size={30} color={moss} />
-              <Text style={{ color: 'purple', paddingStart: 10 }}>Edit Page</Text>
+              <Text style={{ color: 'black',fontWeight:'bold', paddingStart: 10 }}>Edit Page</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'purple',
+    color: 'black',
   },
   row: {
     flexDirection: 'row',
@@ -252,8 +252,9 @@ const styles = StyleSheet.create({
   },
   textstyle: {
     marginLeft: 10,
-    color: 'purple',
+    color: 'black',
     fontSize: 20,
+    fontWeight:'bold'
   },
   buttonview: {
     flexDirection: 'row',

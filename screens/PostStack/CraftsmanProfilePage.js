@@ -83,7 +83,7 @@ console.log(UserState)
           />
           <View style={styles.headear}>
             <Text style={styles.title}>{data.firstname+" "+data.lastname}</Text>
-            <Text style={{color: 'purple'}}>{data.category}</Text>
+            <Text style={{color: 'black',fontWeight:'bold'}}>{data.category}</Text>
           </View>
         </View>
       </View>
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'purple',
+    color: 'black',
   },
   row: {
     flexDirection: 'row',
@@ -178,8 +178,9 @@ const styles = StyleSheet.create({
   },
   textstyle: {
     marginLeft: 10,
-    color: 'purple',
+    color: 'black',
     fontSize: 20,
+    fontWeight:'bold'
   },
   buttonview: {
     flexDirection: 'row',

@@ -19,6 +19,7 @@ import {createPost} from '../../graphql/mutations';
 import {PostsContext} from '../../context/PostsContext'
 import ImagePicker from 'react-native-image-crop-picker';
 import Ionicons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {moss} from '../../assets/color'
 const {height}=Dimensions.get("window")
 const DefPath="https://www.generationsforpeace.org/wp-content/uploads/2018/07/empty.jpg"
 export default function AddPost({navigation}) {
@@ -151,7 +152,7 @@ export default function AddPost({navigation}) {
                 name="image-edit"
                 style={{marginRight: 10}}
                 size={40}
-                color="purple"
+                color={moss}
               />
               <Text style={style.Text}>Image</Text>
             </TouchableOpacity>
