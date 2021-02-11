@@ -17,6 +17,7 @@ import {API} from '@aws-amplify/api/src/API';
 import {getUser2, getReview, getUserRating} from '../../graphql/queries';
 import {graphqlOperation} from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql';
 import {createReview, updateUser} from '../../graphql/mutations';
+import {moss} from '../../assets/color'
 const numstar = 5;
 export default class A extends React.Component {
   static contextType = CategoriesContext;
@@ -171,7 +172,7 @@ class Star extends React.Component {
     return (
       <Icon
         name={this.props.filled === true ? 'star' : 'star-o'}
-        color="#4D3886"
+        color={moss}
         size={40}
         style={{marginHorizontal: 6}}
       />
@@ -206,7 +207,7 @@ const style = StyleSheet.create({
   Button: {
     padding: 15,
     borderRadius: 10,
-    backgroundColor: '#4D3886',
+    backgroundColor: moss,
     alignItems: 'center',
     width: 150,
 
