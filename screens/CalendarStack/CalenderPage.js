@@ -79,11 +79,6 @@ setPeriods(obj)
       markingType="period"
     />
     </View>
-    <View style={style.Button_View}>
-      <TouchableOpacity style={style.Button} onPress={()=>{navigation.navigate('Createperiod')}}>
-        <Text style={style.TextButton}>Create Period</Text>
-      </TouchableOpacity>
-    </View>
     </View>
     :
     <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
@@ -95,6 +90,7 @@ setPeriods(obj)
 const style=StyleSheet.create({
   Container:{
     flex:1,
+    backgroundColor:"white"
   },
   Calender_View:{
     flex:2,

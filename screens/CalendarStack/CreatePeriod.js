@@ -5,6 +5,7 @@ import {CalenderContext} from '../../context/CalenderContext'
 import {API}from '@aws-amplify/api/src/API'
 import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import {createCalender} from '../../graphql/mutations'
+import {moss} from '../../assets/color'
 import { input } from 'aws-amplify';
 
 export default App = () => {
@@ -137,7 +138,7 @@ const style = StyleSheet.create({
   Button_: {
     padding: 15,
     borderRadius: 10,
-    backgroundColor: '#4D3886',
+    backgroundColor: moss,
     alignItems: 'center',
     width: '40%',
   },
