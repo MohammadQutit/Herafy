@@ -1,5 +1,23 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
+export const getUserRating = /* GraphQL */ `
+  query getUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    PhoneNumber,
+    Email,
+    FirstName,
+    LastName,
+    Pasword,
+    Rating,
+    NumberOfUsers
+  }
+
+}`;
+
+
+
+
 export const getUser2 = /* GraphQL */ `
   query getUser($id: ID!, $CraftmanID:ModelIDInput) {
   getUser(id: $id) {

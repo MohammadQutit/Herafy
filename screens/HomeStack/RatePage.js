@@ -14,9 +14,9 @@ import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {CategoriesContext} from '../../context/CategoriesContext';
 import {API} from '@aws-amplify/api/src/API';
-import {getUser2,getReview} from "../../graphql/queries"
+import {getUser2,getReview,getUserRating} from "../../graphql/queries"
 import {graphqlOperation} from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql';
-import {createReview,} from '../../graphql/mutations';
+import {createReview,updateUser} from '../../graphql/mutations';
 
 //const [UserState, dispatch] = React.useContext(CategoriesContext);
 const numstar = 5;
@@ -52,6 +52,11 @@ export default class A extends React.Component {
   
           
           this.setReady(false)
+
+          const x=await API.graphql(graphqlOperation(getUserRating,{id:UserState.RequstedUserID}))
+          let {Rating,NumberOfUsers,FirstName,LastName,Pasword,Email,PhoneNumber}=x.data.getUser
+          console.log(typeof(Rating))
+          console.log(typeof(NumberOfUsers))
           await API.graphql(
             graphqlOperation(createReview, {
               input: {
@@ -62,12 +67,24 @@ export default class A extends React.Component {
                 reviewUserId: UserState.RequstedUserID,
               },
             })
-          ).then(()=>{
-            this.setReady(true)
+          )
+          Rating+=this.state.rate;
+          NumberOfUsers+=1;
+          await API.graphql(graphqlOperation(updateUser,{input:{
+            id:UserState.RequstedUserID,
+            Rating:Rating,
+            NumberOfUsers:NumberOfUsers,
+            FirstName:FirstName,
+            LastName:LastName,
+            Pasword:"",
+            Email:Email,
+            PhoneNumber:PhoneNumber
+          
+          }}))
             
-          })
+          this.setReady(true)
           this.setState({rate:1})
-            this.setState({Review:''})
+          this.setState({Review:''})
             Alert.alert("","Review Added Ruccessfully")
         } catch (error) {
           this.setReady(true)
