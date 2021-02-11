@@ -17,6 +17,7 @@ import {listUsers, getUser} from '../../graphql/queries';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {NameSort,RateSort,UsedSort} from '../../functions/Sorting'
+import {moss} from '../../assets/color'
 export default List = ({navigation}) => {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
   const [isReady, SetIsReady] = React.useState(true);
@@ -133,7 +134,7 @@ export default List = ({navigation}) => {
                       color: 'white',
                       textAlign: 'center',
                       width:"100%",
-                      backgroundColor: '#4D3886',
+                      backgroundColor:moss,
                       fontWeight: 'bold',
                       height: "100%",
                       borderRadius:10
@@ -143,7 +144,7 @@ export default List = ({navigation}) => {
                       width: "100%",
                       textAlign: 'center',
                       marginRight: 10,
-                      backgroundColor: '#4D3886',
+                      backgroundColor: moss,
                       fontWeight: 'bold',
                       height: "100%",
                     },
@@ -243,7 +244,7 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 0.5,
-    backgroundColor: '#4D3886',
+    backgroundColor: moss,
     borderRadius:10
   },
   TextStyle:{
