@@ -42,7 +42,7 @@ export default function A({navigation}) {
               }
              let obj ={}
 for(let i=0;i<gen.length;i++){
-    obj={...obj,[gen[i]]:{color: 'rgba(255,100,100,0.8)'}}
+    obj={...obj,[gen[i]]:{color: '#928DAB'}}
 }
 setPeriods(obj)
 
@@ -65,7 +65,7 @@ setPeriods(obj)
 
   const day = {
     '2020-12-14': {startingDay: true, color: 'red'},
-    '2020-12-15': {color: 'rgba(255,100,100,0.8)'},
+    '2020-12-15': {color: 'rgba(255,100,100,0.4)'},
     '2020-12-16': {color: 'red'},
     '2020-12-17': {color: 'red', endingDay: true},
   };
