@@ -6,7 +6,7 @@ import HomeStack from './HomeStack/HomeStack';
 import CalendarStack from './CalendarStack/Stack';
 import ProfileStack from './ProfileStack/Stack';
 import Post from './PostStack/Stack'
-
+import {Header} from '../assets/color'
 const Tab = createBottomTabNavigator();
 
 export default function Tabmenu({navigation}) {
@@ -37,7 +37,7 @@ export default function Tabmenu({navigation}) {
         inactiveTintColor: '#ADA5B0',
         style: {
           
-          backgroundColor: '#4D3886',
+          backgroundColor: Header,
           borderTopLeftRadius: 5,
           borderTopRightRadius: 5,
         },

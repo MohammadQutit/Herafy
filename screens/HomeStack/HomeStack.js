@@ -11,7 +11,7 @@ import CategoriesReducer, {
   initialUserState,
 } from '../../reducer/CategoriesReducer';
 import {enableScreens} from 'react-native-screens';
-
+import {Header} from '../../assets/color'
 enableScreens();
 
 export default function Nested_stack() {
@@ -27,7 +27,7 @@ export default function Nested_stack() {
         initialRouteName="Home"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#4D3886',
+            backgroundColor: Header,
           },
 
           stackAnimation: 'none',

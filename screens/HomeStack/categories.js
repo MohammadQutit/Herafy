@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {CategoriesContext} from '../../context/CategoriesContext' 
 import {Auth} from "@aws-amplify/auth"
+import {Text1} from '../../assets/color'
 let {width, height} = Dimensions.get('window');
 export default function catigories({navigation}) {
  const [UserState,dispatch]=React.useContext(CategoriesContext)
@@ -192,7 +193,7 @@ const styles = StyleSheet.create({
   texticon: {
     width:120,
     paddingTop: 15,
-    color: 'purple',
+    color: Text1,
     fontWeight: 'bold',
     fontSize: 17,
     fontFamily: 'Cochin',
