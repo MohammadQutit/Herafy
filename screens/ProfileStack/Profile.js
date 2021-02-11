@@ -52,6 +52,7 @@ export default function Craftprofile({ navigation }) {
         email:obj.Email,
         category:obj.Category,
         rate:obj.Rating,
+        numberofrater:obj.NumberOfUsers
       
         
       }
@@ -175,7 +176,7 @@ export default function Craftprofile({ navigation }) {
         <View style={styles.row}>
           <Icon name="star" color="purple" size={25} />
           <Text style={styles.textstyle} selectable>
-            {data.rate}
+            {data.rate/data.numberofrater}
           </Text>
         </View>
       </View>
