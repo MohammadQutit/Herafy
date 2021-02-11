@@ -3,6 +3,7 @@ import {Image, Text, View, StyleSheet, TouchableOpacity,Dimensions} from 'react-
 import PropTypes from 'prop-types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {moss} from '../../assets/color'
 export default Row;
 const {width}=Dimensions.get('window');
 function Row(props) {
@@ -24,7 +25,7 @@ function Row(props) {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Ionicons name="person" size={70} color="#4D3886" />
+          <Ionicons name="person" size={70} color={moss} />
         </View>
 
         <View
@@ -40,10 +41,10 @@ function Row(props) {
             {props.FirstName + ' ' + props.LastName}
           </Text>
           <View style={{flexDirection:"row",alignItems:"center",paddingStart:10,paddingTop:10}}>
-            <Icon name="star" color="#4D3886" size={22}/>
+            <Icon name="star" color={moss} size={22}/>
             <Text style={{paddingStart:10,fontSize:14,fontWeight:"bold"}}>{( props.Rating/props.NumberOFRater).toFixed(1)}</Text>
 
-            <Icon style={{marginStart:width/10}} name="person" color="#4D3886" size={22}/>
+            <Icon style={{marginStart:width/10}} name="person" color={moss} size={22}/>
             <Text style={{paddingStart:10,fontSize:14,fontWeight:"bold"}}>{props.NumberOFRater}</Text>
 
            
@@ -52,7 +53,7 @@ function Row(props) {
 
           </View>
           <View style={{flexDirection:"row",marginTop:15,alignItems:"center",paddingStart:10}}>
-          <Icon  name="location" size={22} color="#4D3886"/>
+          <Icon  name="location" size={22} color={moss}/>
             <Text style={{paddingStart:10,fontSize:14,fontWeight:"bold"}}>{props.Location}</Text>
           </View>
           

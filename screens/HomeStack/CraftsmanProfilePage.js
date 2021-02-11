@@ -15,7 +15,7 @@ import {callNumber} from '../../functions/OpenDialar';
 import { graphqlOperation } from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import { getUser } from '../../graphql/queries';
 import { API } from '@aws-amplify/api/src/API';
-
+import {moss} from '../../assets/color'
 
 //const [phone, setphone] = useState('')
 //const [email, setemail] = useState('')
@@ -77,21 +77,21 @@ export default function Craftprofile({navigation}) {
           />
           <View style={styles.headear}>
             <Text style={styles.title}>{data.firstname+" "+data.lastname}</Text>
-            <Text style={{color: '#4D3886'}}>{data.category}</Text>
+            <Text style={{color: 'black'}}>{data.category}</Text>
           </View>
         </View>
       </View>
 
       <View style={[styles.info, {flex: 1}]}>
         <View style={styles.row}>
-          <Icon name="map-marker-radius" color="#4D3886" size={30} />
+          <Icon name="map-marker-radius" color={moss} size={30} />
           
           <Text style={styles.textstyle}>{data.city}</Text>
          
         </View>
 
         <View style={styles.row}>
-          <Icon name="phone" color="#4D3886" size={30} />
+          <Icon name="phone" color={moss} size={30} />
           <TouchableOpacity onPress={()=>{callNumber(data.phonenumber)}}>
           <Text style={styles.textstyle} selectable>
             {data.phonenumber}
@@ -100,12 +100,12 @@ export default function Craftprofile({navigation}) {
         </View>
 
         <View style={styles.row}>
-          <Icon name="email" color="#4D3886" size={30} />
+          <Icon name="email" color={moss} size={30} />
           <Text style={styles.textstyle}>{data.email}</Text>
         </View>
 
         <View style={styles.row}>
-          <Icon name="star" color="#4D3886" size={30} />
+          <Icon name="star" color={moss} size={30} />
           <Text style={styles.textstyle} selectable>
             {data.rate/data.numberofrater}
           </Text>
@@ -120,21 +120,21 @@ export default function Craftprofile({navigation}) {
         }}>
           <View style={{flex: 1,alignItems:"center"}}>
         <TouchableOpacity style={{ alignItems: 'center'}} onPress={()=>{ navigation.navigate('Rating')}}>
-          <Icon name="star" color="#4D3886" size={60} />
+          <Icon name="star" color={moss} size={60} />
           <Text style={styles.textFont}>Rate</Text>
         </TouchableOpacity>
         </View>
         
         <View style={{flex: 1,alignItems:"center"}}>
         <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{ navigation.navigate('Reviews')}}>
-          <Icon name="comment-text-multiple" color="#4D3886" size={60} />
+          <Icon name="comment-text-multiple" color={moss} size={60} />
           <Text style={styles.textFont}>Show Reviews</Text>
         </TouchableOpacity>
         </View>
 
         <View style={{flex: 1,alignItems:"center"}}>
         <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{ navigation.navigate('Calender')}}>
-          <Icon name="calendar" color="#4D3886" size={60} />
+          <Icon name="calendar" color={moss} size={60} />
           <Text style={styles.textFont}>Calendar</Text>
         </TouchableOpacity>
         </View>
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#4D3886',
+    color: 'black',
   },
   row: {
     flexDirection: 'row',
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   },
   textstyle: {
     marginLeft: 10,
-    color: '#4D3886',
+    color: 'black',
     fontSize: 20,
   },
   buttonview: {
