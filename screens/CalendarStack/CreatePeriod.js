@@ -47,12 +47,20 @@ export default App = ({navigation}) => {
 
   
  const  addperiod=async()=>{
+  if(Date.parse(new Date(date))>Date.parse(new Date(date2))){
+    Alert.alert("Error","End Date should be Bigger than Start Date")
+
+  }
+  else{
       try{
+        console.log(Date.parse(new Date(date))>Date.parse(new Date(date2)))
+        
+       
         await API.graphql(
           graphqlOperation(createCalender,{
           input:{
-            StartTime:date.toISOString().slice(0, 10).toString(),
-            EndTime:date2.toISOString().slice(0, 10).toString(),
+            StartTime:new Date(date).toISOString().slice(0, 10).toString(),
+            EndTime:new Date(date2).toISOString().slice(0, 10).toString(),
             calenderUserId:UserState.UserID,
             
           },})
@@ -61,11 +69,13 @@ export default App = ({navigation}) => {
             //console.log("done")
             Alert.alert('created successfuly')
           }
+          
         )
 
       }catch(error){
         console.log(error);
       }
+  }
     }
 
     
@@ -106,8 +116,8 @@ export default App = ({navigation}) => {
         </View>
       </View>
       <View style={style.Third_view}>
-        <TouchableOpacity style={style.Button_} onPress={()=>addperiod()}>
-          <Text style={style.Text_Button}>Submit</Text>
+        <TouchableOpacity style={style.Button_2} onPress={()=>addperiod()}>
+          <Text style={style.Text_Button}>ADD Period</Text>
         </TouchableOpacity>
       </View>
       {show && (
@@ -167,7 +177,7 @@ const style = StyleSheet.create({
   },
   Third_view: {
     flex: 2,
-    justifyContent: 'center',
+    
     alignItems: 'center',
   },
   Button_: {
@@ -175,12 +185,19 @@ const style = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     width: '20%',
-    shadowColor:"#F2F2F2",
-    shadowRadius: 15 ,
-    shadowOffset : { width: 56, height: 13},
+    backgroundColor:moss
+  },
+  Button_2: {
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    width: '40%',
+    backgroundColor:moss
   },
   Text_Button: {
     color: 'white',
+    fontWeight:"bold",
+    fontSize:16
   },
   Text_: {
     color: moss,
