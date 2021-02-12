@@ -1,48 +1,62 @@
 import React from 'react'
-import {Text,View,FlatList,StyleSheet} from 'react-native'
+import {ActivityIndicator,View,FlatList,StyleSheet} from 'react-native'
 import Row from './Row'
+import {API}from '@aws-amplify/api/src/API'
+import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
+import {getUser3} from '../../graphql/queries';
+import {CalenderContext} from '../../context/CalenderContext'
 export default function ListPeriods(){
-const data1=[{
-    key:1,
-    starttime:'22/2/2022',
-    endtime:'23/2/2022',
-    },
-    {
-    key:2,
-    starttime:'2/5/1998',
-    endtime:'3/5/1998'
-    },
-    {
-        key:2,
-        starttime:'2/5/1998',
-        endtime:'3/5/1998'
-        },
-        {
-            key:2,
-            starttime:'2/5/1998',
-            endtime:'3/5/1998'
-            },
-            {
-                key:2,
-                starttime:'12/25/1998',
-                endtime:'3/5/1516998'
-                }]
+  const [UserState,dispatch]=React.useContext(CalenderContext)
+  const [date,setdate]=React.useState([])
+  const [Ready,SetReady]=React.useState(false)
+React.useEffect(()=>{
+    async function getperiods(){
+        try{
+        await API.graphql(
+            graphqlOperation(getUser3,{id:UserState.UserID}
 
+            )
+        ).then(
+            (x)=>{
+                setdate(x.data.getUser.Calenders.items)
+                SetReady(true)
+            }
+        )
+        }catch(error){
+            console.log(error)
+        }   
+    }
+    getperiods()
+},[])
 
-const render=(obj)=>(
-    <Row StartTime={obj.item.starttime} EndTime={obj.item.endtime}/>
-)
+const render=(obj)=>{
+    //console.log(obj)
     return(
+    
+    <Row StartTime={obj.item.StartTime} EndTime={obj.item.EndTime}/>
+)}
+    return(
+        
         <View style={style.container}>
-            <FlatList
-            data={data1}
-            renderItem={render}
-            />
+            {Ready===true?(
+                <FlatList
+                data={date}
+                renderItem={render}
+                keyExtractor={item=>item.id}
+                />
+            ):
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <ActivityIndicator color="black" size="large" />
         </View>
+            
+            }
+        </View>
+        
     )
 }
 const style=StyleSheet.create({
     container:{
         backgroundColor:'white',
+        flex:1,
     },
 })

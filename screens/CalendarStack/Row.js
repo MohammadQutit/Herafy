@@ -1,6 +1,6 @@
 import React from 'react'
 import {View,Text,StyleSheet,TouchableOpacity} from 'react-native'
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome'
 export default function Row(props){
 
@@ -40,10 +40,10 @@ export default function Row(props){
     )
 
 }
-Row.PropTypes={
-    StartTime:PropTypes.string,
-    EndTime:PropTypes.string,
-    navigation:PropTypes.object,
+Row.propTypes={
+    StartTime:propTypes.string,
+    EndTime:propTypes.string,
+    navigation:propTypes.object,
 }
 const style=StyleSheet.create({
     container:{

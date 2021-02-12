@@ -418,10 +418,10 @@ export const listCalenders = /* GraphQL */ `
           Rating
           NumberOfUsers
           createdAt
-          updatedAt
+          
         }
         createdAt
-        updatedAt
+        
       }
       nextToken
     }
