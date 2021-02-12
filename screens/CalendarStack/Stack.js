@@ -7,7 +7,7 @@ import {CalenderContext} from '../../context/CalenderContext';
 import CalenderReducer,{globalstate} from '../../reducer/CalenderReducer';
 import {Header} from '../../assets/color'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import ListPeriods from './ListPeriods'
 export default function Nested_stack() {
   const [UserState,dispatch]=React.useReducer(CalenderReducer,globalstate);
   const HomeStack = createStackNavigator();
@@ -40,7 +40,7 @@ export default function Nested_stack() {
               flexDirection: 'row',
             }}
             onPress={() => {
-              navigation.navigate('Createperiod');
+              navigation.navigate('ListPeriods');
             }}>
               <Ionicons name="add-circle" color="white" size={25}/>
             <Text style={{paddingLeft:5,color: 'white', fontWeight: 'bold'}}>Create Period</Text>
@@ -53,6 +53,7 @@ export default function Nested_stack() {
       
       />
       <HomeStack.Screen name="Createperiod" component={CreatePeriod} />
+      <HomeStack.Screen name="ListPeriods"  component={ListPeriods}/>
     </HomeStack.Navigator>
     </CalenderContext.Provider>
   );
