@@ -44,6 +44,7 @@ console.log(UserState)
         email:obj.Email,
         category:obj.Category,
         rate:obj.Rating,  
+        numberofusers:obj.NumberOfUsers
       }
     )
    
@@ -111,7 +112,7 @@ console.log(UserState)
         <View style={styles.row}>
           <Icon name="star" color={moss} size={25} />
           <Text style={styles.textstyle} selectable>
-            {data.rate}
+            {data.rate/data.numberofusers}
           </Text>
         </View>
       </View>
