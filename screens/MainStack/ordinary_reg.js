@@ -61,7 +61,7 @@ export default function CraftsmanReg({navigation}) {
             rePassword: '',
             category: '',
             city: '',
-            type: 'craftsman',
+            type: 'ordinary',
             }}
             validationSchema={validationSchema}
             onSubmit={async (values, actions) => {
