@@ -33,28 +33,13 @@ React.useEffect(()=>{
 },[])
 const key=(item) =>(item.id);
 
-async function deleteperiod(){
-    
-    console.log(UserState.PeriodID)
-    
-     try{
-        await API.graphql(
-            graphqlOperation(deleteCalender,{input:{id:UserState.PeriodID}})
-        ).then(
-            Alert.alert('deleted successfullt')
-        )
-    }catch(error){
-        console.log(error)
-    }
 
-    
-}
 
 const render=(obj)=>{
     //console.log(obj)
     return(
     
-    <Row StartTime={obj.item.StartTime} EndTime={obj.item.EndTime}  ID={obj.item.id} Dispatch={dispatch} deleteperiod={deleteperiod} navigation={navigation}/>
+    <Row StartTime={obj.item.StartTime} EndTime={obj.item.EndTime}  ID={obj.item.id} Dispatch={dispatch} navigation={navigation}/>
 )}
     return(
         

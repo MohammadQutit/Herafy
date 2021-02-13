@@ -1,9 +1,28 @@
 import React from 'react'
-import {View,Text,StyleSheet,TouchableOpacity} from 'react-native'
+import {View,Text,StyleSheet,TouchableOpacity,Alert} from 'react-native'
 import propTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome'
-
+import {API}from '@aws-amplify/api/src/API'
+import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
+import {deleteCalender} from '../../graphql/mutations'
 export default function Row(props){
+
+    async function deleteperiod(){
+    
+        console.log(props.ID)
+         
+         try{
+            await API.graphql(
+                graphqlOperation(deleteCalender,{input:{id:props.ID}})
+            ).then(
+                Alert.alert('deleted successfullt')
+            )
+        }catch(error){
+            console.log(error)
+        }
+    
+        
+    }
 
     return(
         <View style={style.container}>
@@ -23,9 +42,8 @@ export default function Row(props){
            <View style={{flexDirection:'row',flex:1,backgroundColor:'white'}}>
            
            <TouchableOpacity
-           onPress={()=>{
-               props.Dispatch({type:'setPeriod',PeriodID:props.ID}),       
-               props.deleteperiod()
+           onPress={()=>{       
+               deleteperiod()
            }}
             style={style.button}
             ><Icon name="warning" size={40}/></TouchableOpacity>
@@ -53,7 +71,6 @@ Row.propTypes={
     StartTime:propTypes.string,
     EndTime:propTypes.string,
     navigation:propTypes.object,
-    deleteperiod:propTypes.func,
     ID:propTypes.string,
     Dispatch:propTypes.func,
     
