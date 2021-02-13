@@ -52,7 +52,7 @@ export default function Row(props){
             <TouchableOpacity
             onPress={()=>{
                 props.navigation.navigate('UpdatePeriod');
-                props.Dispatch({type:'setPeriod',PeriodID:props.ID})
+                props.Dispatch({type:'setcalnderid',Id:props.ID})
                 props.Dispatch({type:'set',Starttime:props.StartTime,Endtime:props.EndTime})
                 
             }}

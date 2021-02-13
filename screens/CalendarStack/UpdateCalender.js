@@ -4,7 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import {CalenderContext} from '../../context/CalenderContext'
 import {API}from '@aws-amplify/api/src/API'
 import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
-import {createCalender} from '../../graphql/mutations'
+import {updateCalender} from '../../graphql/mutations'
 import {moss} from '../../assets/color'
 import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -12,7 +12,8 @@ export default App = ({navigation}) => {
   const [UserState,dispatch]=React.useContext(CalenderContext)
   const start=new Date(UserState.Starttime)
   const end=new Date(UserState.Endtime)
-  console.log(start)
+  
+  console.log(UserState.Id)
   const [date, setDate] = useState(start);
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -48,28 +49,28 @@ export default App = ({navigation}) => {
   };
 
   
- const  addperiod=async()=>{
+ const  updatecalender=async()=>{
   if(Date.parse(new Date(date))>Date.parse(new Date(date2))){
     Alert.alert("Error","End Date should be Bigger than Start Date")
 
   }
   else{
       try{
-        console.log(Date.parse(new Date(date))>Date.parse(new Date(date2)))
+       // console.log(Date.parse(new Date(date))>Date.parse(new Date(date2)))
         
        
         await API.graphql(
-          graphqlOperation(createCalender,{
+          graphqlOperation(updateCalender,{
           input:{
             StartTime:new Date(date).toISOString().slice(0, 10).toString(),
             EndTime:new Date(date2).toISOString().slice(0, 10).toString(),
-            calenderUserId:UserState.UserID,
+            id:UserState.Id,
             
           },})
         ).then(
           ()=>{
             //console.log("done")
-            Alert.alert('created successfuly')
+            Alert.alert('Updated successfuly')
           }
           
         )
@@ -118,8 +119,8 @@ export default App = ({navigation}) => {
         </View>
       </View>
       <View style={style.Third_view}>
-        <TouchableOpacity style={style.Button_2} onPress={()=>addperiod()}>
-          <Text style={style.Text_Button}>ADD Period</Text>
+        <TouchableOpacity style={style.Button_2} onPress={()=>{updateCalender()}}>
+          <Text style={style.Text_Button}>Update Period</Text>
         </TouchableOpacity>
       </View>
       {show && (

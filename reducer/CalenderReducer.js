@@ -2,7 +2,8 @@ export const globalstate={
     UserID:null,
     Starttime:null,
     Endtime:null,
-    Periods:null
+    Periods:null,
+    Id:null,
 }
 
 export default CalenderReducer=(prevState,action)=>{
@@ -23,6 +24,10 @@ export default CalenderReducer=(prevState,action)=>{
                ...prevState,
                Periods:action.Periods,
            }
-        
+        case 'setcalnderid':
+            return{
+                ...prevState,
+                Id:action.Id,
+            }
     }
 }

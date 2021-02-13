@@ -632,10 +632,10 @@ export const updateCalender = /* GraphQL */ `
           nextToken
         }
         createdAt
-        updatedAt
+        
       }
       createdAt
-      updatedAt
+      
     }
   }
 `;
