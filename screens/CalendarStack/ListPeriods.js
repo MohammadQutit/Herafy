@@ -21,6 +21,8 @@ React.useEffect(()=>{
             )
         ).then(
             (x)=>{
+                dispatch({type:'setperiod',Periods:x.data.getUser.Calenders.items})
+                console.log(UserState.Periods)
                 setdate(x.data.getUser.Calenders.items)
                 SetReady(true)
             }
@@ -39,14 +41,14 @@ const render=(obj)=>{
     //console.log(obj)
     return(
     
-    <Row StartTime={obj.item.StartTime} EndTime={obj.item.EndTime}  ID={obj.item.id} Dispatch={dispatch} navigation={navigation}/>
+    <Row StartTime={obj.item.StartTime} EndTime={obj.item.EndTime}  ID={obj.item.id} Dispatch={dispatch} navigation={navigation} Data={UserState} />
 )}
     return(
         
         <View style={style.container}>
             {Ready===true?(
                 <FlatList
-                data={date}
+                data={UserState.Periods}
                 renderItem={render}
                 keyExtractor={key}
                 />
