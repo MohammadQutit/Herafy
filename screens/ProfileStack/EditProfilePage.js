@@ -148,7 +148,7 @@ React.useEffect(() => {
   async function GetUserID(params) {
     try {         
          setuid(UserState.UserID)
-         API.graphql(graphqlOperation(getUser,{id:UserState.UserID})).then(
+         await API.graphql(graphqlOperation(getUser,{id:UserState.UserID})).then(
            (result)=>{
             console.log(result.data.getUser)  
             setdata({
@@ -282,7 +282,7 @@ React.useEffect(() => {
                   {props.touched.phonenumber && props.errors.phonenumber}
         </Text>
         </View>
-       
+       { data.category !==" "?
         <View style={style.Action}>
           <Icon name="globe" size={20} />
           <RNPickerSelect
@@ -321,6 +321,8 @@ React.useEffect(() => {
                   }}
                 />
         </View>    
+:<View/>
+}
       </View>
         
       <View style={style.thirdview}>

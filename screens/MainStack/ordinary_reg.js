@@ -54,14 +54,14 @@ export default function CraftsmanReg({navigation}) {
           <Formik
             initialValues={{
               firstName: '',
-            lastName: '',
-            phone: '',
-            email: '',
-            password: '',
-            rePassword: '',
-            category: '',
-            city: '',
-            type: 'ordinary',
+              lastName: '',
+              phone: '',
+              email: '',
+              password: '',
+              rePassword: '',
+              city: 'Jenin',
+              type: 'ordinary',
+              category:" "
             }}
             validationSchema={validationSchema}
             onSubmit={async (values, actions) => {
@@ -76,9 +76,11 @@ export default function CraftsmanReg({navigation}) {
                     family_name: values.lastName,
                     email: values.email,
                     'custom:city': values.city,
+                    'custom:category': values.category,
                     'custom:type': values.type,
-                  },
-                }).then(() => navigation.navigate('ConfRegestiration'));
+                  }
+                }) 
+                navigation.navigate('ConfRegestiration')
                 console.log('Singed up');
               } catch (error) {
                 Alert.alert('Error', error.message);

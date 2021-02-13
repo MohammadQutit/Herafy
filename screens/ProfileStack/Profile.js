@@ -73,7 +73,7 @@ export default function Craftprofile({ navigation }) {
 
             API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then( 
           (x)=>{
-            //set(x.data.getUser)
+            set(x.data.getUser)
             console.log(x.data.getUser)
             SetIsReady(true)
             
@@ -157,10 +157,15 @@ export default function Craftprofile({ navigation }) {
       </View>
 
       <View style={[styles.info, { flex: 2 }]}>
+      {data.category!==" " ?
         <View style={styles.row}>
+         
           <Icon name="map-marker-radius" color={moss} size={25} />
           <Text style={styles.textstyle}>{data.city}</Text>
+
+    
         </View>
+          :<View/>  }
 
         <View style={styles.row}>
           <Icon name="phone" color={moss} size={25} />
@@ -173,19 +178,25 @@ export default function Craftprofile({ navigation }) {
           <Icon name="email" color={moss} size={25} />
           <Text style={styles.textstyle}>{data.email}</Text>
         </View>
-
+{ data.category !==" "?
         <View style={styles.row}>
           <Icon name="star" color={moss} size={25} />
           <Text style={styles.textstyle} selectable>
             {data.rate/data.numberofrater}
           </Text>
         </View>
+        :
+        <View style={styles.row}></View>
+        }
       </View>
       <View style={{ flex: 1, alignItems: "center" }}>
+        { data.category !==" "?
         <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => { navigation.navigate('Review') }}>
           <Icon name="comment-text-multiple" color={moss} size={60} />
           <Text style={styles.textFont}>Show Users Reviews</Text>
         </TouchableOpacity>
+        :<View/>
+}
       </View>
 
 
