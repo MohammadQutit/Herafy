@@ -35,20 +35,13 @@ export default function Row(props){
 
     return(
         <View style={style.container}>
-            <View style={{flexDirection:'column',flex:1.5,backgroundColor:'white'}}>
+            <View style={{flexDirection:'column',width:"65%",height:"100%",borderBottomColor:"#909090",borderBottomWidth:1,justifyContent:"center"}}>
             <Text style={style.text}>{props.StartTime}</Text>
             <Text style={style.text}>{props.EndTime}</Text>
-            <View
-  style={{
-    borderBottomColor: '#909090',
-    borderBottomWidth: 1,
-    marginTop:10,
-    marginBottom:10,
-  }}
-/>
+           
             </View>
-            <View style={style.verticleLine}></View>
-           <View style={{flexDirection:'row',flex:1,backgroundColor:'white'}}>
+           
+           <View style={{flexDirection:'row',width:"35%",borderBottomColor:"#909090",borderBottomWidth:1,justifyContent:"center",alignItems:"center"}}>
            
            <TouchableOpacity
            onPress={()=>{       
@@ -90,12 +83,14 @@ const style=StyleSheet.create({
     container:{
         flex:1,
         flexDirection:'row',
-        margin:10,
+       
         height:80
+        
 
     },
     row:{
         flexDirection:'row',
+        backgroundColor:"white"
         
     },
     button:{
@@ -104,6 +99,7 @@ const style=StyleSheet.create({
        
     },  
     text:{
+        marginStart:10,
         fontWeight:'bold',
         fontSize:15,
     },
