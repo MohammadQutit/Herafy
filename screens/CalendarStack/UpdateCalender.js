@@ -119,7 +119,7 @@ export default App = ({navigation}) => {
         </View>
       </View>
       <View style={style.Third_view}>
-        <TouchableOpacity style={style.Button_2} onPress={()=>{updateCalender()}}>
+        <TouchableOpacity style={style.Button_2} onPress={()=>{updatecalender()}}>
           <Text style={style.Text_Button}>Update Period</Text>
         </TouchableOpacity>
       </View>
