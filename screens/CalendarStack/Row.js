@@ -1,10 +1,11 @@
 import React from 'react'
 import {View,Text,StyleSheet,TouchableOpacity,Alert} from 'react-native'
 import propTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {API}from '@aws-amplify/api/src/API'
 import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import {deleteCalender} from '../../graphql/mutations'
+
 export default function Row(props){
 
     async function deleteperiod(){
@@ -16,7 +17,15 @@ export default function Row(props){
                 graphqlOperation(deleteCalender,{input:{id:props.ID}})
             ).then(
                 Alert.alert('deleted successfullt')
+            
+            
             )
+            const edit=props.Data.Periods.filter((x)=>{
+                if(x.id!==props.ID){
+                    return x;
+                }
+            })
+            props.Dispatch({type:"setperiod",Periods:edit})
         }catch(error){
             console.log(error)
         }
@@ -46,7 +55,7 @@ export default function Row(props){
                deleteperiod()
            }}
             style={style.button}
-            ><Icon name="warning" size={40}/></TouchableOpacity>
+            ><Icon name="delete" size={40}/></TouchableOpacity>
            
             
             <TouchableOpacity
@@ -57,7 +66,7 @@ export default function Row(props){
                 
             }}
             style={style.button}
-            ><Icon name="warning" size={40}/></TouchableOpacity>
+            ><Icon name="calendar-edit" size={40}/></TouchableOpacity>
            
             </View>
            
@@ -73,6 +82,7 @@ Row.propTypes={
     navigation:propTypes.object,
     ID:propTypes.string,
     Dispatch:propTypes.func,
+    Data:propTypes.object,
     
 
 }
@@ -81,14 +91,16 @@ const style=StyleSheet.create({
         flex:1,
         flexDirection:'row',
         margin:10,
+        height:80
 
     },
     row:{
-        flexDirection:'row'
+        flexDirection:'row',
+        
     },
     button:{
         margin:10,
-        borderWidth:1,
+       
        
     },  
     text:{
