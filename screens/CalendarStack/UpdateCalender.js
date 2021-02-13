@@ -69,6 +69,21 @@ export default App = ({navigation}) => {
           },})
         ).then(
           ()=>{
+            const editperiod=UserState.Periods.map((x)=>{
+              if(x.id===UserState.Id){
+                
+                x.EndTime=new Date(date2).toISOString().slice(0, 10).toString()
+                x.StartTime=new Date(date).toISOString().slice(0, 10).toString()
+                return x;
+              }
+              else{
+                return x;
+
+              }
+
+            })
+            console.log(editperiod)
+            //dispatch({type:'setperiod',Periods:editperiod})
             //console.log("done")
             Alert.alert('Updated successfuly')
           }
