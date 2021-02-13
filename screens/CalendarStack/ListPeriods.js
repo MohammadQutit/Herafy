@@ -1,14 +1,17 @@
 import React from 'react'
-import {ActivityIndicator,View,FlatList,StyleSheet} from 'react-native'
+import {ActivityIndicator,View,FlatList,StyleSheet,Alert} from 'react-native'
 import Row from './Row'
 import {API}from '@aws-amplify/api/src/API'
 import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import {getUser3} from '../../graphql/queries';
 import {CalenderContext} from '../../context/CalenderContext'
-export default function ListPeriods(){
+import {deleteCalender} from '../../graphql/mutations'
+export default function ListPeriods({navigation}){
   const [UserState,dispatch]=React.useContext(CalenderContext)
   const [date,setdate]=React.useState([])
   const [Ready,SetReady]=React.useState(false)
+  
+  
 React.useEffect(()=>{
     async function getperiods(){
         try{
@@ -28,12 +31,30 @@ React.useEffect(()=>{
     }
     getperiods()
 },[])
+const key=(item) =>(item.id);
+
+async function deleteperiod(){
+    
+    console.log(UserState.PeriodID)
+    
+     try{
+        await API.graphql(
+            graphqlOperation(deleteCalender,{input:{id:UserState.PeriodID}})
+        ).then(
+            Alert.alert('deleted successfullt')
+        )
+    }catch(error){
+        console.log(error)
+    }
+
+    
+}
 
 const render=(obj)=>{
     //console.log(obj)
     return(
     
-    <Row StartTime={obj.item.StartTime} EndTime={obj.item.EndTime}/>
+    <Row StartTime={obj.item.StartTime} EndTime={obj.item.EndTime}  ID={obj.item.id} Dispatch={dispatch} deleteperiod={deleteperiod} navigation={navigation}/>
 )}
     return(
         
@@ -42,7 +63,7 @@ const render=(obj)=>{
                 <FlatList
                 data={date}
                 renderItem={render}
-                keyExtractor={item=>item.id}
+                keyExtractor={key}
                 />
             ):
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

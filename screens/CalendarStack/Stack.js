@@ -11,6 +11,7 @@ import CalenderReducer, {globalstate} from '../../reducer/CalenderReducer';
 import {Header} from '../../assets/color';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ListPeriods from './ListPeriods';
+import Update from './UpdateCalender'
 export default function Nested_stack() {
   const [UserState, dispatch] = React.useReducer(CalenderReducer, globalstate);
   const HomeStack = createStackNavigator();
@@ -57,6 +58,7 @@ export default function Nested_stack() {
           component={HomeCalendar}
         />
         <HomeStack.Screen name="Createperiod" component={CreatePeriod} />
+        <HomeStack.Screen name="UpdatePeriod" component={Update}/>
         <HomeStack.Screen
           options={({navigation, route}) => ({
             headerRight: () => (

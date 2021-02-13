@@ -2,6 +2,7 @@ import React from 'react'
 import {View,Text,StyleSheet,TouchableOpacity} from 'react-native'
 import propTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome'
+
 export default function Row(props){
 
     return(
@@ -22,13 +23,21 @@ export default function Row(props){
            <View style={{flexDirection:'row',flex:1,backgroundColor:'white'}}>
            
            <TouchableOpacity
-           onPress={()=>{}}
+           onPress={()=>{
+               props.Dispatch({type:'setPeriod',PeriodID:props.ID}),       
+               props.deleteperiod()
+           }}
             style={style.button}
             ><Icon name="warning" size={40}/></TouchableOpacity>
            
             
             <TouchableOpacity
-            onPress={()=>{}}
+            onPress={()=>{
+                props.navigation.navigate('UpdatePeriod');
+                props.Dispatch({type:'setPeriod',PeriodID:props.ID})
+                props.Dispatch({type:'set',Starttime:props.StartTime,Endtime:props.EndTime})
+                
+            }}
             style={style.button}
             ><Icon name="warning" size={40}/></TouchableOpacity>
            
@@ -44,6 +53,11 @@ Row.propTypes={
     StartTime:propTypes.string,
     EndTime:propTypes.string,
     navigation:propTypes.object,
+    deleteperiod:propTypes.func,
+    ID:propTypes.string,
+    Dispatch:propTypes.func,
+    
+
 }
 const style=StyleSheet.create({
     container:{
