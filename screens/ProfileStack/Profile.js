@@ -73,7 +73,7 @@ export default function Craftprofile({ navigation }) {
 
             API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then( 
           (x)=>{
-            set(x.data.getUser)
+            //set(x.data.getUser)
             console.log(x.data.getUser)
             SetIsReady(true)
             

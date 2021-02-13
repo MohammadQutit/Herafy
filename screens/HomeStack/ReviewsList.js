@@ -18,7 +18,7 @@ export default function PostList({navigation}) {
       try {
          await API.graphql(graphqlOperation(listReviews,{filter:{CraftmanID:{eq:UserState.RequstedUserID}}})).then((x)=>{
             setData(x.data.listReviews.items)
-            setready(true)
+            setReady(true)
             
             
           }

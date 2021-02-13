@@ -54,13 +54,14 @@ export default function CraftsmanReg({navigation}) {
           <Formik
             initialValues={{
               firstName: '',
-              lastName: '',
-              phone: '',
-              email: '',
-              password: '',
-              rePassword: '',
-              city: 'Jenin',
-              type: 'ordinary',
+            lastName: '',
+            phone: '',
+            email: '',
+            password: '',
+            rePassword: '',
+            category: '',
+            city: '',
+            type: 'craftsman',
             }}
             validationSchema={validationSchema}
             onSubmit={async (values, actions) => {
