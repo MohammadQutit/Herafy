@@ -9,10 +9,10 @@ import {deleteCalender} from '../../graphql/mutations'
 export default function ListPeriods({navigation}){
   const [UserState,dispatch]=React.useContext(CalenderContext)
   const [date,setdate]=React.useState([])
-  const [Ready,SetReady]=React.useState(false)
+  const [Ready,SetReady]=React.useState(true)
   
   
-React.useEffect(()=>{
+/*React.useEffect(()=>{
     async function getperiods(){
         try{
         await API.graphql(
@@ -32,7 +32,7 @@ React.useEffect(()=>{
         }   
     }
     getperiods()
-},[])
+},[])*/
 const key=(item) =>(item.id);
 
 
