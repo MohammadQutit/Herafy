@@ -65,8 +65,15 @@ export default App = ({navigation}) => {
             
           },})
         ).then(
-          ()=>{
-            //console.log("done")
+          (result)=>{
+            console.log(result.data.createCalender)
+            const CalenderEdit = [... UserState.Periods,{
+              id:result.data.createCalender.id,
+              StartTime:result.data.createCalender.StartTime,
+              EndTime:result.data.createCalender.EndTime,
+            
+            }]
+            dispatch({type:"setperiod",Periods:CalenderEdit})
             Alert.alert('created successfuly')
           }
           
