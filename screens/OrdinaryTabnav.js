@@ -5,7 +5,7 @@ import {AuthContext} from '../context/Authcontext';
 import HomeStack from './HomeStack/HomeStack';
 import ProfileStack from './ProfileStack/Stack';
 import PostStack from './PostStack/Stack'
-
+import {moss} from '../assets/color'
 const Tab = createBottomTabNavigator();
 
 export default function Tabmenu({navigation}) {
@@ -35,7 +35,7 @@ export default function Tabmenu({navigation}) {
         activeTintColor: 'white',
         inactiveTintColor: '#ADA5B0',
         style: {
-          backgroundColor: '#4D3886',
+          backgroundColor: moss,
           borderTopLeftRadius: 5,
           borderTopRightRadius: 5,
         },
