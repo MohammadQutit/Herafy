@@ -32,6 +32,7 @@ export default function A({navigation}) {
 for(let i=0;i<gen.length;i++){
     obj={...obj,[gen[i]]:{color: '#928DAB'}}
 }
+console.log('hahahah')
 return obj
 
 
@@ -46,7 +47,7 @@ return obj
        console.log(attributes['sub'])
        const c=await API.graphql(graphqlOperation(getUser3,{id:attributes['sub']}))
        dispatch({type:'setperiod',Periods:c.data.getUser.Calenders.items})
-       const s=UserState.Periods.data.getUser.Calenders.items
+       const s=UserState.Periods
        console.log(s)
        SetReady(true)
        let gen=[]
