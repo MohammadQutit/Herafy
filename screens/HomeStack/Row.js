@@ -5,6 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {moss} from '../../assets/color'
 export default Row;
+const zerorating=0
 const {width}=Dimensions.get('window');
 function Row(props) {
   return (
@@ -42,7 +43,12 @@ function Row(props) {
           </Text>
           <View style={{flexDirection:"row",alignItems:"center",paddingStart:10,paddingTop:10}}>
             <Icon name="star" color={moss} size={22}/>
-            <Text style={{paddingStart:10,fontSize:14,fontWeight:"bold"}}>{( props.Rating/props.NumberOFRater).toFixed(1)}</Text>
+            <Text style={{paddingStart:10,fontSize:14,fontWeight:"bold"}}>{
+            !isNaN(props.Rating/props.NumberOFRater)?
+            (props.Rating/props.NumberOFRater).toFixed(1)
+          :
+          zerorating
+          }</Text>
 
             <Icon style={{marginStart:width/10}} name="person" color={moss} size={22}/>
             <Text style={{paddingStart:10,fontSize:14,fontWeight:"bold"}}>{props.NumberOFRater}</Text>

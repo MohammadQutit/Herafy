@@ -23,7 +23,7 @@ import {moss} from '../../assets/color'
 //const [location, setlocation] = useState('')
 //const [work, setwork] = useState('')
 //const [rate, setrate] = useState('')
-
+const zerorating=0
 export default function Craftprofile({navigation}) {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
   const [data, setdata] = React.useState(0);
@@ -107,7 +107,11 @@ export default function Craftprofile({navigation}) {
         <View style={styles.row}>
           <Icon name="star" color={moss} size={30} />
           <Text style={styles.textstyle} selectable>
-            {data.rate/data.numberofrater}
+            {!isNaN(data.rate/data.numberofrater)?
+                data.rate/data.numberofrater
+              :
+              zerorating
+            }
           </Text>
         </View>
       </View>
