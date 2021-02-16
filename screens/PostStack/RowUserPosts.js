@@ -7,11 +7,12 @@ import {PostsContext} from '../../context/PostsContext'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {API}from '@aws-amplify/api/src/API'
 import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
+import {moss} from '../../assets/color'
 
 export default function Rowlist(props){
     const [UserState,dispatch]=React.useContext(PostsContext)
     
-   console.log(UserState.Userposts)
+  
     React.useEffect(()=>{
         setdata(props.text)
     },[]) 
@@ -55,26 +56,11 @@ try{
     console.log(error)
 }
 }
-const  fetchImage= async()=>{
-    try{
-      if(props.firstImage!==null){
-    const result =await Storage.get(UserState.Userposts.Image.key.slice(7))
-   // console.log(result)
-    setImage(result)
-   
-      }
-  
-      
-    }catch(error){
-      console.log(error.message)
 
-    }
-    fetchImage()
-  }
 
     return(
         <View style={style.container}>
-            <View style={{flexDirection:'row'}}>
+            <View style={{flexDirection:'row',alignSelf:'flex-end'}}>
             <TouchableOpacity
            onPress={()=>{       
                deletepost()
@@ -97,6 +83,7 @@ const  fetchImage= async()=>{
         onChangeText={(text)=>{setdata(text)}}
         //value={props.text}
         defaultValue={props.text}
+        textAlignVertical="top"
         />
         
         
@@ -114,6 +101,9 @@ Rowlist.propTypes={
 const style=StyleSheet.create({
     container:{
         flex:1,
+        //margin:10,
+        backgroundColor:'white',
+        
     },
     TextInput: {
         fontSize: 20,
@@ -124,7 +114,8 @@ const style=StyleSheet.create({
         margin: 3,
         padding: 10,
         fontSize: 18,
-        backgroundColor: 'white',
+        backgroundColor: '#f2f2f2',
+        borderWidth:1,
       },
       PostImagesView: {width:"100%",height:260,flexDirection:"row",justifyContent:"center"},
       postImages:{width:"95%",height:"95%",margin:4},

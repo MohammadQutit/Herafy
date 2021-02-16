@@ -146,7 +146,7 @@ export default function Craftprofile({navigation}) {
     </SafeAreaView>
     :
     <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
-    <ActivityIndicator size="large" color="orange"/>
+    <ActivityIndicator size="large" color={moss}/>
   </View>
     //plz change the width of the buttons of calender and rate
   );

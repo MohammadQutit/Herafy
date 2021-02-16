@@ -215,7 +215,7 @@ export default List = ({navigation}) => {
     <View style={style.container}>
       {isReady === false ? (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <ActivityIndicator color="purple" size="large" />
+          <ActivityIndicator color={moss} size="large" />
         </View>
       ) : (
         <SafeAreaView>

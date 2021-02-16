@@ -6,7 +6,7 @@ import {graphqlOperation} from '@aws-amplify/api-graphql/dist/aws-amplify-api-gr
 import {getUser3} from '../../graphql/queries';
 import {CategoriesContext} from '../../context/CategoriesContext';
 import {getDates} from '../../functions/CalendarGEN';
-
+import {moss} from '../../assets/color'
 export default function A() {
   const [Ready, setReady] = React.useState(false);
   const [UserState, dispatch] = React.useContext(CategoriesContext);
@@ -64,7 +64,7 @@ export default function A() {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <ActivityIndicator size="large" color="orange" />
+      <ActivityIndicator size="large" color={moss} />
     </View>
   );
 }

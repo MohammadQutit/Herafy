@@ -12,6 +12,7 @@ import {
 import {CategoriesContext} from '../../context/CategoriesContext' 
 import {Auth} from "@aws-amplify/auth"
 import {Text1} from '../../assets/color'
+import {moss} from '../../assets/color'
 let {width, height} = Dimensions.get('window');
 export default function catigories({navigation}) {
  const [UserState,dispatch]=React.useContext(CategoriesContext)
@@ -151,7 +152,7 @@ const GoTOList= (category)=>{
         translucent
         backgroundColor="transparent"
       />
-      <ActivityIndicator size="large" color="orange"/>
+      <ActivityIndicator size="large" color={moss}/>
 
     </View>
   );

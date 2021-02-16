@@ -5,7 +5,7 @@ import {listReviews} from '../../graphql/queries';
 import {API}from '@aws-amplify/api/src/API'
 import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import {CategoriesContext} from '../../context/CategoriesContext';
-
+import {moss} from '../../assets/color' 
 export default function PostList({navigation}) {
   
   const [UserState, dispatch] = React.useContext(CategoriesContext);
@@ -88,7 +88,7 @@ export default function PostList({navigation}) {
         
       />:
       <View style={{flex:1,alignItems:"center",justifyContent:"center"}}>
-        <ActivityIndicator size="large" color="orange"/>
+        <ActivityIndicator size="large" color={moss}/>
       </View>
         
         

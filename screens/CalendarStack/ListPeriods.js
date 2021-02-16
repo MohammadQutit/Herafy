@@ -6,6 +6,7 @@ import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-gra
 import {getUser3} from '../../graphql/queries';
 import {CalenderContext} from '../../context/CalenderContext'
 import {deleteCalender} from '../../graphql/mutations'
+import {moss} from '../../assets/color'
 export default function ListPeriods({navigation}){
   const [UserState,dispatch]=React.useContext(CalenderContext)
   const [date,setdate]=React.useState([])
@@ -54,7 +55,7 @@ const render=(obj)=>{
                 />
             ):
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <ActivityIndicator color="black" size="large" />
+          <ActivityIndicator color={moss} size="large" />
         </View>
             
             }

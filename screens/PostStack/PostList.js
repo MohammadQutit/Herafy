@@ -7,6 +7,7 @@ import {API}from '@aws-amplify/api/src/API'
 import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import {Auth} from "@aws-amplify/auth"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import {moss} from '../../assets/color'
 export default function PostList({navigation}) {
 
 const [UserState,dispatch]=React.useContext(PostsContext)
@@ -96,7 +97,7 @@ const [Ready,setReady]=React.useState(false)
       <SafeAreaView style={style.container2}>
         <View style={{flexDirection:'row'}}>
         <TouchableOpacity style={style.button} onPress={()=>{navigation.navigate('ListUserPost');}}><Icon name="calendar-edit" size={40}/></TouchableOpacity>
-        <Text style={{fontSize:20,fontWeight:'bold'}}>Edit your posts</Text>
+        <Text style={{fontSize:20,fontWeight:'bold',alignSelf:'center'}}>Edit your posts</Text>
         
         </View>
         <FlatList
@@ -115,7 +116,7 @@ const [Ready,setReady]=React.useState(false)
     </View>
     :
     <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
-      <ActivityIndicator size="large" color="orange"/>
+      <ActivityIndicator size="large" color={moss}/>
     </View>
   );
 }
