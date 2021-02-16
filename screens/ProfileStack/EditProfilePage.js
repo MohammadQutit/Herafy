@@ -403,7 +403,7 @@ export default function A() {
     </Formik>
   ) : (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <ActivityIndicator size="large" color="orange" />
+      <ActivityIndicator size="large" color={moss} />
     </View>
   );
 }
