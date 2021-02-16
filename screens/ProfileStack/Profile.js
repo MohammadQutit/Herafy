@@ -19,6 +19,7 @@ import { getUser } from '../../graphql/queries';
 import { API } from '@aws-amplify/api/src/API'
 import {ProfileContext} from '../../context/ProfileContext';
 import {moss} from '../../assets/color'
+import {Storage} from '@aws-amplify/storage';
 
 
 
@@ -30,10 +31,13 @@ import {moss} from '../../assets/color'
 //const [rate, setrate] = useState('')
 
 const zerorating=0
+const DefPath="https://www.generationsforpeace.org/wp-content/uploads/2018/07/empty.jpg"
+
 export default function Craftprofile({ navigation }) {
   const [UserState,dispatch]=React.useContext(ProfileContext);
   const [isReady,SetIsReady]=React.useState(false)
   const [data, setdata] = React.useState(0)
+  const [image,setImage]=React.useState(DefPath)
 
 
 
@@ -53,7 +57,8 @@ export default function Craftprofile({ navigation }) {
         email:obj.Email,
         category:obj.Category,
         rate:obj.Rating,
-        numberofrater:obj.NumberOfUsers
+        numberofrater:obj.NumberOfUsers,
+        Image:obj.Imagem
       
         
       }
@@ -76,6 +81,15 @@ export default function Craftprofile({ navigation }) {
             set(x.data.getUser)
             console.log(x.data.getUser)
             SetIsReady(true)
+            if(x.data.getUser.Image !== null)
+            Storage.get(x.data.getUser.Image.key.slice(7)).then((result)=>{
+              setImage(result)
+           
+
+            })
+            else
+            setImage(DefPath)
+           
             
           }
             
@@ -100,23 +114,7 @@ export default function Craftprofile({ navigation }) {
 
   }, [])
   
- /**  React.useEffect(() => {
-    async function GetUserID(params) {
-      try {
-        await API.graphql(graphqlOperation(getUser,{id:UserState.UserID})).then( 
-          (x)=>{
-            set(x.data.getUser)
-            console.log(x.data.getUser)
-            SetIsReady(true)
-            
-          })     
-         }catch (error) {
-        console.log(error.message);
-      }     
-    }
-      GetUserID()
-  }, [])
-*/
+ 
  
   return (
 
@@ -135,7 +133,7 @@ export default function Craftprofile({ navigation }) {
       <View style={[styles.userinfosection, { flex: 1 }]}>
         <View style={{ flexDirection: 'row', flex: 1 }}>
           <Image
-            source={require('../../assets/Profile.png')}
+            source={{uri:image}}
             style={styles.category_icon}
           />
           <View style={styles.headear}>
@@ -236,12 +234,14 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   category_icon: {
-    height: 100,
-    width: 100,
+    height: 125,
+    width: 125,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 35,
     borderRadius: 15,
+    borderColor:moss,
+    borderWidth:2
   },
   button: {
     height: 100,
