@@ -15,7 +15,7 @@ React.useEffect(()=>{
         try{
             await API.graphql(
                 graphqlOperation(
-                    getuserpost,{id:"7c8a993e-7ab7-437f-ba62-f4a618c01e86"}
+                    getuserpost,{id:UserState.UserID}
                 )
             ).then(
                 (x)=>{
