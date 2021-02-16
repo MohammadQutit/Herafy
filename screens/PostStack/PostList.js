@@ -96,8 +96,10 @@ const [Ready,setReady]=React.useState(false)
     <View style={style.container1}>
       <SafeAreaView style={style.container2}>
         <View style={{flexDirection:'row'}}>
-        <TouchableOpacity style={style.button} onPress={()=>{navigation.navigate('ListUserPost');}}><Icon name="calendar-edit" size={40}/></TouchableOpacity>
-        <Text style={{fontSize:20,fontWeight:'bold',alignSelf:'center'}}>Edit your posts</Text>
+        <TouchableOpacity style={style.button} onPress={()=>{navigation.navigate('ListUserPost');}}>
+          <Icon name="calendar-edit" size={25}> <Text style={{fontSize:20,fontWeight:'bold'}}>Edit your posts</Text></Icon>
+          </TouchableOpacity>
+       
         
         </View>
         <FlatList
