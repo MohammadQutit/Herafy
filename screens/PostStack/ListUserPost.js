@@ -21,10 +21,11 @@ React.useEffect(()=>{
                 (x)=>{
                     console.log(x.data.getUser.Posts.items)
                     dispatch({type:'SetText',Userposts:x.data.getUser.Posts.items})
+                    setReady(true)
                 }
         
             )
-            setReady(true)
+            
         }catch(error){
             console.log(error)
         }
@@ -35,7 +36,7 @@ const render=(obj)=>(
     
     <Rowlist text={obj.item.Text} Id={obj.item.id} navigation={navigation} />
 )
-    return(Ready===true?
+    return(Ready===false?
         <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
             <ActivityIndicator size='large' color={moss}/>
         </View>
