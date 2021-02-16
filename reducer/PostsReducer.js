@@ -1,6 +1,7 @@
 export const initialglobalstate={
     UserID:null,
     PosterID:null,
+    Userposts:null,
 
 }
 export default PostsReducer=(prevState,action)=>{
@@ -14,6 +15,11 @@ export default PostsReducer=(prevState,action)=>{
         return{
             ...prevState,
             UserID:action.UserID
+        }
+        case'SetText':
+        return{
+            ...prevState,
+            Userposts:action.Userposts
         }
         
     }

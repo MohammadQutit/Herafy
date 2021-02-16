@@ -9,6 +9,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {PostsContext} from '../../context/PostsContext'
 import PostsReducer,{initialglobalstate} from '../../reducer/PostsReducer'
 import {Header} from '../../assets/color'
+import ListUserPost from './ListUserPost'
 export default function Nested_stack() {
   const [UserState,dispatch]=React.useReducer(PostsReducer,initialglobalstate);
   const HomeStack = createStackNavigator();
@@ -53,6 +54,7 @@ export default function Nested_stack() {
       />
       <HomeStack.Screen name="AddPost" component={AddPost} />
       <HomeStack.Screen name="Profile" component={ProfilePage}/>
+      <HomeStack.Screen name="ListUserPost" component={ListUserPost}/>
     </HomeStack.Navigator>
     </PostsContext.Provider>
   );

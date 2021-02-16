@@ -1,12 +1,12 @@
 import React from 'react';
-import {FlatList, SafeAreaView, StyleSheet, View, Text, ActivityIndicator,RefreshControl} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, View, Text, ActivityIndicator,RefreshControl, TouchableOpacity} from 'react-native';
 import PostRow from './PostRow';
 import {PostsContext} from '../../context/PostsContext'
 import {listPosts} from '../../graphql/queries'
 import {API}from '@aws-amplify/api/src/API'
 import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import {Auth} from "@aws-amplify/auth"
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 export default function PostList({navigation}) {
 
 const [UserState,dispatch]=React.useContext(PostsContext)
@@ -94,6 +94,11 @@ const [Ready,setReady]=React.useState(false)
     Ready === true ?
     <View style={style.container1}>
       <SafeAreaView style={style.container2}>
+        <View style={{flexDirection:'row'}}>
+        <TouchableOpacity style={style.button} onPress={()=>{navigation.navigate('ListUserPost');}}><Icon name="calendar-edit" size={40}/></TouchableOpacity>
+        <Text style={{fontSize:20,fontWeight:'bold'}}>Edit your posts</Text>
+        
+        </View>
         <FlatList
           data={Data}
           renderItem={renderit}
@@ -122,4 +127,7 @@ const style = StyleSheet.create({
   container2: {
     flex: 1,
   },
+  button:{
+    margin:10,
+  }
 });

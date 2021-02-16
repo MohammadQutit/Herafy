@@ -51,6 +51,26 @@ query getUser($id: ID!) {
 }`;
 
 
+export const getuserpost = /* GraphQL */ `
+query getUser($id: ID!) {
+  getUser(id: $id) {
+    Posts {
+      items {
+        Text
+        id
+        Image {
+          bucket
+          key
+          region
+        }
+      }
+    }
+  }
+
+}`;
+
+
+
 
 
 export const getUser = /* GraphQL */ `
