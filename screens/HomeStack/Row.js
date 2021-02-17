@@ -4,10 +4,45 @@ import PropTypes from 'prop-types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {moss} from '../../assets/color'
-export default Row;
+import {Storage}from "@aws-amplify/storage"
+
+const DefPath="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1200px-User_font_awesome.svg.png"
+
 const zerorating=0
 const {width}=Dimensions.get('window');
-function Row(props) {
+export default function Row(props) {
+  const [profileImg,setProfileimg]=React.useState(DefPath)
+
+  const  fetchImage= async()=>{
+    try{
+      if(props.Image!==null){
+    const result =await Storage.get(props.Image.key.slice(7))
+    console.log(result)
+    setProfileimg(result)
+    
+      }
+      
+      
+  
+      
+    }catch(error){
+      console.log(error.message)
+
+    }
+  }
+  React.useEffect(()=>{
+    fetchImage()
+
+
+  },[])
+
+
+
+
+
+
+
+
   return (
     <View style={styles.row}>
       <TouchableOpacity
@@ -26,7 +61,7 @@ function Row(props) {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Ionicons name="person" size={70} color={moss} />
+          <Image source={{uri:profileImg}} style={{width:100,height:100}}/>
         </View>
 
         <View
@@ -82,6 +117,7 @@ Row.propTypes = {
   Location:PropTypes.string,
   navigation: PropTypes.object,
   SelectUser:PropTypes.func,
+  Image:PropTypes.object
 };
 
 const styles = StyleSheet.create({

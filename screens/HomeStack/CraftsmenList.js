@@ -228,6 +228,7 @@ export default List = ({navigation}) => {
       Location={obj.item.City}
       ID={obj.item.id}
       SelectUser={dispatch}
+      Image={obj.item.Image}
     />
   );
 
