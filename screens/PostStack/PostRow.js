@@ -77,7 +77,7 @@ fetchImage()
     <View style={[style.container,{height:270}]}>
       <View style={style.CreatorInfo}>
         <TouchableOpacity style={style.Touchable} onPress={() => {PickPoster(props.ID)}}>
-          <Image source={props.Profileurl} style={style.profileImage} />
+        <Image source={{uri:profileImg}} style={style.profileImage} />
           <Text style={style.CreatorText}>
             {props.FirstName + ' ' + props.LastName}
           </Text>

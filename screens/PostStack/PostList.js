@@ -35,7 +35,7 @@ const [Ready,setReady]=React.useState(false)
   async function getPostData2(){
     setRefreshing(true)
     const data = await API.graphql(graphqlOperation(listPosts))
-    setData(data.data.listPosts.items)
+    setData(...[data.data.listPosts.items])
     console.log(data.data.listPosts.items)
     setRefreshing(false)
   }
