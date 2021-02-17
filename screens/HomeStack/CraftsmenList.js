@@ -183,6 +183,8 @@ export default List = ({navigation}) => {
     }
     a();
   }, []);
+
+  
   const key=(item) => (item.id);
 
   const renderit = (obj) => (
@@ -235,7 +237,6 @@ export default List = ({navigation}) => {
             data={Data}
             renderItem={renderit}
             keyExtractor={key}
-          
           />
         </SafeAreaView>
       )}
