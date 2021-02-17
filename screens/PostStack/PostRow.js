@@ -3,9 +3,11 @@ import {View, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {Storage}from "@aws-amplify/storage"
 import PropTypes from 'prop-types';
 
+const DefPath="https://www.generationsforpeace.org/wp-content/uploads/2018/07/empty.jpg"
 export default function Post(props) {
   const [ready,setReady]=React.useState(false)
   const [image,setImage]=React.useState("");
+  const [profileImg,setProfileimg]=React.useState(DefPath)
   
   const PickPoster= (ID)=>{
     console.log(ID)
@@ -21,8 +23,14 @@ export default function Post(props) {
     const result =await Storage.get(props.firstImage.key.slice(7))
     console.log(result)
     setImage(result)
-    setReady(true)
+    
       }
+      if(props.Profileurl!==null){
+        const result2= await Storage.get(props.Profileurl.key.slice(7))
+        console.log(props.Profileurl)
+        setProfileimg(result2)
+      }
+      setReady(true)
   
       
     }catch(error){
@@ -40,7 +48,7 @@ fetchImage()
     <View style={style.container}>
       <View style={style.CreatorInfo}>
         <TouchableOpacity style={style.Touchable} onPress={() => {PickPoster(props.ID)}}>
-          <Image source={props.Profileurl} style={style.profileImage} />
+        <Image source={{uri:profileImg}} style={style.profileImage} />
           <Text style={style.CreatorText}>
             {props.FirstName + ' ' + props.LastName}
           </Text>
@@ -88,7 +96,7 @@ fetchImage()
   );
 }
 Post.propTypes = {
-    Profileurl: PropTypes.number,
+    Profileurl: PropTypes.object,
     FirstName:PropTypes.string,
     LastName:PropTypes.string,
     postText:PropTypes.string,

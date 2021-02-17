@@ -80,7 +80,7 @@ const [Ready,setReady]=React.useState(false)
     <PostRow
       FirstName={obj.item.User.FirstName}
       LastName={obj.item.User.LastName}
-      Profileurl={require('../../4.png')}
+      Profileurl={obj.item.User.Image}
       postText={obj.item.Text}
       firstImage={obj.item.Image}
       //secondImage={obj.item.Image.key}
@@ -96,10 +96,8 @@ const [Ready,setReady]=React.useState(false)
     <View style={style.container1}>
       <SafeAreaView style={style.container2}>
         <View style={{flexDirection:'row'}}>
-        <TouchableOpacity style={style.button} onPress={()=>{navigation.navigate('ListUserPost');}}>
-          <Icon name="calendar-edit" size={25}> <Text style={{fontSize:20,fontWeight:'bold'}}>Edit your posts</Text></Icon>
-          </TouchableOpacity>
-       
+        <TouchableOpacity style={style.button} onPress={()=>{navigation.navigate('ListUserPost');}}><Icon name="calendar-edit" size={40}/></TouchableOpacity>
+        <Text style={{fontSize:20,fontWeight:'bold',alignSelf:'center'}}>Edit your posts</Text>
         
         </View>
         <FlatList

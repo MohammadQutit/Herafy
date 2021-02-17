@@ -243,6 +243,11 @@ export const listPosts = /* GraphQL */ `
           Email
           FirstName
           LastName
+          Image {
+            bucket
+            region
+            key
+          }
          
         }
         createdAt
