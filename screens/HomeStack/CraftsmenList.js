@@ -23,6 +23,7 @@ import {moss} from '../../assets/color'
 export default List = ({navigation}) => {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
   const [isReady, SetIsReady] = React.useState(true);
+  const [refreshing, setRefreshing] = React.useState(false);
   const [City,SetCity]=React.useState("")
   const [sea,setsearch]=React.useState("")
   console.log(UserState)
@@ -162,6 +163,18 @@ export default List = ({navigation}) => {
     );
   }
 
+
+  async function getPostData2(){
+    setRefreshing(true)
+    const data = await API.graphql(graphqlOperation(listUsers,{
+      filter: {and:[{Category: {eq: UserState.Category}},{id:{ne:UserState.UserID}}]},
+    }))
+    setData(...[data.data.listUsers.items])
+    console.log(data.data.listUsers.items)
+    setRefreshing(false)
+  }
+
+
   
   React.useEffect(() => {
     async function a() {
@@ -237,6 +250,8 @@ export default List = ({navigation}) => {
             data={Data}
             renderItem={renderit}
             keyExtractor={key}
+            refreshing={refreshing}
+            onRefresh={()=>getPostData2()}
           />
         </SafeAreaView>
       )}
