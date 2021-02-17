@@ -9,7 +9,8 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Dimensions,
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native';
 import {Storage}from "@aws-amplify/storage"
 import awsExports from '../../aws-exports'
@@ -26,6 +27,7 @@ export default function AddPost({navigation}) {
   const [PostText, SetPostText] = React.useState("");
   const [image, setImage] = React.useState(DefPath);
   const [ImageObj,setImageObj]=React.useState(DefPath)
+  const [Ready,setReady]=React.useState(true)
   const [UserState,dispatch]=React.useContext(PostsContext)
 
   const get=()=>{
@@ -42,11 +44,15 @@ export default function AddPost({navigation}) {
     }
     else{
    try {
+     setReady(false)
      console.log("hahahahah")
      if(image===DefPath){
        
         API.graphql(graphqlOperation(createPost,{input:{Text:PostText,postUserId:UserState.UserID}}))
-       .then(navigation.pop())
+       .then(()=>{
+         navigation.pop()
+         setReady(true)
+        })
        
 
       
@@ -71,7 +77,10 @@ export default function AddPost({navigation}) {
         }
 
          API.graphql(graphqlOperation(createPost,{input:{Text:PostText,postUserId:UserState.UserID,Image:ob}}))
-       .then(navigation.pop())
+       .then(()=>{
+         navigation.pop()
+         setReady(true)
+      })
         
   
   
@@ -84,6 +93,7 @@ export default function AddPost({navigation}) {
       
        
      } catch (error) {
+       setReady(true)
        Alert.alert("Error",error.message)
        
      }
@@ -110,6 +120,7 @@ export default function AddPost({navigation}) {
   };
 
   return (
+    Ready === true?
     <View style={style.container}>
       <View style={{flex: 3}}>
         <TextInput
@@ -168,6 +179,11 @@ export default function AddPost({navigation}) {
         />
         
       </View>
+    </View>
+    :
+    <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+      <ActivityIndicator color={moss} size="large"/>
+
     </View>
   );
 }
