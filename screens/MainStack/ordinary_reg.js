@@ -93,6 +93,7 @@ export default function CraftsmanReg({navigation}) {
                   <View style={styles.textinput}>
                   <Icon name="user-o" size={25} />
                     <TextInput
+                      autoCapitalize="words"
                       style={styles.inputIn}
                       placeholder="  First Name"
                       keyboardType="default"
@@ -116,6 +117,7 @@ export default function CraftsmanReg({navigation}) {
                   <View style={styles.textinput}>
                   <Icon name="user-o" size={25} />
                     <TextInput
+                     autoCapitalize="words"
                       style={styles.inputIn}
                       onSubmitEditing={() => {
                         this.thirdTextInput.focus();
@@ -166,6 +168,7 @@ export default function CraftsmanReg({navigation}) {
                   <View style={styles.textinput}>
                   <Icon name="envelope-o" size={25} />
                     <TextInput
+                     autoCapitalize="none"
                       style={styles.inputIn}
                       onSubmitEditing={() => {
                         this.fifthTextInput.focus();
@@ -191,6 +194,7 @@ export default function CraftsmanReg({navigation}) {
                   <View style={styles.textinput}>
                   <Icon name="lock" size={25} />
                     <TextInput
+                    autoCapitalize="none"
                       style={styles.inputIn}
                       onSubmitEditing={() => {
                         this.sixthTextInput.focus();
@@ -216,6 +220,7 @@ export default function CraftsmanReg({navigation}) {
                   <View style={styles.textinput}>
                   <Icon name="lock" size={25} />
                     <TextInput
+                    autoCapitalize="none"
                       style={styles.inputIn}
                       ref={(input) => {
                         this.sixthTextInput = input;
