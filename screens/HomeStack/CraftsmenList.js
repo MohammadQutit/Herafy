@@ -44,7 +44,7 @@ export default List = ({navigation}) => {
     }
 
   }
-  
+   
   const search=async()=>{
     console.log(sea)
     const x=await API.graphql(
@@ -90,7 +90,8 @@ export default List = ({navigation}) => {
             autoCapitalize="none"
             autoCorrect={true}
             clearButtonMode="always"
-            defaultValue=""
+            defaultValue=" "
+            value={sea}
             placeholder="Search"
             onChangeText={(text)=>{setsearch(text)}}
             style={{
@@ -240,6 +241,18 @@ export default List = ({navigation}) => {
         </View>
       ) : (
         <SafeAreaView>
+          <TextInput
+          onChangeText={(text)=>{setsearch(text)}}
+           style={{
+            marginStart:10,
+            backgroundColor: '#F2F2F2',
+            paddingHorizontal: 20,
+            width: '75%',
+            fontWeight: 'bold',
+            height:"50%",
+            borderRadius:20
+          }}
+          />
           <FlatList
           maxToRenderPerBatch={4}
             ListHeaderComponent={<RenderHeader />}
