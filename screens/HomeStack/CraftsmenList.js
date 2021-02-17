@@ -62,9 +62,22 @@ export default List = ({navigation}) => {
         SetIsReady(true)
       }
     )
-    }else{
+    }if(sea[0]!=""){
       const first=sea[0].trim(" ")
       console.log(first)
+      const x=await API.graphql(
+        graphqlOperation(listUsers,{
+          filter:{and: [{Category: {eq: UserState.Category}},{FirstName:{eq:first}},{id:{ne:UserState.UserID}}] }
+        })
+      ).then(
+        (x)=>{
+          console.log(x.data.listUsers.items)
+          setData(x.data.listUsers.items);
+          SetIsReady(true)
+        }
+      )
+    }if(sea[0]==""){
+      let first=sea.slice(-1)[0]
       const x=await API.graphql(
         graphqlOperation(listUsers,{
           filter:{and: [{Category: {eq: UserState.Category}},{FirstName:{eq:first}},{id:{ne:UserState.UserID}}] }
