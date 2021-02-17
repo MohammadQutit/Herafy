@@ -419,24 +419,24 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
   },
   image: {
-    height: '60%',
-    width: '30%',
+    height: '70%',
+    width: '40%',
     borderRadius: 15,
   },
   firstview: {
     alignItems: 'center',
-    flex: 2,
+    flex: 3,
     justifyContent: 'center',
     
   },
   secondview: {
-    flex: 6,
+    flex: 4,
     marginHorizontal: 20,
   },
   thirdview: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1.8,
+    flex: 1,
   },
   Action: {
     flexDirection: 'row',
