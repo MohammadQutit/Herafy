@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   TextInput,
   Alert,
+  RefreshControl
 } from 'react-native';
 import Row from './Row';
 import {CategoriesContext} from '../../context/CategoriesContext';
@@ -51,7 +52,7 @@ export default List = ({navigation}) => {
     if(sea[1]!=null){
     const x=await API.graphql(
       graphqlOperation(listUsers,{
-        filter:{and: [{Category: {eq: UserState.Category}},{FirstName:{eq:sea[0]}},{LastName:{eq:sea[1]}}] }
+        filter:{and: [{Category: {eq: UserState.Category}},{FirstName:{eq:sea[0]}},{LastName:{eq:sea[1]}},{id:{ne:UserState.UserID}}] }
       })
     ).then(
       (x)=>{
@@ -234,6 +235,7 @@ export default List = ({navigation}) => {
             data={Data}
             renderItem={renderit}
             keyExtractor={key}
+          
           />
         </SafeAreaView>
       )}
