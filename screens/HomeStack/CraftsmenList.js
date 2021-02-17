@@ -49,8 +49,8 @@ export default List = ({navigation}) => {
   }
    
   const search=async()=>{
-    
-    if(sea[1]!=null){
+  
+    if(sea[1]!=null & sea[1]!=""){
     const x=await API.graphql(
       graphqlOperation(listUsers,{
         filter:{and: [{Category: {eq: UserState.Category}},{FirstName:{eq:sea[0]}},{LastName:{eq:sea[1]}},{id:{ne:UserState.UserID}}] }
@@ -63,7 +63,19 @@ export default List = ({navigation}) => {
       }
     )
     }else{
-      Alert.alert('you must enter the fullname')
+      const first=sea[0].trim(" ")
+      console.log(first)
+      const x=await API.graphql(
+        graphqlOperation(listUsers,{
+          filter:{and: [{Category: {eq: UserState.Category}},{FirstName:{eq:first}},{id:{ne:UserState.UserID}}] }
+        })
+      ).then(
+        (x)=>{
+          console.log(x.data.listUsers.items)
+          setData(x.data.listUsers.items);
+          SetIsReady(true)
+        }
+      )
     }
   }
 
