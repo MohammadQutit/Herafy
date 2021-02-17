@@ -7,6 +7,7 @@ import {
   Text,
   ActivityIndicator,
   TextInput,
+  Alert,
 } from 'react-native';
 import Row from './Row';
 import {CategoriesContext} from '../../context/CategoriesContext';
@@ -46,10 +47,11 @@ export default List = ({navigation}) => {
   }
    
   const search=async()=>{
-    console.log(sea)
+    
+    if(sea[1]!=null){
     const x=await API.graphql(
       graphqlOperation(listUsers,{
-        filter:{and: [{Category: {eq: UserState.Category}},{FirstName:{eq:sea}}] }
+        filter:{and: [{Category: {eq: UserState.Category}},{FirstName:{eq:sea[0]}},{LastName:{eq:sea[1]}}] }
       })
     ).then(
       (x)=>{
@@ -58,6 +60,9 @@ export default List = ({navigation}) => {
         SetIsReady(true)
       }
     )
+    }else{
+      Alert.alert('you must enter the fullname')
+    }
   }
 
    
@@ -204,7 +209,7 @@ export default List = ({navigation}) => {
         <SafeAreaView style={{flex:1}}>
           <View style={{width:"100%",backgroundColor:"white",flexDirection:"row",alignItems:"center",height:60}}>
           <TextInput
-          onChangeText={(text)=>{setsearch(text)}}
+          onChangeText={(text)=>{setsearch(text.split(" "))}}
           placeholder="search"
            style={{
              flex:4,
