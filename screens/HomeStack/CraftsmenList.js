@@ -63,7 +63,17 @@ export default List = ({navigation}) => {
       }
     )
     }else{
-      Alert.alert('you must enter the fullname')
+      const x=await API.graphql(
+        graphqlOperation(listUsers,{
+          filter:{and: [{Category: {eq: UserState.Category}},{FirstName:{eq:sea[0]}},{id:{ne:UserState.UserID}}] }
+        })
+      ).then(
+        (x)=>{
+          console.log(x.data.listUsers.items)
+          setData(x.data.listUsers.items);
+          SetIsReady(true)
+        }
+      )
     }
   }
 
