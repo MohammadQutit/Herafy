@@ -22,6 +22,7 @@ export default List = ({navigation}) => {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
   const [isReady, SetIsReady] = React.useState(true);
   const [City,SetCity]=React.useState("")
+  const [sea,setsearch]=React.useState("")
   console.log(UserState)
   const [Data, setData] = React.useState([]);
 
@@ -42,6 +43,21 @@ export default List = ({navigation}) => {
       SetIsReady(true)
     }
 
+  }
+  
+  const search=async()=>{
+    console.log(sea)
+    const x=await API.graphql(
+      graphqlOperation(listUsers,{
+        filter:{and: [{Category: {eq: UserState.Category}},{FirstName:{eq:sea}}] }
+      })
+    ).then(
+      (x)=>{
+        console.log(x.data.listUsers.items)
+        setData(x.data.listUsers.items);
+        SetIsReady(true)
+      }
+    )
   }
 
    
@@ -72,9 +88,11 @@ export default List = ({navigation}) => {
           }}>
           <TextInput
             autoCapitalize="none"
-            autoCorrect={false}
+            autoCorrect={true}
             clearButtonMode="always"
+            defaultValue=""
             placeholder="Search"
+            onChangeText={(text)=>{setsearch(text)}}
             style={{
               marginStart:10,
               backgroundColor: '#F2F2F2',
@@ -90,7 +108,9 @@ export default List = ({navigation}) => {
               width: '20%',
               justifyContent: 'center',
             }}>
+              <TouchableOpacity onPress={()=>{search()}}>
             <Icon name="search" size={30} color="grey" />
+          </TouchableOpacity>
           </View>
         </View>
 
