@@ -84,7 +84,7 @@ export default function PostList({navigation}) {
     <RevRow
       FirstName={obj.item.Reviewer.FirstName}
       LastName={obj.item.Reviewer.LastName}
-      Profileurl={require('../../4.png')}
+      Profileurl={obj.item.Reviewer.Image}
       ReviewtText={obj.item.Comment}
       rating={obj.item.Rate}
       navigation={navigation}

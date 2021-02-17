@@ -19,7 +19,7 @@ export default function Post(props) {
     
       }
       
-      setReady(true)
+      
   
       
     }catch(error){
