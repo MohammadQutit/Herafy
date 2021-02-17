@@ -53,7 +53,7 @@ fetchImage()
         <Text style={style.CreatorText}>
             {props.FirstName + ' ' + props.LastName}
           </Text>
-          <Text style={{width:100,paddingStart:10}}>{props.createdAt.slice(0,10)}</Text>
+          <Text style={{width:"100%",paddingStart:10,}}>{new Date(props.createdAt).toISOString().slice(0,10)+"  "+new Date(props.createdAt).toISOString().slice(11,16)}</Text>
 
         </View>
          
@@ -87,7 +87,7 @@ fetchImage()
         <Text style={style.CreatorText}>
             {props.FirstName + ' ' + props.LastName}
           </Text>
-          <Text style={{width:100,paddingStart:10}}>{props.createdAt.slice(0,10)}</Text>
+          <Text style={{width:"100%",paddingStart:10}}>{new Date(props.createdAt).toISOString().slice(0,10)+"  "+new Date(props.createdAt).toISOString().slice(11,16)}</Text>
 
         </View>
         </TouchableOpacity>

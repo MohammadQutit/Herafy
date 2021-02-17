@@ -7,6 +7,7 @@ import {API}from '@aws-amplify/api/src/API'
 import {graphqlOperation}from '@aws-amplify/api-graphql/dist/aws-amplify-api-graphql'
 import {Auth} from "@aws-amplify/auth"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import {addHours}from '../../functions/CalendarGEN'
 import {moss} from '../../assets/color'
 export default function PostList({navigation}) {
 
@@ -89,7 +90,7 @@ const [Ready,setReady]=React.useState(false)
       Profileurl={obj.item.User.Image}
       postText={obj.item.Text}
       firstImage={obj.item.Image}
-      createdAt={obj.item.createdAt}
+      createdAt={addHours( obj.item.createdAt,2)}
       navigation={navigation}
       ID={obj.item.User.id}
       dispatch={dispatch}
