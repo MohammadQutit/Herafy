@@ -419,8 +419,8 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
   },
   image: {
-    height: '80%',
-    width: '50%',
+    height: '60%',
+    width: '30%',
     borderRadius: 15,
   },
   firstview: {
@@ -430,13 +430,13 @@ const style = StyleSheet.create({
     
   },
   secondview: {
-    flex: 3,
+    flex: 6,
     marginHorizontal: 20,
   },
   thirdview: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
+    flex: 1.8,
   },
   Action: {
     flexDirection: 'row',
@@ -448,7 +448,7 @@ const style = StyleSheet.create({
     borderBottomColor: '#f2f2f2',
   },
   textInput: {
-    flex: 3,
+    flex: 2,
     marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
     color: '#05375a',
