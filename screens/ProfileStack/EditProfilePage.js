@@ -361,21 +361,20 @@ export default function A() {
                   style={{
                     inputIOS: {
                       color: 'black',
-                      marginRight: 10,
+                      marginLeft: 10,
                       width: width / 2.5,
                       backgroundColor: 'rgba(255, 255, 255, 0.9)',
                       borderRadius: 20,
-                      fontWeight: 'bold',
                       height: 55,
                     },
                     inputAndroid: {
                       color: 'black',
                       backgroundColor: 'white',
                       width: width / 2.5,
-                      marginRight: 10,
+                      marginLeft: 10,
                       backgroundColor: 'rgba(255, 255, 255, 0.9)',
                       borderRadius: 20,
-                      fontWeight: 'bold',
+                      
                       height: 55,
                     },
                     placeholder: {
