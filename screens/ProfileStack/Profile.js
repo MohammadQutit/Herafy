@@ -154,7 +154,7 @@ export default function Craftprofile({ navigation }) {
         </View>
       </View>
 
-      <View style={[styles.info, { flex: 2 }]}>
+      <View style={[styles.info, { flex: 1 }]}>
       {data.category!==" " ?
         <View style={styles.row}>
          
@@ -191,7 +191,7 @@ export default function Craftprofile({ navigation }) {
         <View style={styles.row}></View>
         }
       </View>
-      <View style={{ flex: 1, alignItems: "center" }}>
+      <View style={{ flex: .5, alignItems: "center" }}>
         { data.category !==" "?
         <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => { navigation.navigate('Review') }}>
           <Icon name="comment-text-multiple" color={moss} size={60} />
