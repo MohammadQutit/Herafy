@@ -49,9 +49,14 @@ fetchImage()
       <View style={style.CreatorInfo}>
         <TouchableOpacity style={style.Touchable} onPress={() => {PickPoster(props.ID)}}>
         <Image source={{uri:profileImg}} style={style.profileImage} />
-          <Text style={style.CreatorText}>
+        <View style={{flexDirection:"column"}}>
+        <Text style={style.CreatorText}>
             {props.FirstName + ' ' + props.LastName}
           </Text>
+          <Text style={{width:100,paddingStart:10}}>{props.createdAt.slice(0,10)}</Text>
+
+        </View>
+         
         </TouchableOpacity>
       </View>
       <View style={style.PostTextView}>
@@ -78,9 +83,13 @@ fetchImage()
       <View style={style.CreatorInfo}>
         <TouchableOpacity style={style.Touchable} onPress={() => {PickPoster(props.ID)}}>
         <Image source={{uri:profileImg}} style={style.profileImage} />
-          <Text style={style.CreatorText}>
+        <View style={{flexDirection:"column"}}>
+        <Text style={style.CreatorText}>
             {props.FirstName + ' ' + props.LastName}
           </Text>
+          <Text style={{width:100,paddingStart:10}}>{props.createdAt.slice(0,10)}</Text>
+
+        </View>
         </TouchableOpacity>
       </View>
       <View style={style.PostTextView}>

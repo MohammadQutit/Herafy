@@ -35,7 +35,10 @@ const [Ready,setReady]=React.useState(false)
   async function getPostData2(){
     setRefreshing(true)
     const data = await API.graphql(graphqlOperation(listPosts))
-    setData(...[data.data.listPosts.items])
+    const edited= data.data.listPosts.items.sort((a,b)=>{
+      return new Date(b.createdAt)-new Date(a.createdAt)
+    })
+    setData(edited)
     console.log(data.data.listPosts.items)
     setRefreshing(false)
   }
@@ -45,7 +48,10 @@ const [Ready,setReady]=React.useState(false)
       setReady(false)
       setRefreshing(true)
       const data = await API.graphql(graphqlOperation(listPosts))
-      setData(data.data.listPosts.items)
+      const edited= data.data.listPosts.items.sort((a,b)=>{
+        return new Date(b.createdAt)-new Date(a.createdAt)
+      })
+      setData(edited)
       console.log(data.data.listPosts.items)
       setReady(true)
       setRefreshing(false)
@@ -83,7 +89,7 @@ const [Ready,setReady]=React.useState(false)
       Profileurl={obj.item.User.Image}
       postText={obj.item.Text}
       firstImage={obj.item.Image}
-      //secondImage={obj.item.Image.key}
+      createdAt={obj.item.createdAt}
       navigation={navigation}
       ID={obj.item.User.id}
       dispatch={dispatch}
