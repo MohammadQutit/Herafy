@@ -367,6 +367,11 @@ export const listReviews = /* GraphQL */ `
           Rating
           NumberOfUsers
           createdAt
+          Image{
+            bucket
+            key
+            region
+          }
           
         }
         Comment

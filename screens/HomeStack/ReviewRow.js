@@ -3,13 +3,43 @@ import {View, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import PropTypes from 'prop-types';
 import {moss} from '../../assets/color'
+import {Storage}from "@aws-amplify/storage"
+
+const DefPath="https://www.generationsforpeace.org/wp-content/uploads/2018/07/empty.jpg"
 export default function Post(props) {
+  const [profileImg,setProfileimg]=React.useState(DefPath)
+
+
+  const  fetchImage= async()=>{
+    try{
+      if(props.Profileurl!==null){
+    const result =await Storage.get(props.Profileurl.key.slice(7))
+    console.log(result)
+    setProfileimg(result)
+    
+      }
+      
+      setReady(true)
+  
+      
+    }catch(error){
+      console.log(error.message)
+
+    }
+  }
+
+
+  React.useEffect(()=>{
+    fetchImage()
+
+
+  },[])
  
   return (
     <View style={style.container}>
       <View style={style.CreatorInfo}>
         <View style={style.Touchable}>
-          <Image source={props.Profileurl} style={style.profileImage} />
+          <Image source={{uri:profileImg}} style={style.profileImage} />
           <Text style={style.CreatorText}>
             {props.FirstName + ' ' + props.LastName}
           </Text>

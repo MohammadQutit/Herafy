@@ -16,6 +16,7 @@ import { graphqlOperation } from '@aws-amplify/api-graphql/dist/aws-amplify-api-
 import { getUser } from '../../graphql/queries';
 import { API } from '@aws-amplify/api/src/API';
 import {moss} from '../../assets/color'
+import {Storage} from '@aws-amplify/storage';
 
 //const [phone, setphone] = useState('')
 //const [email, setemail] = useState('')
@@ -23,11 +24,14 @@ import {moss} from '../../assets/color'
 //const [location, setlocation] = useState('')
 //const [work, setwork] = useState('')
 //const [rate, setrate] = useState('')
+const DefPath="https://www.generationsforpeace.org/wp-content/uploads/2018/07/empty.jpg"
+
 const zerorating=0
 export default function Craftprofile({navigation}) {
   const [UserState, dispatch] = React.useContext(CategoriesContext);
   const [data, setdata] = React.useState(0);
   const [Ready,setready]=React.useState(false);
+  const [ProfileImage,setProfileImage]=React.useState(DefPath)
   
   const set = (obj) => {
     setdata(
@@ -39,7 +43,8 @@ export default function Craftprofile({navigation}) {
         email:obj.Email,
         category:obj.Category,
         rate:obj.Rating,
-        numberofrater:obj.NumberOfUsers  
+        numberofrater:obj.NumberOfUsers,  
+        img:obj.Image
       }
     )
    
@@ -48,13 +53,19 @@ export default function Craftprofile({navigation}) {
   React.useEffect(() => {
     async function GetUserdata() {
       try {
-         await API.graphql(graphqlOperation(getUser,{id:UserState.RequstedUserID})).then((x)=>{
+         const x=await API.graphql(graphqlOperation(getUser,{id:UserState.RequstedUserID}))
             set(x.data.getUser)
+            if(x.data.getUser.Image!==null){
+              const result= await Storage.get(x.data.getUser.Image.key.slice(7))
+              setProfileImage(result)
+            }       
+
+
+
             setready(true)
             
             
-          }
-            )  
+         
       } catch (error) {
         console.log(error.message);
       } 
@@ -72,7 +83,7 @@ export default function Craftprofile({navigation}) {
       <View style={[styles.userinfosection, {flex: 1}]}>
         <View style={{flexDirection: 'row', flex: 1}}>
           <Image
-            source={require('../../assets/Profile.png')}
+            source={{uri:ProfileImage}}
             style={styles.category_icon}
           />
           <View style={styles.headear}>
