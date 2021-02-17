@@ -74,46 +74,7 @@ export default List = ({navigation}) => {
           backgroundColor:"#F2F2F2",
        
         }}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            backgroundColor: 'white',
-            height: '100%',
-            marginEnd: 1,
-            borderRadius: 10,
-            justifyContent:"center",
-            alignItems:"center",
-            
-          }}>
-          <TextInput
-            autoCapitalize="none"
-            autoCorrect={true}
-            clearButtonMode="always"
-            defaultValue=" "
-            value={sea}
-            placeholder="Search"
-            onChangeText={(text)=>{setsearch(text)}}
-            style={{
-              marginStart:10,
-              backgroundColor: '#F2F2F2',
-              paddingHorizontal: 20,
-              width: '75%',
-              fontWeight: 'bold',
-              height:"50%",
-              borderRadius:20
-            }}
-          />
-          <View
-            style={{
-              width: '20%',
-              justifyContent: 'center',
-            }}>
-              <TouchableOpacity onPress={()=>{search()}}>
-            <Icon name="search" size={30} color="grey" />
-          </TouchableOpacity>
-          </View>
-        </View>
+        
 
         <View
           style={{
@@ -240,19 +201,27 @@ export default List = ({navigation}) => {
           <ActivityIndicator color={moss} size="large" />
         </View>
       ) : (
-        <SafeAreaView>
+        <SafeAreaView style={{flex:1}}>
+          <View style={{width:"100%",backgroundColor:"white",flexDirection:"row",alignItems:"center",height:60}}>
           <TextInput
           onChangeText={(text)=>{setsearch(text)}}
+          placeholder="search"
            style={{
+             flex:4,
             marginStart:10,
             backgroundColor: '#F2F2F2',
-            paddingHorizontal: 20,
-            width: '75%',
+            paddingStart: 20,
+           
             fontWeight: 'bold',
-            height:"50%",
+           
             borderRadius:20
           }}
+         
           />
+          <TouchableOpacity style={{alignItems:"center",justifyContent:"center"}} onPress={()=>{search()}}>
+            <Icon name="search" size={30} color="grey" />
+          </TouchableOpacity>
+          </View>
           <FlatList
           maxToRenderPerBatch={4}
             ListHeaderComponent={<RenderHeader />}
