@@ -61,7 +61,7 @@ export default function Row(props) {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Image source={{uri:profileImg}} style={{width:100,height:100}}/>
+          <Image source={{uri:profileImg}} style={{width:100,height:100,borderRadius:10}}/>
         </View>
 
         <View
