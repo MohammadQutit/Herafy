@@ -428,8 +428,6 @@ const style = StyleSheet.create({
   },
   secondview: {
     flex: 3,
-    justifyContent:"center",
-    alignItems:"center",
     width:"100%"
   },
   thirdview: {
@@ -446,6 +444,8 @@ const style = StyleSheet.create({
     marginStart:10,
     borderBottomWidth: 1,
     width: '90%',
+    height:50,
+
     borderBottomColor: '#f2f2f2',
   },
   textInput: {
