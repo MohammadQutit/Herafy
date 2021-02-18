@@ -47,7 +47,7 @@ return obj
        console.log(attributes['sub'])
        const c=await API.graphql(graphqlOperation(getUser3,{id:attributes['sub']}))
        dispatch({type:'setperiod',Periods:c.data.getUser.Calenders.items})
-       const s=UserState.Periods
+       const s=c.data.getUser.Calenders.items
        console.log(s)
        SetReady(true)
        let gen=[]
