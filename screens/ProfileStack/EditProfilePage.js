@@ -28,19 +28,19 @@ import awsExports from '../../aws-exports';
 const DefPath =
   'https://www.generationsforpeace.org/wp-content/uploads/2018/07/empty.jpg';
 const validationSchema = yup.object().shape({
-  firstName: yup
+  firstname: yup
     .string('The name should be String')
     .required('Required Field')
     .label(),
-  lastName: yup
+  lastname: yup
     .string('Last name should be String')
     .required('Required Field')
     .label(),
-  phone: yup.string().required('Required Field').max(13),
+  phonenumber: yup.string().required('Required Field').max(13),
   email: yup
     .string()
     .required('Required Field')
-    .email('Please Enter valid Email'),
+    .email('Enter valid Email'),
   city: yup.string().required('Required Field'),
 });
 
@@ -241,8 +241,8 @@ export default function A() {
       enableReinitialize={true}
       validationSchema={validationSchema}
       onSubmit={async (values, actions) => {
-        actions.resetForm();
-        console.log(values);
+        SubmitEdit(values)
+        
       }}>
       {(props) => (
         <View style={style.Container}>
@@ -256,7 +256,7 @@ export default function A() {
                 width: '55%',
               }}>
               <TouchableOpacity onPress={() => AddPicture()}>
-                <Ionicon name="add-a-photo" size={35} color="black" />
+                <Ionicon name="add-a-photo" size={30} color="black" />
               </TouchableOpacity>
             </View>
           </View>
@@ -365,7 +365,7 @@ export default function A() {
                       width: width / 2.5,
                       backgroundColor: 'rgba(255, 255, 255, 0.9)',
                       borderRadius: 20,
-                      height: 55,
+                      height: 40,
                     },
                     inputAndroid: {
                       color: 'black',
@@ -375,7 +375,7 @@ export default function A() {
                       backgroundColor: 'rgba(255, 255, 255, 0.9)',
                       borderRadius: 20,
                       
-                      height: 55,
+                      height: 40,
                     },
                     placeholder: {
                       color: 'black',
@@ -391,9 +391,7 @@ export default function A() {
           <View style={style.thirdview}>
             <TouchableOpacity
               style={style.CommandButton}
-              onPress={() => {
-                SubmitEdit(props.values);
-              }}>
+              onPress={props.handleSubmit}>
               <Text style={style.PannelButtonTitle}>Submit</Text>
             </TouchableOpacity>
           </View>
@@ -418,39 +416,46 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
   },
   image: {
-    height: '70%',
-    width: '40%',
+    height: 100,
+    width: 100,
     borderRadius: 15,
   },
   firstview: {
     alignItems: 'center',
-    flex: 3,
+    flex: 1.5,
     justifyContent: 'center',
     
   },
   secondview: {
-    flex: 4,
-    marginHorizontal: 20,
+    flex: 3,
+    justifyContent:"center",
+    alignItems:"center",
+    width:"100%"
   },
   thirdview: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
+    flex: 0.5,
   },
   Action: {
+    
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 5,
+    marginEnd:10,
+    marginStart:10,
     borderBottomWidth: 1,
-    width: '100%',
+    width: '90%',
     borderBottomColor: '#f2f2f2',
   },
   textInput: {
-    flex: 2,
-    marginTop: Platform.OS === 'ios' ? 0 : -12,
-    paddingLeft: 10,
-    color: '#05375a',
+    
+    paddingStart: 10,
+    paddingEnd:10,
+    alignItems:'center',
+    width:"65%",
+    color: 'black',
+   
   },
   CommandButton: {
     flexDirection: 'row',
@@ -458,9 +463,8 @@ const style = StyleSheet.create({
     backgroundColor: moss,
     alignItems: 'center',
     justifyContent: 'center',
-    width: width * 0.8,
-    height: 60,
-    margin: 10,
+    width: width * 0.4,
+    height: 50,
   },
   PannelButtonTitle: {
     fontSize: 17,
@@ -468,11 +472,9 @@ const style = StyleSheet.create({
     color: 'white',
   },
   errors: {
-    flex: 2,
+    width:"25%",
     marginTop: 3,
-    height: 20,
     color: 'red',
-    paddingStart: 20,
-    fontSize: 15,
+    fontSize: 9,
   },
 });
