@@ -67,45 +67,53 @@ export default function Craftprofile({ navigation }) {
     )
 
   }
+  async function GetUserID(params) {
+    try {
+
+      dispatch({type:"setUserInfo",UserInfo:GetUserID})
+     const {attributes} =await Auth.currentUserInfo().then(
+       await Auth.currentUserInfo().then((userInfo) => {
+         const {attributes = {}} = userInfo
+        dispatch({type:'setsuserID',UserID:attributes['sub']}) 
+
+          API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then( 
+        (x)=>{
+          set(x.data.getUser)
+          console.log(x.data.getUser)
+          SetIsReady(true)
+          if(x.data.getUser.Image !== null)
+          Storage.get(x.data.getUser.Image.key.slice(7)).then((result)=>{
+            setImage(result)
+         
+
+          })
+          else
+          setImage(DefPath)
+         
+          
+        }
+          
+         
+           
+          )
+        
+         
+       }
+     ))
+      
+    } catch (error) {
+      console.log(error.message);
+    }
+    
+  }
+
+
+
+
+
  
   React.useEffect(() => {
-    async function GetUserID(params) {
-      try {
-       const {attributes} =await Auth.currentUserInfo().then(
-         await Auth.currentUserInfo().then((userInfo) => {
-           const {attributes = {}} = userInfo
-          dispatch({type:'setsuserID',UserID:attributes['sub']}) 
-
-            API.graphql(graphqlOperation(getUser,{id:attributes['sub']})).then( 
-          (x)=>{
-            set(x.data.getUser)
-            console.log(x.data.getUser)
-            SetIsReady(true)
-            if(x.data.getUser.Image !== null)
-            Storage.get(x.data.getUser.Image.key.slice(7)).then((result)=>{
-              setImage(result)
-           
-
-            })
-            else
-            setImage(DefPath)
-           
-            
-          }
-            
-           
-             
-            )
-          
-           
-         }
-       ))
-        
-      } catch (error) {
-        console.log(error.message);
-      }
-      
-    }
+    
 
     
       GetUserID()

@@ -152,6 +152,7 @@ export default function A() {
         ).then(()=>{
           setawsobj(ob);
           setReady(true);
+         
       Alert.alert('Success', 'User Attributes updated successfully');
 
         }
@@ -189,6 +190,17 @@ export default function A() {
 
 
     }
+    setdata({
+      city: values.city,
+      firstname: values.firstname,
+      lastname: values.lastname,
+      email: values.email,
+      phonenumber: values.phonenumber,
+      category: values.category,
+      rate: values.rate,
+      img: awsobj
+    });
+    UserState.UserInfo()
       
     } catch (error) {
       setReady(true);
@@ -200,6 +212,7 @@ export default function A() {
   React.useEffect(() => {
     async function GetUserID(params) {
       try {
+        console.log(UserState)
         setuid(UserState.UserID);
         await API.graphql(
           graphqlOperation(getUser, {id: UserState.UserID}),
